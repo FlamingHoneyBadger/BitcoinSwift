@@ -3,12 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3D22BB26571FB7009F727A /* BigInt in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3D22BA26571FB7009F727A /* BigInt */; };
+		1F3D22BD26571FD1009F727A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BC26571FD1009F727A /* Helper.swift */; };
+		1F3D22C126571FDE009F727A /* secp256k1Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BE26571FDE009F727A /* secp256k1Point.swift */; };
+		1F3D22C226571FDE009F727A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BF26571FDE009F727A /* Point.swift */; };
+		1F3D22C326571FDE009F727A /* secp256k1Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22C026571FDE009F727A /* secp256k1Field.swift */; };
+		1F3D22C7265721C8009F727A /* FieldElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22C4265721C8009F727A /* FieldElementTests.swift */; };
+		1F3D22C8265721C8009F727A /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22C5265721C8009F727A /* PointTests.swift */; };
+		1F3D22C9265721C8009F727A /* scep256k1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22C6265721C8009F727A /* scep256k1Tests.swift */; };
+		1F3D22CB26573D6B009F727A /* ECDSASignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22CA26573D6B009F727A /* ECDSASignature.swift */; };
+		1F3D22CD26574281009F727A /* secp256k1Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22CC26574281009F727A /* secp256k1Constants.swift */; };
+		1F3D22CF26574526009F727A /* ECCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22CE26574526009F727A /* ECCTests.swift */; };
+		1F3D22D12658E266009F727A /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D02658E266009F727A /* PrivateKey.swift */; };
+		1F3D22D42659719F009F727A /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D32659719F009F727A /* Data+Extension.swift */; };
+		1F3D22D626597486009F727A /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D526597486009F727A /* Array+Extension.swift */; };
+		1F3D22D82659CEA9009F727A /* RIPEMD160.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D72659CEA9009F727A /* RIPEMD160.swift */; };
+		1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */; };
 		1FB792EC264FB05900CA2CD7 /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
-		1FB792F1264FB05900CA2CD7 /* BitcoinSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB792F0264FB05900CA2CD7 /* BitcoinSwiftTests.swift */; };
 		1FB792F3264FB05900CA2CD7 /* BitcoinSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
 /* End PBXBuildFile section */
@@ -24,11 +39,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F3D22BC26571FD1009F727A /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		1F3D22BE26571FDE009F727A /* secp256k1Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secp256k1Point.swift; sourceTree = "<group>"; };
+		1F3D22BF26571FDE009F727A /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		1F3D22C026571FDE009F727A /* secp256k1Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secp256k1Field.swift; sourceTree = "<group>"; };
+		1F3D22C4265721C8009F727A /* FieldElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldElementTests.swift; sourceTree = "<group>"; };
+		1F3D22C5265721C8009F727A /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
+		1F3D22C6265721C8009F727A /* scep256k1Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = scep256k1Tests.swift; sourceTree = "<group>"; };
+		1F3D22CA26573D6B009F727A /* ECDSASignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECDSASignature.swift; sourceTree = "<group>"; };
+		1F3D22CC26574281009F727A /* secp256k1Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secp256k1Constants.swift; sourceTree = "<group>"; };
+		1F3D22CE26574526009F727A /* ECCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECCTests.swift; sourceTree = "<group>"; };
+		1F3D22D02658E266009F727A /* PrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKey.swift; sourceTree = "<group>"; };
+		1F3D22D32659719F009F727A /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		1F3D22D526597486009F727A /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		1F3D22D72659CEA9009F727A /* RIPEMD160.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIPEMD160.swift; sourceTree = "<group>"; };
+		1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RIPEMD-160-Tests.swift"; sourceTree = "<group>"; };
 		1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitcoinSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitcoinSwift.h; sourceTree = "<group>"; };
 		1FB792E6264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FB792EB264FB05900CA2CD7 /* BitcoinSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitcoinSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FB792F0264FB05900CA2CD7 /* BitcoinSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinSwiftTests.swift; sourceTree = "<group>"; };
 		1FB792F2264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FB7930126502E0F00CA2CD7 /* FieldElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldElement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3D22BB26571FB7009F727A /* BigInt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F3D22D226597162009F727A /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				1F3D22D32659719F009F727A /* Data+Extension.swift */,
+				1F3D22D526597486009F727A /* Array+Extension.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 		1FB792D8264FB05900CA2CD7 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +112,7 @@
 		1FB792E4264FB05900CA2CD7 /* BitcoinSwift */ = {
 			isa = PBXGroup;
 			children = (
+				1F3D22D226597162009F727A /* Foundation */,
 				1FB792FC26502DA700CA2CD7 /* Core */,
 				1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */,
 				1FB792E6264FB05900CA2CD7 /* Info.plist */,
@@ -83,8 +123,12 @@
 		1FB792EF264FB05900CA2CD7 /* BitcoinSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				1FB792F0264FB05900CA2CD7 /* BitcoinSwiftTests.swift */,
+				1F3D22C4265721C8009F727A /* FieldElementTests.swift */,
+				1F3D22C5265721C8009F727A /* PointTests.swift */,
+				1F3D22C6265721C8009F727A /* scep256k1Tests.swift */,
 				1FB792F2264FB05900CA2CD7 /* Info.plist */,
+				1F3D22CE26574526009F727A /* ECCTests.swift */,
+				1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */,
 			);
 			path = BitcoinSwiftTests;
 			sourceTree = "<group>";
@@ -92,8 +136,10 @@
 		1FB792FC26502DA700CA2CD7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1F3D22BC26571FD1009F727A /* Helper.swift */,
 				1FB792FE26502DD800CA2CD7 /* Script */,
 				1FB792FD26502DB700CA2CD7 /* ECC */,
+				1F3D22D72659CEA9009F727A /* RIPEMD160.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -101,7 +147,13 @@
 		1FB792FD26502DB700CA2CD7 /* ECC */ = {
 			isa = PBXGroup;
 			children = (
+				1F3D22BF26571FDE009F727A /* Point.swift */,
+				1F3D22C026571FDE009F727A /* secp256k1Field.swift */,
+				1F3D22BE26571FDE009F727A /* secp256k1Point.swift */,
 				1FB7930126502E0F00CA2CD7 /* FieldElement.swift */,
+				1F3D22CA26573D6B009F727A /* ECDSASignature.swift */,
+				1F3D22CC26574281009F727A /* secp256k1Constants.swift */,
+				1F3D22D02658E266009F727A /* PrivateKey.swift */,
 			);
 			path = ECC;
 			sourceTree = "<group>";
@@ -141,6 +193,9 @@
 			dependencies = (
 			);
 			name = BitcoinSwift;
+			packageProductDependencies = (
+				1F3D22BA26571FB7009F727A /* BigInt */,
+			);
 			productName = BitcoinSwift;
 			productReference = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */;
 			productType = "com.apple.product-type.framework";
@@ -190,6 +245,9 @@
 				Base,
 			);
 			mainGroup = 1FB792D8264FB05900CA2CD7;
+			packageReferences = (
+				1F3D22B926571FB7009F727A /* XCRemoteSwiftPackageReference "BigInt" */,
+			);
 			productRefGroup = 1FB792E3264FB05900CA2CD7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -222,7 +280,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3D22C226571FDE009F727A /* Point.swift in Sources */,
+				1F3D22D626597486009F727A /* Array+Extension.swift in Sources */,
 				1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */,
+				1F3D22C326571FDE009F727A /* secp256k1Field.swift in Sources */,
+				1F3D22C126571FDE009F727A /* secp256k1Point.swift in Sources */,
+				1F3D22CD26574281009F727A /* secp256k1Constants.swift in Sources */,
+				1F3D22BD26571FD1009F727A /* Helper.swift in Sources */,
+				1F3D22CB26573D6B009F727A /* ECDSASignature.swift in Sources */,
+				1F3D22D12658E266009F727A /* PrivateKey.swift in Sources */,
+				1F3D22D42659719F009F727A /* Data+Extension.swift in Sources */,
+				1F3D22D82659CEA9009F727A /* RIPEMD160.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +298,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FB792F1264FB05900CA2CD7 /* BitcoinSwiftTests.swift in Sources */,
+				1F3D22C8265721C8009F727A /* PointTests.swift in Sources */,
+				1F3D22CF26574526009F727A /* ECCTests.swift in Sources */,
+				1F3D22C9265721C8009F727A /* scep256k1Tests.swift in Sources */,
+				1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */,
+				1F3D22C7265721C8009F727A /* FieldElementTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +492,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7VF9TKG57R;
 				INFOPLIST_FILE = BitcoinSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -438,7 +512,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7VF9TKG57R;
 				INFOPLIST_FILE = BitcoinSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -483,6 +559,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1F3D22B926571FB7009F727A /* XCRemoteSwiftPackageReference "BigInt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/attaswift/BigInt";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1F3D22BA26571FB7009F727A /* BigInt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F3D22B926571FB7009F727A /* XCRemoteSwiftPackageReference "BigInt" */;
+			productName = BigInt;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1FB792D9264FB05900CA2CD7 /* Project object */;
 }
