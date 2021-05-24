@@ -6,6 +6,7 @@
 import Foundation
 import BigInt
 import CommonCrypto
+import CryptoKit
 
  class Helper {
     
@@ -25,6 +26,12 @@ import CommonCrypto
     
     static func hash256(data: Data) -> Data {
         return sha256(data: sha256(data: data)) 
+    }
+    
+    static func hmacSha256(key: Data , message: Data) -> Data {
+        let sKey = SymmetricKey(data: key)
+        let signature = HMAC<SHA256>.authenticationCode(for: message, using: sKey)
+        return Data(signature)
     }
     
     

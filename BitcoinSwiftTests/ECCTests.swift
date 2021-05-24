@@ -120,18 +120,46 @@ class ECCTests : XCTestCase {
     
     
     func testPointAddress() throws {
-        let  secret = BigInt(888).power(3)
-        let mainnet_address = "148dY81A9BmdpMhvYEVznrM45kWN32vSCN"
-        let testnet_address = "mieaqB68xDCtbUBYFoUNcmZNwk74xcBfTP"
-        let point = secret *  secp256k1Constants.G
+        DispatchQueue.global(qos: .userInitiated).async {
+
+        var  secret = BigInt(888).power(3)
+        var mainnet_address = "148dY81A9BmdpMhvYEVznrM45kWN32vSCN"
+        var testnet_address = "mieaqB68xDCtbUBYFoUNcmZNwk74xcBfTP"
+        var point = secret *  secp256k1Constants.G
         
         XCTAssertEqual(mainnet_address, point.p2pkhAddress(isCompressed: true, testnet: false))
         XCTAssertEqual(testnet_address, point.p2pkhAddress(isCompressed: true, testnet: true))
+        
+        secret = BigInt(321)
+        mainnet_address = "1S6g2xBJSED7Qr9CYZib5f4PYVhHZiVfj"
+        testnet_address = "mfx3y63A7TfTtXKkv7Y6QzsPFY6QCBCXiP"
+        point = secret * secp256k1Constants.G
+        XCTAssertEqual(mainnet_address, point.p2pkhAddress(isCompressed: false, testnet: false))
+        XCTAssertEqual(testnet_address, point.p2pkhAddress(isCompressed: false, testnet: true))
 
+        secret = BigInt(4242424242)
+        mainnet_address = "1226JSptcStqn4Yq9aAmNXdwdc2ixuH9nb"
+        testnet_address = "mgY3bVusRUL6ZB2Ss999CSrGVbdRwVpM8s"
+        point = secret * secp256k1Constants.G
+        XCTAssertEqual(mainnet_address, point.p2pkhAddress(isCompressed: false, testnet: false))
+        XCTAssertEqual(testnet_address, point.p2pkhAddress(isCompressed: false, testnet: true))
+        }
     }
     
-    func testSha256() throws {
-        let a = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        XCTAssertEqual(a,Helper.sha256(data: Data()).hexEncodedString())
+    func testSigning() throws {
+        DispatchQueue.global(qos: .userInitiated).async {
+
+        let key  = SecureBytes(bytes: BigInt(4242424242).magnitude.serialize().bytes)
+        let pk = PrivateKey.init(key: key )
+        let z = BigInt("106803335299316304368406718150407005727570940625608758663533317704082257612640")
+        let sig = pk.sign(z:z)
+        XCTAssertTrue(try! pk.point.verify(z: z, sig: sig))
+        }
     }
+    
+    func testDetemenisticK(){
+        
+    }
+    
+
 }

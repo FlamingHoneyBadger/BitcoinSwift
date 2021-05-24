@@ -58,10 +58,8 @@ extension Data {
         //encode_base58(s + hash256(s)[:4])
         let s = Data(self.bytes)
         let checksum =  Helper.hash256(data: s)
-        var result = s
-        result.append(checksum[checksum.count-4..<checksum.count])
-        let check = checksum.base58EncodeString()
-        let r = result.base58EncodeString()
+        var result =  Data( s)
+        result.append(checksum[0..<4])
         return result.base58EncodeString()
     }
     

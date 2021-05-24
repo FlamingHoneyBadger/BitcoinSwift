@@ -23,6 +23,8 @@
 		1F3D22D626597486009F727A /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D526597486009F727A /* Array+Extension.swift */; };
 		1F3D22D82659CEA9009F727A /* RIPEMD160.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D72659CEA9009F727A /* RIPEMD160.swift */; };
 		1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */; };
+		1F3D22DC265AA448009F727A /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22DB265AA448009F727A /* HelperTests.swift */; };
+		1F3D22DF265AD133009F727A /* SecureBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22DE265AD133009F727A /* SecureBytes.swift */; };
 		1FB792EC264FB05900CA2CD7 /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1FB792F3264FB05900CA2CD7 /* BitcoinSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
@@ -54,6 +56,8 @@
 		1F3D22D526597486009F727A /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		1F3D22D72659CEA9009F727A /* RIPEMD160.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIPEMD160.swift; sourceTree = "<group>"; };
 		1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RIPEMD-160-Tests.swift"; sourceTree = "<group>"; };
+		1F3D22DB265AA448009F727A /* HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTests.swift; sourceTree = "<group>"; };
+		1F3D22DE265AD133009F727A /* SecureBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureBytes.swift; sourceTree = "<group>"; };
 		1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitcoinSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitcoinSwift.h; sourceTree = "<group>"; };
 		1FB792E6264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +93,16 @@
 				1F3D22D526597486009F727A /* Array+Extension.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		1F3D22DD265AD086009F727A /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				1F3D22BC26571FD1009F727A /* Helper.swift */,
+				1F3D22D72659CEA9009F727A /* RIPEMD160.swift */,
+				1F3D22DE265AD133009F727A /* SecureBytes.swift */,
+			);
+			path = Extra;
 			sourceTree = "<group>";
 		};
 		1FB792D8264FB05900CA2CD7 = {
@@ -129,6 +143,7 @@
 				1FB792F2264FB05900CA2CD7 /* Info.plist */,
 				1F3D22CE26574526009F727A /* ECCTests.swift */,
 				1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */,
+				1F3D22DB265AA448009F727A /* HelperTests.swift */,
 			);
 			path = BitcoinSwiftTests;
 			sourceTree = "<group>";
@@ -136,10 +151,9 @@
 		1FB792FC26502DA700CA2CD7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1F3D22BC26571FD1009F727A /* Helper.swift */,
+				1F3D22DD265AD086009F727A /* Extra */,
 				1FB792FE26502DD800CA2CD7 /* Script */,
 				1FB792FD26502DB700CA2CD7 /* ECC */,
-				1F3D22D72659CEA9009F727A /* RIPEMD160.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -290,6 +304,7 @@
 				1F3D22CB26573D6B009F727A /* ECDSASignature.swift in Sources */,
 				1F3D22D12658E266009F727A /* PrivateKey.swift in Sources */,
 				1F3D22D42659719F009F727A /* Data+Extension.swift in Sources */,
+				1F3D22DF265AD133009F727A /* SecureBytes.swift in Sources */,
 				1F3D22D82659CEA9009F727A /* RIPEMD160.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3D22C8265721C8009F727A /* PointTests.swift in Sources */,
+				1F3D22DC265AA448009F727A /* HelperTests.swift in Sources */,
 				1F3D22CF26574526009F727A /* ECCTests.swift in Sources */,
 				1F3D22C9265721C8009F727A /* scep256k1Tests.swift in Sources */,
 				1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */,
