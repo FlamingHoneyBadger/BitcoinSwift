@@ -7,8 +7,8 @@
 
 import Foundation
 import BigInt
-
-class PrivateKey {
+/*
+public class PrivateKey {
     
     private let secret :SecureBytes
     let point : secp256k1Point
@@ -65,7 +65,7 @@ class PrivateKey {
         // r is the x coordinate of kG
         guard let r = (k * secp256k1Constants.G).x?.number else { return ECDSASignature(r: 0, s: 0) }
         // get k-inv using fermat's little theorem
-        let kInv = Helper.powMod(base: k, exponent: secp256k1Constants.N - 2, modulo: secp256k1Constants.N)
+        let kInv =  k.power(secp256k1Constants.N - 2, modulus: secp256k1Constants.N)
         // s = (z + r * secret) / k
         var s = (((z + r) * BigInt(BigUInt(Data(self.secret[0..<self.secret.count])))) * kInv).modulus(secp256k1Constants.N)
         
@@ -77,5 +77,12 @@ class PrivateKey {
     }
     
     
+    func verify(z: BigInt, sig: ECDSASignature) throws -> Bool {
+        return try self.point.verify(z: z, sig: sig)
+        
+    }
+
+    
     
 }
+*/

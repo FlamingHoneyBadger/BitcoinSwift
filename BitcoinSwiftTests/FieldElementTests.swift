@@ -14,50 +14,50 @@ import BigInt
 class FieldElementTests: XCTestCase {
 
     func testNotEqual() throws {
-        let a =  FieldElement.init(num: 2, prime: 31)
-        let b =  FieldElement.init(num: 2, prime: 31)
-        let c =  FieldElement.init(num: 15, prime: 31)
+        let a =  FieldElement(num: 2, prime: 31)
+        let b =  FieldElement(num: 2, prime: 31)
+        let c =  FieldElement(num: 15, prime: 31)
         XCTAssertTrue(a == b)
         XCTAssertTrue(a != c)
         XCTAssertFalse(a != b)
 
     }
     func testAdd() throws {
-        var a = FieldElement.init(num: 2, prime: 31)
-        var b = FieldElement.init(num: 15, prime: 31)
+        var a = FieldElement(num: 2, prime: 31)
+        var b = FieldElement(num: 15, prime: 31)
         var c =   a + b
-        var test = FieldElement.init(num: 17, prime: 31)
+        var test = FieldElement(num: 17, prime: 31)
         XCTAssertTrue( c == test)
-        a =  FieldElement.init(num: 17, prime: 31)
-        b =  FieldElement.init(num: 21, prime: 31)
+        a =  FieldElement(num: 17, prime: 31)
+        b =  FieldElement(num: 21, prime: 31)
         c =   a + b
-        test =  FieldElement.init(num: 7, prime: 31)
+        test =  FieldElement(num: 7, prime: 31)
         XCTAssertTrue( c == test)
 
     }
 
     func testSub() throws {
-        var a =  FieldElement.init(num: 29, prime: 31)
-        var b =  FieldElement.init(num: 4, prime: 31)
+        var a =  FieldElement(num: 29, prime: 31)
+        var b =  FieldElement(num: 4, prime: 31)
         var c =  a - b
-        var test =  FieldElement.init(num: 25, prime: 31)
+        var test =  FieldElement(num: 25, prime: 31)
         XCTAssertTrue( c == test)
-        a =  FieldElement.init(num: 15, prime: 31)
-        b =  FieldElement.init(num: 30, prime: 31)
+        a =  FieldElement(num: 15, prime: 31)
+        b =  FieldElement(num: 30, prime: 31)
         c =  a - b
-        test =  FieldElement.init(num: 16, prime: 31)
+        test =  FieldElement(num: 16, prime: 31)
         XCTAssertTrue( c == test)
     }
 
 
     func testMul() throws {
-        let a = FieldElement.init(num: 24, prime: 31)
-        let b = FieldElement.init(num: 19, prime: 31)
-        XCTAssertTrue((a*b) == FieldElement.init(num: 22, prime: 31))
+        let a = FieldElement(num: 24, prime: 31)
+        let b = FieldElement(num: 19, prime: 31)
+        XCTAssertTrue((a*b) == FieldElement(num: 22, prime: 31))
     }
 
     func testMulCof()throws {
-        let a = FieldElement.init(num: 24, prime: 31)
+        let a = FieldElement(num: 24, prime: 31)
         let b = BigInt(2)
         let c = b * a
         XCTAssertTrue(c == (a+a))
@@ -65,24 +65,24 @@ class FieldElementTests: XCTestCase {
     }
 
     func testpow() throws {
-        var a = FieldElement.init(num: BigInt(17), prime: BigInt(31))
+        var a = FieldElement(num: BigInt(17), prime: BigInt(31))
         let a1 = a^^3
-        XCTAssertTrue(a1 == FieldElement.init(num: BigInt(15), prime: BigInt(31)))
-        a = FieldElement.init(num: 5, prime: 31)
-        let b = FieldElement.init(num: 18, prime: 31)
+        XCTAssertTrue(a1 == FieldElement(num: BigInt(15), prime: BigInt(31)))
+        a = FieldElement(num: 5, prime: 31)
+        let b = FieldElement(num: 18, prime: 31)
         let a2 = (a^^5 * b)
-        XCTAssertTrue( a2 == FieldElement.init(num: 16, prime: 31) )
+        XCTAssertTrue( a2 == FieldElement(num: 16, prime: 31) )
     }
 
     func testDiv() throws {
-        var a  = FieldElement.init(num: 3, prime: 31)
-        var b  = FieldElement.init(num: 24, prime: 31)
-        XCTAssertTrue((a/b) == FieldElement.init(num: 4, prime: 31))
-        a  = FieldElement.init(num: 17, prime: 31)
-        XCTAssertTrue(a ^^ -3 == FieldElement.init(num: 29, prime: 31))
-        a = FieldElement.init(num: 4, prime: 31)
-        b = FieldElement.init(num: 11, prime: 31)
-        XCTAssertTrue((a ^^ -4 * b) == FieldElement.init(num: 13, prime: 31))
+        var a  = FieldElement(num: 3, prime: 31)
+        var b  = FieldElement(num: 24, prime: 31)
+        XCTAssertTrue((a/b) == FieldElement(num: 4, prime: 31))
+        a  = FieldElement(num: 17, prime: 31)
+        XCTAssertTrue(a ^^ -3 == FieldElement(num: 29, prime: 31))
+        a = FieldElement(num: 4, prime: 31)
+        b = FieldElement(num: 11, prime: 31)
+        XCTAssertTrue((a ^^ -4 * b) == FieldElement(num: 13, prime: 31))
     }
     
     
@@ -94,3 +94,4 @@ class FieldElementTests: XCTestCase {
     }
 
 }
+

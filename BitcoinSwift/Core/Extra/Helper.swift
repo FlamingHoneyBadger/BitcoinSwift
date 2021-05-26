@@ -24,6 +24,10 @@ import CryptoKit
         return Data(hash)
     }
     
+    static func sha256(message: String) -> Data {
+        return sha256(data: message.data(using: .utf8)!)
+    }
+    
     static func hash256(data: Data) -> Data {
         return sha256(data: sha256(data: data)) 
     }

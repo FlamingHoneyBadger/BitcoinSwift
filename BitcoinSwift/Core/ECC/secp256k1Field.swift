@@ -7,21 +7,30 @@ import Foundation
 import BigInt
 
 
-class secp256k1Field : FieldElement {
+struct secp256k1Field  {
+    var element : FieldElement
     
     
-    public override var description: String {
-        return "(\(number))"
+    
+    public  var description: String {
+        return "(\(element))"
     }
     
      init(num: BigInt) {
-        super.init(num: num, prime: secp256k1Constants.P)
+        element = FieldElement(num: num, prime: secp256k1Constants.P)
         
      }
-    func sqrt() -> secp256k1Field{
-        let div = ((secp256k1Constants.P + BigInt(1)).quotientAndRemainder(dividingBy: 4))
-        let s = self ^^ (div.quotient)
-        return  secp256k1Field.init(num: s.number)
+    
+}
+    
+    
+    extension secp256k1Field {
+        func sqrt() -> secp256k1Field{
+            let div = ((secp256k1Constants.P + BigInt(1)).quotientAndRemainder(dividingBy: 4))
+            let s = element ^^ (div.quotient)
+            return  secp256k1Field.init(num: s.number)
+        }
+        
     }
     
     
@@ -32,4 +41,4 @@ class secp256k1Field : FieldElement {
     
     
 
-}
+
