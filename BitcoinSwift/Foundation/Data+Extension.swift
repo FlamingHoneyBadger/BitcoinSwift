@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import BigInt
-
+import GMP
 extension Data {
     
 
@@ -40,14 +39,14 @@ extension Data {
                 break;
             }
         }
-        var num = BigInt(BigUInt(self))
+        var num =  GMPInteger(self)  //BigInt(BigUInt(self))
         let prefix = String(repeating: "1", count: count)
         var result = ""
         while  (num > 0){
-            let a =  num.quotientAndRemainder(dividingBy:58)
-            num = a.quotient
-            let mod = Int(a.remainder)
-            result = BASE58_ALPHABET[mod] + result
+            var m : GMPInteger
+            (num, m) =   GMPInteger.divMod(num, GMPInteger(58), GMPInteger(58))  // num.quotientAndRemainder(dividingBy:58)
+            let mod = GMPInteger.convertToInt(m)
+            result = BASE58_ALPHABET[Int(mod)] + result
         }
         result = prefix + result
         return  result
@@ -64,3 +63,6 @@ extension Data {
     }
     
 }
+
+
+

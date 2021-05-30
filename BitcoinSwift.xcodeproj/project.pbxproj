@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F3D22BB26571FB7009F727A /* BigInt in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3D22BA26571FB7009F727A /* BigInt */; };
 		1F3D22BD26571FD1009F727A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BC26571FD1009F727A /* Helper.swift */; };
 		1F3D22C126571FDE009F727A /* secp256k1Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BE26571FDE009F727A /* secp256k1Point.swift */; };
 		1F3D22C226571FDE009F727A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BF26571FDE009F727A /* Point.swift */; };
@@ -33,7 +32,10 @@
 		1F7872ED265D60F8004A1BEC /* hostAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7872EC265D60F8004A1BEC /* hostAppUITests.swift */; };
 		1F7872FC265D620F004A1BEC /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1F7872FD265D620F004A1BEC /* BitcoinSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1FB032B6265E783300202BB7 /* EllipticCurveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1FB032B5265E783300202BB7 /* EllipticCurveKit */; };
+		1F8CEC9E265F589F00283F1B /* GMP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8CEC9D265F589F00283F1B /* GMP.xcframework */; };
+		1F8CEC9F265F589F00283F1B /* GMP.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8CEC9D265F589F00283F1B /* GMP.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1F8CECA12661E91000283F1B /* GMP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8CEC9D265F589F00283F1B /* GMP.xcframework */; };
+		1F8CECA22661E91000283F1B /* GMP.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8CEC9D265F589F00283F1B /* GMP.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1FB792EC264FB05900CA2CD7 /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1FB792F3264FB05900CA2CD7 /* BitcoinSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
@@ -84,7 +86,19 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1F8CECA22661E91000283F1B /* GMP.xcframework in Embed Frameworks */,
 				1F7872FD265D620F004A1BEC /* BitcoinSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F8CECA0265F589F00283F1B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1F8CEC9F265F589F00283F1B /* GMP.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +136,8 @@
 		1F7872EC265D60F8004A1BEC /* hostAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hostAppUITests.swift; sourceTree = "<group>"; };
 		1F7872EE265D60F8004A1BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F7872FA265D6158004A1BEC /* hostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hostApp.entitlements; sourceTree = "<group>"; };
+		1F8CEC96265F55AD00283F1B /* GMPFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GMPFramework.xcframework; sourceTree = "<group>"; };
+		1F8CEC9D265F589F00283F1B /* GMP.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GMP.xcframework; sourceTree = "<group>"; };
 		1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitcoinSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitcoinSwift.h; sourceTree = "<group>"; };
 		1FB792E6264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F8CECA12661E91000283F1B /* GMP.xcframework in Frameworks */,
 				1F7872FC265D620F004A1BEC /* BitcoinSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,8 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F3D22BB26571FB7009F727A /* BigInt in Frameworks */,
-				1FB032B6265E783300202BB7 /* EllipticCurveKit in Frameworks */,
+				1F8CEC9E265F589F00283F1B /* GMP.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +250,8 @@
 		1F7872FB265D620F004A1BEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F8CEC9D265F589F00283F1B /* GMP.xcframework */,
+				1F8CEC96265F55AD00283F1B /* GMPFramework.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -396,6 +414,7 @@
 				1FB792DE264FB05900CA2CD7 /* Sources */,
 				1FB792DF264FB05900CA2CD7 /* Frameworks */,
 				1FB792E0264FB05900CA2CD7 /* Resources */,
+				1F8CECA0265F589F00283F1B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -403,8 +422,6 @@
 			);
 			name = BitcoinSwift;
 			packageProductDependencies = (
-				1F3D22BA26571FB7009F727A /* BigInt */,
-				1FB032B5265E783300202BB7 /* EllipticCurveKit */,
 			);
 			productName = BitcoinSwift;
 			productReference = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */;
@@ -469,8 +486,6 @@
 			);
 			mainGroup = 1FB792D8264FB05900CA2CD7;
 			packageReferences = (
-				1F3D22B926571FB7009F727A /* XCRemoteSwiftPackageReference "BigInt" */,
-				1FB032B4265E783300202BB7 /* XCRemoteSwiftPackageReference "EllipticCurveKit" */,
 			);
 			productRefGroup = 1FB792E3264FB05900CA2CD7 /* Products */;
 			projectDirPath = "";
@@ -1013,38 +1028,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		1F3D22B926571FB7009F727A /* XCRemoteSwiftPackageReference "BigInt" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/attaswift/BigInt";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.1;
-			};
-		};
-		1FB032B4265E783300202BB7 /* XCRemoteSwiftPackageReference "EllipticCurveKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Sajjon/EllipticCurveKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1F3D22BA26571FB7009F727A /* BigInt */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1F3D22B926571FB7009F727A /* XCRemoteSwiftPackageReference "BigInt" */;
-			productName = BigInt;
-		};
-		1FB032B5265E783300202BB7 /* EllipticCurveKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1FB032B4265E783300202BB7 /* XCRemoteSwiftPackageReference "EllipticCurveKit" */;
-			productName = EllipticCurveKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1FB792D9264FB05900CA2CD7 /* Project object */;
 }

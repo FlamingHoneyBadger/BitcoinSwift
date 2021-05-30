@@ -1,0 +1,11 @@
+framework module GMP {
+  umbrella header "GMP.h"
+
+  export *
+  module * { export * }
+}
+
+module GMP.Swift {
+    header "GMP-Swift.h"
+    requires objc
+}

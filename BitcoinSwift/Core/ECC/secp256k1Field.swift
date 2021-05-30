@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import BigInt
+import GMP
 
 
 struct secp256k1Field  {
@@ -16,7 +16,7 @@ struct secp256k1Field  {
         return "(\(element))"
     }
     
-     init(num: BigInt) {
+     init(num: GMPInteger) {
         element = FieldElement(num: num, prime: secp256k1Constants.P)
         
      }
@@ -26,8 +26,8 @@ struct secp256k1Field  {
     
     extension secp256k1Field {
         func sqrt() -> secp256k1Field{
-            let div = ((secp256k1Constants.P + BigInt(1)).quotientAndRemainder(dividingBy: 4))
-            let s = element ^^ (div.quotient)
+            let div = ((secp256k1Constants.P + 1) / GMPInteger(4))
+            let s = element ^^ (div)
             return  secp256k1Field.init(num: s.number)
         }
         

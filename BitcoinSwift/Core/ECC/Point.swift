@@ -4,18 +4,17 @@
 //
 
 import Foundation
-import BigInt
-
+import GMP
 
 
 
 
 public struct   Point {
-    public var a: BigInt
-    public var b: BigInt
-    public var x: BigInt?
-    public var y: BigInt?
-    public var p: BigInt
+    public var a: GMPInteger
+    public var b: GMPInteger
+    public var x: GMPInteger?
+    public var y: GMPInteger?
+    public var p: GMPInteger
     
     public  var description: String {
         if (self.x == nil) {
@@ -33,7 +32,7 @@ public struct   Point {
         
     }
 
-    init( x: BigInt?, y: BigInt?, a: BigInt, b: BigInt ,p: BigInt)  {
+    init( x: GMPInteger?, y: GMPInteger?, a: GMPInteger, b: GMPInteger ,p: GMPInteger)  {
         
         self.x = x
         self.y = y
@@ -48,6 +47,12 @@ public struct   Point {
 //        if( y!  ^^ 2 != (x!  ^^ 3 + (a * (x!) ) + b) ) {
 //            precondition(false ,"Point is not on curve!")
 //        }
+        
+        // y^2 != x^3+(a*x+b)
+        if( GMPInteger.pow(y!,2) % p != (GMPInteger.pow(x!,3) + (a * (x!) ) + b) % p) {
+            precondition(false ,"Point is not on curve!")
+        }
+
 
     }
 
@@ -70,18 +75,20 @@ public struct   Point {
         if(left.x! == right.x! && left.y! != right.y!){
             return Point(x: nil, y: nil, a: left.a, b: left.b,p: left.p)
         }
-        var lam :BigInt
+        var lam = GMPInteger()
         if(left == right){
             //lam = (3 * x(P1) * x(P1) * pow(2 * y(P1), p - 2, p)) % p
-            lam = (3 * left.x! * left.x! * Helper.powMod(base: 2 * left.y! , exponent: left.p - 2 , modulo: left.p)).modulus(left.p)
+            lam =  ( GMPInteger(3) * left.x! * left.x! * GMPInteger.powMod(GMPInteger(2) * left.y!, left.p - 2, left.p)) % left.p
+            //lam = (3 * left.x! * left.x! * Helper.powMod(base: 2 * left.y! , exponent: left.p - 2 , modulo: left.p)).modulus(left.p)
         }else{
             //lam = ((y(P2) - y(P1)) * pow(x(P2) - x(P1), p - 2, p)) % p
-            lam = ((right.y! - left.y!) * Helper.powMod(base: right.x! - left.x!, exponent: left.p - 2, modulo: left.p)).modulus(left.p)
+           // lam = ((right.y! - left.y!) * Helper.powMod(base: right.x! - left.x!, exponent: left.p - 2, modulo: left.p)).modulus(left.p)
+            lam = ((right.y! - left.y!) * GMPInteger.powMod(right.x! - left.x!, left.p - 2, left.p) )
         }
         // x3 = (lam * lam - x(P1) - x(P2)) % p
-        let x3 = (lam * lam - left.x! - right.x!).modulus(left.p)
+        let x3 = (lam * lam - left.x! - right.x!) % left.p
         // (lam * (x(P1) - x3) - y(P1)) % p
-        let y3 = ( lam * (left.x! - x3) - left.y!).modulus(left.p)
+        let y3 = (lam * (left.x! - x3) - left.y!) % left.p
         
         return Point(x: x3, y: y3, a: left.a, b: left.b, p: left.p)
        
@@ -131,16 +138,23 @@ public struct   Point {
 
 
 
-    static func *(coefficient: BigInt, point: Point) -> Point {
+    static func *(coefficient: GMPInteger, point: Point) -> Point {
+        var coef = coefficient
         var current = point
         var result = Point(x: nil, y: nil, a: point.a, b: point.b, p: point.p)
 
-        
-        for i in 0..<coefficient.bitWidth {
-            if(coefficient.magnitude[bitAt: i]){
+//        while coef:
+//            if coef & 1:
+//                result += current
+//            current += current
+//            coef >>= 1
+        while (coef != 0) {
+            if((coef & GMPInteger(1)) != 0){
                 result = result + current
             }
             current = current + current
+            coef  = coef >> 1
+
         }
 
         return result

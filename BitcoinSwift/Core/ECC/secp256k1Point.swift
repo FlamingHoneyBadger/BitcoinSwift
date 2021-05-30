@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import BigInt
+import GMP
 import Security
 
 public class secp256k1Point  {
@@ -22,7 +22,7 @@ public class secp256k1Point  {
 
     }
     
-    public init(x: BigInt?, y: BigInt?)  {
+    public init(x: GMPInteger?, y: GMPInteger?)  {
        if ( x == nil  && y == nil){
         self.point = Point(x: nil, y: nil, a: secp256k1Constants.A, b: secp256k1Constants.B, p: secp256k1Constants.P)
      
@@ -32,14 +32,14 @@ public class secp256k1Point  {
     }
     
     
-    public func verify(z: BigInt, sig: ECDSASignature)  -> Bool {
+    public func verify(z: GMPInteger, sig: ECDSASignature)  -> Bool {
         let group = DispatchGroup()
         let G = secp256k1Constants.G.point
         // By Fermat's Little Theorem
-        let s_inv = sig.s.power(secp256k1Constants.N - 2, modulus: secp256k1Constants.N)
+        let s_inv = GMPInteger.powMod(sig.s,secp256k1Constants.N - 2, secp256k1Constants.N)
         group.enter()
-        var u : BigInt?
-        var v : BigInt?
+        var u : GMPInteger?
+        var v : GMPInteger?
 
         var flag1=false ,flag2 = false
         var uG : Point?
@@ -72,39 +72,39 @@ public class secp256k1Point  {
         return result.x == sig.r
     }
     
-     static func parse(data: Data)  -> secp256k1Point {
-        
-        let bytes  = data.bytes
-        let type =  bytes[0]
-        if(type == 4){
-            let x = BigInt(BigUInt(Data(bytes[1..<33])))
-            let y = BigInt(BigUInt(Data(bytes[33..<65])))
-            return  secp256k1Point.init(x: x, y: y)
-        }
-        let x : FieldElement = secp256k1Field(num: BigInt(BigUInt(Data(bytes[1..<33])))).element
-
-        let alpha  = (x ^^ 3)  + secp256k1Field.init(num: secp256k1Constants.B).element
-        let alphaS256 = secp256k1Field.init(num: alpha.number)
-        let beta = alphaS256.sqrt()
-
-        var evenBeta : secp256k1Field
-        var oddBeta : secp256k1Field
-        
-        if (beta.element.number.modulus(2) == 0 ){
-             evenBeta = beta
-            oddBeta = secp256k1Field(num: secp256k1Constants.P - beta.element.number)
-        }else{
-            evenBeta = secp256k1Field(num: secp256k1Constants.P - beta.element.number)
-             oddBeta = beta
-        }
-        
-        if(type == 3){ //odd
-            return  secp256k1Point.init(x: x.number, y: oddBeta.element.number)
-
-        }else{ //even
-            return  secp256k1Point.init(x: x.number, y: evenBeta.element.number)
-        }
-    }
+//    static func parse(data: Data) throws -> secp256k1Point{
+//        
+//        let bytes  = data.bytes
+//        let type =  bytes[0]
+//        if(type == 4){
+//            let x = BigInt(BigUInt(Data(bytes[1..<33])))
+//            let y = BigInt(BigUInt(Data(bytes[33..<65])))
+//            return try secp256k1Point.init(x: x, y: y)
+//        }
+//        let x : secp256k1Field = secp256k1Field(num: BigInt(BigUInt(Data(bytes[1..<33]))))
+//
+//        let alpha  = (x ^^ 3)  + secp256k1Field.init(num: secp256k1Constants.B)
+//        let alphaS256 = secp256k1Field.init(num: alpha.number)
+//        let beta = alphaS256.sqrt()
+//
+//        var evenBeta : secp256k1Field
+//        var oddBeta : secp256k1Field
+//        
+//        if (beta.number.modulus(2) == 0 ){
+//             evenBeta = beta
+//             oddBeta = secp256k1Field(num: secp256k1Constants.P - beta.number)
+//        }else{
+//             evenBeta = secp256k1Field(num: secp256k1Constants.P - beta.number)
+//             oddBeta = beta
+//        }
+//        
+//        if(type == 3){ //odd
+//            return try secp256k1Point.init(x: x.number, y: oddBeta.number)
+//
+//        }else{ //even
+//            return try secp256k1Point.init(x: x.number, y: evenBeta.number)
+//        }
+//    }
     
     func p2pkhAddress(isCompressed: Bool, testnet: Bool) -> String {
         let h160 = self.hash160(isCompressed: isCompressed)
@@ -124,19 +124,20 @@ public class secp256k1Point  {
     func SecBytes(isCompressed: Bool) -> Data {
         
         var data = Data()
+        
         if(isCompressed){
-            if(self.point.y?.modulus(2) == 0){
+            if(self.point.y! % 2 == 0){
                 data.append(UInt8(0x02))
-                data.append(self.point.x?.magnitude.serialize() ?? Data())
+                data.append(Data(GMPInteger.bytes(self.point.x!)))
             }else{
                 data = Data()
                 data.append(UInt8(0x03))
-                data.append(self.point.x?.magnitude.serialize() ?? Data())
+                data.append(Data(GMPInteger.bytes(self.point.x!)))
             }
         }else{
             data.append(0x04)
-            data.append(self.point.x?.magnitude.serialize() ?? Data())
-            data.append(self.point.y?.magnitude.serialize() ?? Data())
+            data.append(Data(GMPInteger.bytes(self.point.x!)))
+            data.append(Data(GMPInteger.bytes(self.point.y!)))
 
         }
         return data

@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import BigInt
+import GMP
 import CommonCrypto
 import CryptoKit
 
@@ -38,41 +38,12 @@ import CryptoKit
         return Data(signature)
     }
     
-    
-    static func powMod(base: BigInt, exponent: BigInt, modulo: BigInt) -> BigInt {
-        var b : BigInt =  exponent
-        var x : BigInt = 1
-        var y : BigInt =  base
-        while (b > 0) {
-            if (mod(b,2) == 1) {
-                x = (mod( (x * y) , modulo)) // multiplying with base
-            }
-            y = mod( (y * y) , modulo) // squaring the base
-            b = b / 2
-        }
-        return x % modulo
-    }
-    
-
-    static func mod(_ a: BigInt, _ n: BigInt) -> BigInt {
+    static func mod(_ a: GMPInteger, _ n: GMPInteger) -> GMPInteger {
         precondition(n > 0, "modulus must be positive")
-        let r = a % n
-        return r >= 0 ? r : r + n
+        return GMPInteger.mod(a, n)
     }
 
-    static func pow( base: BigInt,  exponent: BigInt) -> BigInt {
-        var result = BigInt(1)
-        var b = BigInt(exponent)
-        var y = base
-        while (b > 0){
-            if (Helper.mod(b,2) == 1){
-                result *= base
-            }
-            b /= 2
-            y *= y
-        }
-        return result
-    }
+
     
 
 }
