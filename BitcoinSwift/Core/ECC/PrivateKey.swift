@@ -6,7 +6,8 @@
 //
 
 import Foundation
-/*
+import GMP
+
 public class PrivateKey {
     
     private let secret :SecureBytes
@@ -14,11 +15,11 @@ public class PrivateKey {
     
     init(key: SecureBytes) {
         self.secret = key
-        self.point = BigInt(BigUInt(Data(self.secret[0..<key.count]))) * secp256k1Constants.G
+        self.point = secp256k1Point.init(p: GMPInteger(Data(self.secret[0..<key.count])) * secp256k1Constants.G.point) 
         
     }
     
-    func deterministicK(z: BigInt) -> BigInt{
+    func deterministicK(z: GMPInteger) -> GMPInteger{
         // method for generating determenistic K for signing from RFC 6979
         var k = Data.init(repeating: 0x00, count: 32)
         var v = Data.init(repeating: 0x01, count: 32)
@@ -26,7 +27,7 @@ public class PrivateKey {
         if (z > secp256k1Constants.N){
             zv = zv - secp256k1Constants.N
         }
-        let zBytes = z.magnitude.serialize()
+        let zBytes =  Data(GMPInteger.bytes(zv))
         let sBytes =  Data(self.secret[0..<self.secret.count])
         
         var message =  Data()
@@ -45,8 +46,8 @@ public class PrivateKey {
         v = Helper.hmacSha256(key: k, message: v)
         while (true) {
             v = Helper.hmacSha256(key: k, message: v)
-            let candidate = BigInt(BigUInt(v))
-            if ( candidate >= 0 && candidate < secp256k1Constants.N){
+            let candidate = GMPInteger(v)
+            if ( candidate >= GMPInteger(0) && candidate < secp256k1Constants.N){
                 return candidate
             }
             message = Data()
@@ -58,30 +59,44 @@ public class PrivateKey {
     }
     
     
-    func sign(z: BigInt) -> ECDSASignature {
-        
-        let k = self.deterministicK(z: z)
+    func signWithECDSA(z: GMPInteger) -> ECDSASignature {
+        let k = self.deterministicK(z:z)
         // r is the x coordinate of kG
-        guard let r = (k * secp256k1Constants.G).x?.number else { return ECDSASignature(r: 0, s: 0) }
+        let r = (k * secp256k1Constants.G.point).x
         // get k-inv using fermat's little theorem
-        let kInv =  k.power(secp256k1Constants.N - 2, modulus: secp256k1Constants.N)
+        let kInv =  GMPInteger.powMod(k, secp256k1Constants.N - 2, secp256k1Constants.N)
         // s = (z + r * secret) / k
-        var s = (((z + r) * BigInt(BigUInt(Data(self.secret[0..<self.secret.count])))) * kInv).modulus(secp256k1Constants.N)
+        var s = (z + r! * GMPInteger(Data(self.secret[0..<self.secret.count]))) * kInv % secp256k1Constants.N
         
-        if ( s  > (secp256k1Constants.N/2)){
+        if ( s  > (secp256k1Constants.N / GMPInteger(2))){
             s = secp256k1Constants.N - s
         }
         
-        return ECDSASignature(r: r, s: s)
+        return ECDSASignature(r: r!, s: s)
+    }
+    
+    func wif(compressed: Bool = true , testnet: Bool = true) -> String {
+        
+        let secretBytes = Data(self.secret[0..<self.secret.count])
+        var wif = Data()
+        
+        if(testnet){
+            wif.append(0xef)
+        }else{
+            wif.append(0x80)
+        }
+        wif.append(secretBytes)
+        if(compressed){
+            wif.append(0x01)
+        }
+        
+        return wif.base58EncodeWithCheckSum()
     }
     
     
-    func verify(z: BigInt, sig: ECDSASignature) throws -> Bool {
-        return try self.point.verify(z: z, sig: sig)
-        
+    func verify(z: GMPInteger, sig: ECDSASignature) throws -> Bool {
+        return self.point.verify(z: z, sig: sig)
     }
 
-    
-    
 }
-*/
+

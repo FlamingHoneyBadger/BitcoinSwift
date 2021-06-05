@@ -32,13 +32,18 @@
 		1F7872ED265D60F8004A1BEC /* hostAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7872EC265D60F8004A1BEC /* hostAppUITests.swift */; };
 		1F7872FC265D620F004A1BEC /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1F7872FD265D620F004A1BEC /* BitcoinSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1F8CEC9E265F589F00283F1B /* GMP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8CEC9D265F589F00283F1B /* GMP.xcframework */; };
-		1F8CEC9F265F589F00283F1B /* GMP.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8CEC9D265F589F00283F1B /* GMP.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1F8CECA12661E91000283F1B /* GMP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8CEC9D265F589F00283F1B /* GMP.xcframework */; };
-		1F8CECA22661E91000283F1B /* GMP.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8CEC9D265F589F00283F1B /* GMP.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1FB792EC264FB05900CA2CD7 /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1FB792F3264FB05900CA2CD7 /* BitcoinSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
+		1FE1D6AA2664BDDB00DD1BFC /* WIFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1D6A92664BDDB00DD1BFC /* WIFTests.swift */; };
+		1FE1D6AD2665432A00DD1BFC /* Tx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1D6AC2665432A00DD1BFC /* Tx.swift */; };
+		1FE1D6B2266B198200DD1BFC /* SwiftGMP in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE1D6B1266B198200DD1BFC /* SwiftGMP */; };
+		65AB53CF8B7574BEC941C9BA /* OpCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB59656BA6783B954D0900 /* OpCodeTests.swift */; };
+		65AB582F01547093877B071B /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5B4D70FA3A2CA4AB2A3B /* Script.swift */; };
+		65AB58512EBD5C546A1874AC /* OpCodeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5A3380452F63F46BA4BD /* OpCodeFunctions.swift */; };
+		65AB5A0708D9153779D2E80A /* TxOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5F6D90CEF955A1BB2ECA /* TxOut.swift */; };
+		65AB5C68E7E3495AEE84E1AF /* OpCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5E9ED1B72667EDCDA12E /* OpCodes.swift */; };
+		65AB5D5E8099848965B00F63 /* TxIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB576DB1687DB22F59BC94 /* TxIn.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +91,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1F8CECA22661E91000283F1B /* GMP.xcframework in Embed Frameworks */,
 				1F7872FD265D620F004A1BEC /* BitcoinSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -98,7 +102,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1F8CEC9F265F589F00283F1B /* GMP.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,13 +140,20 @@
 		1F7872EE265D60F8004A1BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F7872FA265D6158004A1BEC /* hostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hostApp.entitlements; sourceTree = "<group>"; };
 		1F8CEC96265F55AD00283F1B /* GMPFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GMPFramework.xcframework; sourceTree = "<group>"; };
-		1F8CEC9D265F589F00283F1B /* GMP.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GMP.xcframework; sourceTree = "<group>"; };
 		1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitcoinSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitcoinSwift.h; sourceTree = "<group>"; };
 		1FB792E6264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FB792EB264FB05900CA2CD7 /* BitcoinSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitcoinSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB792F2264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FB7930126502E0F00CA2CD7 /* FieldElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldElement.swift; sourceTree = "<group>"; };
+		1FE1D6A92664BDDB00DD1BFC /* WIFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIFTests.swift; sourceTree = "<group>"; };
+		1FE1D6AC2665432A00DD1BFC /* Tx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tx.swift; sourceTree = "<group>"; };
+		65AB576DB1687DB22F59BC94 /* TxIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxIn.swift; sourceTree = "<group>"; };
+		65AB59656BA6783B954D0900 /* OpCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodeTests.swift; sourceTree = "<group>"; };
+		65AB5A3380452F63F46BA4BD /* OpCodeFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodeFunctions.swift; sourceTree = "<group>"; };
+		65AB5B4D70FA3A2CA4AB2A3B /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		65AB5E9ED1B72667EDCDA12E /* OpCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodes.swift; sourceTree = "<group>"; };
+		65AB5F6D90CEF955A1BB2ECA /* TxOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxOut.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +161,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F8CECA12661E91000283F1B /* GMP.xcframework in Frameworks */,
 				1F7872FC265D620F004A1BEC /* BitcoinSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,7 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F8CEC9E265F589F00283F1B /* GMP.xcframework in Frameworks */,
+				1FE1D6B2266B198200DD1BFC /* SwiftGMP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +259,6 @@
 		1F7872FB265D620F004A1BEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1F8CEC9D265F589F00283F1B /* GMP.xcframework */,
 				1F8CEC96265F55AD00283F1B /* GMPFramework.xcframework */,
 			);
 			name = Frameworks;
@@ -302,6 +310,8 @@
 				1F3D22CE26574526009F727A /* ECCTests.swift */,
 				1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */,
 				1F3D22DB265AA448009F727A /* HelperTests.swift */,
+				1FE1D6A92664BDDB00DD1BFC /* WIFTests.swift */,
+				65AB59656BA6783B954D0900 /* OpCodeTests.swift */,
 			);
 			path = BitcoinSwiftTests;
 			sourceTree = "<group>";
@@ -309,6 +319,7 @@
 		1FB792FC26502DA700CA2CD7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1FE1D6AB2665430B00DD1BFC /* Transaction */,
 				1F3D22DD265AD086009F727A /* Extra */,
 				1FB792FE26502DD800CA2CD7 /* Script */,
 				1FB792FD26502DB700CA2CD7 /* ECC */,
@@ -333,8 +344,21 @@
 		1FB792FE26502DD800CA2CD7 /* Script */ = {
 			isa = PBXGroup;
 			children = (
+				65AB5B4D70FA3A2CA4AB2A3B /* Script.swift */,
+				65AB5E9ED1B72667EDCDA12E /* OpCodes.swift */,
+				65AB5A3380452F63F46BA4BD /* OpCodeFunctions.swift */,
 			);
 			path = Script;
+			sourceTree = "<group>";
+		};
+		1FE1D6AB2665430B00DD1BFC /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				1FE1D6AC2665432A00DD1BFC /* Tx.swift */,
+				65AB576DB1687DB22F59BC94 /* TxIn.swift */,
+				65AB5F6D90CEF955A1BB2ECA /* TxOut.swift */,
+			);
+			path = Transaction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,6 +446,7 @@
 			);
 			name = BitcoinSwift;
 			packageProductDependencies = (
+				1FE1D6B1266B198200DD1BFC /* SwiftGMP */,
 			);
 			productName = BitcoinSwift;
 			productReference = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */;
@@ -486,6 +511,7 @@
 			);
 			mainGroup = 1FB792D8264FB05900CA2CD7;
 			packageReferences = (
+				1FE1D6B0266B198200DD1BFC /* XCRemoteSwiftPackageReference "GMP" */,
 			);
 			productRefGroup = 1FB792E3264FB05900CA2CD7 /* Products */;
 			projectDirPath = "";
@@ -580,8 +606,14 @@
 				1F3D22CB26573D6B009F727A /* ECDSASignature.swift in Sources */,
 				1F3D22D12658E266009F727A /* PrivateKey.swift in Sources */,
 				1F3D22D42659719F009F727A /* Data+Extension.swift in Sources */,
+				1FE1D6AD2665432A00DD1BFC /* Tx.swift in Sources */,
 				1F3D22DF265AD133009F727A /* SecureBytes.swift in Sources */,
 				1F3D22D82659CEA9009F727A /* RIPEMD160.swift in Sources */,
+				65AB5D5E8099848965B00F63 /* TxIn.swift in Sources */,
+				65AB5A0708D9153779D2E80A /* TxOut.swift in Sources */,
+				65AB582F01547093877B071B /* Script.swift in Sources */,
+				65AB5C68E7E3495AEE84E1AF /* OpCodes.swift in Sources */,
+				65AB58512EBD5C546A1874AC /* OpCodeFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,11 +622,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3D22C8265721C8009F727A /* PointTests.swift in Sources */,
+				1FE1D6AA2664BDDB00DD1BFC /* WIFTests.swift in Sources */,
 				1F3D22DC265AA448009F727A /* HelperTests.swift in Sources */,
 				1F3D22CF26574526009F727A /* ECCTests.swift in Sources */,
 				1F3D22C9265721C8009F727A /* scep256k1Tests.swift in Sources */,
 				1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */,
 				1F3D22C7265721C8009F727A /* FieldElementTests.swift in Sources */,
+				65AB53CF8B7574BEC941C9BA /* OpCodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +795,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -825,6 +860,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -882,7 +918,8 @@
 		1FB792F7264FB05900CA2CD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -907,7 +944,8 @@
 		1FB792F8264FB05900CA2CD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1028,6 +1066,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1FE1D6B0266B198200DD1BFC /* XCRemoteSwiftPackageReference "GMP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FlamingHoneyBadger/GMP.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FE1D6B1266B198200DD1BFC /* SwiftGMP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FE1D6B0266B198200DD1BFC /* XCRemoteSwiftPackageReference "GMP" */;
+			productName = SwiftGMP;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1FB792D9264FB05900CA2CD7 /* Project object */;
 }

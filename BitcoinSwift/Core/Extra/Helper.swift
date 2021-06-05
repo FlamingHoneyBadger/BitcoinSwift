@@ -11,9 +11,7 @@ import CryptoKit
  class Helper {
     
     static func hash160(data: Data) -> Data{
-        
        return RIPEMD160.hash(message: sha256(data: data))
-        
     }
     
     static func sha256(data: Data) -> Data{
@@ -44,6 +42,42 @@ import CryptoKit
     }
 
 
-    
+     static func encodeVarInt(_ num: UInt64) throws -> Data{
+         if(num < 0xfd){
+                return Data(byteArray(from: UInt8(num.littleEndian)).reversed())
+         }else if(num < 0x10000){
+             return Data([0xfd] + byteArray(from: UInt16(num.littleEndian)).reversed())
 
+         }else if(num < 0x100000000){
+             return Data([0xfe] + byteArray(from: UInt32(num.littleEndian)).reversed())
+
+         }else if(num < 0xffffffffffffffff){
+             return Data([0xff] + byteArray(from: UInt64(num.littleEndian)).reversed())
+         }else{
+             throw HelperErrors.IntTooLargeForVarInt
+         }
+     }
+
+     static func decodeVarInt(_ data:Data) -> UInt64{
+          let i = data.bytes.first
+
+         if(i == 0xfd){
+            return data[1...2].reversed().reduce(0) { $0 << 8 + UInt64($1) }
+         }else if(i == 0xfe){
+             return data[1...4].reversed().reduce(0) { $0 << 8 + UInt64($1) }
+         }else if(i!  == 0xff){
+             return data[1...8].reversed().reduce(0) { $0 << 8 + UInt64($1) }
+         }else{
+             return UInt64(i!)
+         }
+     }
+
+     static func byteArray<T>(from value: T) -> [UInt8] where T: FixedWidthInteger {
+         withUnsafeBytes(of: value.bigEndian, Array.init)
+     }
+
+}
+
+enum HelperErrors : Error {
+    case IntTooLargeForVarInt
 }

@@ -27,10 +27,6 @@ public struct   Point {
     }
     
     
-    internal mutating func equal(left: Point, right: Point) -> Bool {
-            return true
-        
-    }
 
     init( x: GMPInteger?, y: GMPInteger?, a: GMPInteger, b: GMPInteger ,p: GMPInteger)  {
         
@@ -43,12 +39,7 @@ public struct   Point {
         if ( x == nil  && y == nil){
             return
         }
-//
-//        if( y!  ^^ 2 != (x!  ^^ 3 + (a * (x!) ) + b) ) {
-//            precondition(false ,"Point is not on curve!")
-//        }
-        
-        // y^2 != x^3+(a*x+b)
+
         if( GMPInteger.pow(y!,2) % p != (GMPInteger.pow(x!,3) + (a * (x!) ) + b) % p) {
             precondition(false ,"Point is not on curve!")
         }
@@ -93,61 +84,12 @@ public struct   Point {
         return Point(x: x3, y: y3, a: left.a, b: left.b, p: left.p)
        
     }
-    
-//    static func +=(left: inout Point, right: Point) {
-//        precondition((left.a == right.a) && (left.b == right.b),"'Points \(left), \(right) are not on the same curve'")
-//
-//        if (left.x == nil){
-//            left = right
-//            return
-//        }
-//        if(right.x == nil){
-//           return
-//        }
-//
-//        if(left.x! == right.x! && left.y! != right.y!){
-//            left = Point(x: nil, y: nil, a: left.a, b: left.b)
-//            return
-//        }
-//
-//
-//        if (left.x  != right.x ){
-//            let s = (right.y! - left.y!) / (right.x! - left.x!)
-//            let x = s ^^ 2 - left.x! - right.x!
-//            let y = s * (left.x! - x) - left.y!
-//            left =  Point.init(x: x, y: y, a: left.a, b: left.b)
-//            return
-//        }
-//
-//
-//        if(left == right && left.y! == 0 * left.x!){
-//            left = Point.init(x: nil, y: nil, a: left.a, b: left.b)
-//            return
-//        }
-//
-//        if(left == right){
-//            //  lam = (3 * x(P1) * x(P1) * pow(2 * y(P1), p - 2, p)) % p
-//            let s = (3 * left.x!^^2 + left.a) / (2 * left.y!)
-//            let x = s^^2 - 2 * left.x!
-//            let y = s * (left.x! - x) - left.y!
-//            left =  Point(x: x, y: y, a: left.a, b: left.b)
-//            return
-//        }
-
-    
-
-
 
     static func *(coefficient: GMPInteger, point: Point) -> Point {
         var coef = coefficient
         var current = point
         var result = Point(x: nil, y: nil, a: point.a, b: point.b, p: point.p)
 
-//        while coef:
-//            if coef & 1:
-//                result += current
-//            current += current
-//            coef >>= 1
         while (coef != 0) {
             if((coef & GMPInteger(1)) != 0){
                 result = result + current
@@ -156,7 +98,6 @@ public struct   Point {
             coef  = coef >> 1
 
         }
-
         return result
     }
  
