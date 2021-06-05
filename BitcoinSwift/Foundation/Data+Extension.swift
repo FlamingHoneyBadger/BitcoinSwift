@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import BigInt
-
+import GMP
 extension Data {
     
 
@@ -40,14 +39,14 @@ extension Data {
                 break;
             }
         }
-        var num = BigInt(BigUInt(self))
+        var num =  GMPInteger(self)  
         let prefix = String(repeating: "1", count: count)
         var result = ""
         while  (num > 0){
-            let a =  num.quotientAndRemainder(dividingBy:58)
-            num = a.quotient
-            let mod = Int(a.remainder)
-            result = BASE58_ALPHABET[mod] + result
+            var m : GMPInteger
+            (num, m) =   GMPInteger.divMod(num, GMPInteger(58), GMPInteger(58))
+            let mod = GMPInteger.convertToInt(m)
+            result = BASE58_ALPHABET[Int(mod)] + result
         }
         result = prefix + result
         return  result
@@ -58,11 +57,12 @@ extension Data {
         //encode_base58(s + hash256(s)[:4])
         let s = Data(self.bytes)
         let checksum =  Helper.hash256(data: s)
-        var result = s
-        result.append(checksum[checksum.count-4..<checksum.count])
-        let check = checksum.base58EncodeString()
-        let r = result.base58EncodeString()
+        var result =  Data( s)
+        result.append(checksum[0..<4])
         return result.base58EncodeString()
     }
     
 }
+
+
+

@@ -6,162 +6,105 @@
 //
 
 import Foundation
-import BigInt
+import GMP
 import Security
 
-class secp256k1Point : Point {
-
-    public override var description: String {
-        if (self.x == nil) {
+public class secp256k1Point  {
+    var point :Point
+    
+    public  var description: String {
+        if (self.point.x == nil) {
             return "Point(infinity)"
         }
         else {
-            return "S256Point(\(String(describing: x?.number)), \(String(describing: y?.number)) a:\(a.number) b:\(b.number) FieldElement(\(a.prime))"
+            return "S256Point(\(String(describing: point.x)), \(String(describing: point.y)) a:\(point.a) b:\(point.b) FieldElement(\(point.p))"
         }
 
     }
     
-     static func *(coefficient: BigInt, point: secp256k1Point)  -> secp256k1Point  {
-        var coef = Helper.mod(coefficient, secp256k1Constants.N)
-        var current = point
-        var result : secp256k1Point = try! secp256k1Point.init(x: nil, y: nil)
-
-        while(coef  != 0){
-            if (coef & 1 != 0){
-                result =   result + current
-            }
-            current =   current + current
-             coef = coef >> 1
-        }
-
-        return result
-        
+    public init(x: GMPInteger?, y: GMPInteger?)  {
+       if ( x == nil  && y == nil){
+        self.point = Point(x: nil, y: nil, a: secp256k1Constants.A, b: secp256k1Constants.B, p: secp256k1Constants.P)
+     
+       }else{
+        self.point  = Point(x: x, y: y, a: secp256k1Constants.A, b: secp256k1Constants.B, p: secp256k1Constants.P)
+       }
     }
     
-     init(x: BigInt?, y: BigInt?) throws {
-        if ( x == nil  && y == nil){
-           
-            try super.init(x: nil, y: nil, a: FieldElement.init(num: secp256k1Constants.A, prime: secp256k1Constants.P), b: FieldElement.init(num:secp256k1Constants.B, prime: secp256k1Constants.P))
-        }else{
-           try  super.init(x: FieldElement.init(num: x!, prime: secp256k1Constants.P), y: FieldElement.init(num: y!, prime: secp256k1Constants.P), a: FieldElement.init(num: secp256k1Constants.A, prime: secp256k1Constants.P), b: FieldElement.init(num: secp256k1Constants.B, prime: secp256k1Constants.P))
-        }
+    public init(p: Point)  {
+        self.point = p
     }
     
-
-    static func +(left: secp256k1Point, right: secp256k1Point) -> secp256k1Point {
-        precondition((left.a == right.a) && (left.b == right.b),"'Points \(left), \(right) are not on the same curve'")
-
-        if (left.x == nil){
-            return right
-        }
-        if(right.x == nil){
-            return left
-        }
-
-        if(left.x == right.x && left.y != right.y){
-            return try! secp256k1Point.init(x: nil, y: nil)
-        }
-
-
-        if (left.x ?? FieldElement.init(num: 0, prime: 1) as FieldElement !=
-            right.x ?? FieldElement.init(num: 0, prime: 1) as FieldElement){
-            let s = (right.y! - left.y!) / (right.x! - left.x!)
-            let x = s ^^ 2 - left.x! - right.x!
-            let y = s * (left.x! - x) - left.y!
-            return try! secp256k1Point.init(x: x.number, y: y.number)
-        }
-
-
-        if(left == right && left.y == 0 * left.x!){
-            return try! secp256k1Point.init(x: nil, y: nil)
-        }
-
-        if(left == right){
-            let s = (3 * left.x!^^2 + left.a) / (2 * left.y!)
-            let x = s^^2 - 2 * left.x!
-            let y = s * (left.x! - x) - left.y!
-            return try! secp256k1Point.init(x: x.number, y: y.number)
-        }
-
-
-        return try! secp256k1Point.init(x: nil, y: nil)
-    }
-    
-    func verify(z: BigInt, sig: ECDSASignature) throws -> Bool {
-        let G = secp256k1Constants.G
-
+    public func verify(z: GMPInteger, sig: ECDSASignature)  -> Bool {
+        let group = DispatchGroup()
+        let G = secp256k1Constants.G.point
         // By Fermat's Little Theorem
-        let s_inv = Helper.powMod(base: sig.s, exponent: secp256k1Constants.N - 2, modulo: secp256k1Constants.N)
-        // u = z / s
-        let u = z * s_inv % secp256k1Constants.N
-        // v = r / s
-        let v = sig.r * s_inv % secp256k1Constants.N
+        let s_inv = GMPInteger.powMod(sig.s,secp256k1Constants.N - 2, secp256k1Constants.N)
+        group.enter()
+        var u : GMPInteger?
+        var v : GMPInteger?
+
+        var flag1=false ,flag2 = false
+        var uG : Point?
+        var vP : Point?
+        DispatchQueue.global(qos: .userInitiated ).async{
+            // u = z / s
+            u = z * s_inv % secp256k1Constants.N
+            uG = (u! * G)
+            flag1 = true
+            if(flag1 && flag2){
+             group.leave()
+            }
+        }
+        DispatchQueue.global(qos: .userInitiated ).async {
+            // v = r / s
+            v = sig.r * s_inv % secp256k1Constants.N
+            vP = (v! * self.point)
+            flag2 = true
+            if(flag1 && flag2){
+             group.leave()
+            }
+            
+        }
+        group.wait()
+       
         // u*G + v*P(public point/key,this point)
-        let uG = (u * G)
-        let vP = (v * self)
-        let result  = uG + vP
-        return result.x?.number == sig.r
+        let result  = uG! + vP!
+        return result.x == sig.r
     }
     
-    static func parse(data: Data) throws -> secp256k1Point{
+    static func parse(data: Data)  -> secp256k1Point{
         
         let bytes  = data.bytes
         let type =  bytes[0]
         if(type == 4){
-            let x = BigInt(BigUInt(Data(bytes[1..<33])))
-            let y = BigInt(BigUInt(Data(bytes[33..<65])))
-            return try secp256k1Point.init(x: x, y: y)
+            let x = GMPInteger(Data(bytes[1..<33]))
+            let y = GMPInteger(Data(bytes[33..<65]))
+            return secp256k1Point.init(x: x, y: y)
         }
-        let x : secp256k1Field = secp256k1Field(num: BigInt(BigUInt(Data(bytes[1..<33]))))
+        let x : secp256k1Field = secp256k1Field(num: GMPInteger(Data(bytes[1..<33])))
 
-        let alpha  = (x ^^ 3)  + secp256k1Field.init(num: secp256k1Constants.B)
+        let alpha  = (x.element ^^ GMPInteger(3))  + secp256k1Field.init(num: secp256k1Constants.B).element
         let alphaS256 = secp256k1Field.init(num: alpha.number)
         let beta = alphaS256.sqrt()
 
         var evenBeta : secp256k1Field
         var oddBeta : secp256k1Field
         
-        if (beta.number.modulus(2) == 0 ){
+        if (beta.element.number % 2 == 0 ){
              evenBeta = beta
-             oddBeta = secp256k1Field(num: secp256k1Constants.P - beta.number)
+            oddBeta = secp256k1Field(num: secp256k1Constants.P - beta.element.number)
         }else{
-             evenBeta = secp256k1Field(num: secp256k1Constants.P - beta.number)
+            evenBeta = secp256k1Field(num: secp256k1Constants.P - beta.element.number)
              oddBeta = beta
         }
         
         if(type == 3){ //odd
-            return try secp256k1Point.init(x: x.number, y: oddBeta.number)
+            return secp256k1Point.init(x: x.element.number, y: oddBeta.element.number)
 
         }else{ //even
-            return try secp256k1Point.init(x: x.number, y: evenBeta.number)
+            return secp256k1Point.init(x: x.element.number, y: evenBeta.element.number)
         }
-    }
-    
-    
-    func SecBytes(isCompressed: Bool) -> Data {
-        
-        var data = Data()
-        if(isCompressed){
-            if(self.y?.number.modulus(2) == 0){
-                data.append(UInt8(0x02))
-                data.append(self.x?.number.magnitude.serialize() ?? Data())
-            }else{
-                data = Data()
-                data.append(UInt8(0x03))
-                data.append(self.x?.number.magnitude.serialize() ?? Data())
-            }
-        }else{
-            data.append(0x04)
-            data.append(self.x?.number.magnitude.serialize() ?? Data())
-            data.append(self.y?.number.magnitude.serialize() ?? Data())
-
-        }
-        return data
-        
-    }
-    
-    func hash160(isCompressed: Bool) -> Data {
-        return Helper.hash160(data: self.SecBytes(isCompressed: isCompressed))
     }
     
     func p2pkhAddress(isCompressed: Bool, testnet: Bool) -> String {
@@ -177,7 +120,35 @@ class secp256k1Point : Point {
         
         return address.base58EncodeWithCheckSum()
     }
+        
     
+    func SecBytes(isCompressed: Bool) -> Data {
+        
+        var data = Data()
+        
+        if(isCompressed){
+            if(self.point.y! % 2 == 0){
+                data.append(UInt8(0x02))
+                data.append(Data(GMPInteger.bytes(self.point.x!)))
+            }else{
+                data = Data()
+                data.append(UInt8(0x03))
+                data.append(Data(GMPInteger.bytes(self.point.x!)))
+            }
+        }else{
+            data.append(0x04)
+            data.append(Data(GMPInteger.bytes(self.point.x!)))
+            data.append(Data(GMPInteger.bytes(self.point.y!)))
+
+        }
+        return data
+        
+    }
+
+    func hash160(isCompressed: Bool) -> Data {
+        return Helper.hash160(data: self.SecBytes(isCompressed: isCompressed))
+    }
+
     
-    
+        
 }
