@@ -4,8 +4,16 @@
 //
 
 import Foundation
-
+import GMP
 
 class TxOut {
+    
+    var amount : GMPInteger
+    var scriptPubKey : Script
+
+    init(_ input: InputStream) throws {
+        amount =  GMPInteger(Data(try input.readData(maxLength: 8).reversed()))
+        scriptPubKey = try Script.init(input)
+    }
 
 }

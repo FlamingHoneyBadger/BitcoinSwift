@@ -9,7 +9,7 @@ import CommonCrypto
 import CryptoKit
 
  class Helper {
-    
+
     static func hash160(data: Data) -> Data{
        return RIPEMD160.hash(message: sha256(data: data))
     }
@@ -62,13 +62,42 @@ import CryptoKit
           let i = data.bytes.first
 
          if(i == 0xfd){
-            return data[1...2].reversed().reduce(0) { $0 << 8 + UInt64($1) }
+            return data[1...2].littleEndianUInt64()
          }else if(i == 0xfe){
-             return data[1...4].reversed().reduce(0) { $0 << 8 + UInt64($1) }
+             return data[1...4].littleEndianUInt64()
          }else if(i!  == 0xff){
-             return data[1...8].reversed().reduce(0) { $0 << 8 + UInt64($1) }
+             return data[1...8].littleEndianUInt64()
          }else{
              return UInt64(i!)
+         }
+     }
+
+
+     static func readVarInt(_ data:InputStream) throws -> UInt64{
+
+         let rbyte = try data.readData(maxLength: 1)
+         let i = rbyte.bytes[0]
+
+         if(i == 0xfd){
+             return try data.readData(maxLength: 2).littleEndianUInt64()
+         }else if(i == 0xfe){
+             return try data.readData(maxLength: 4).littleEndianUInt64()
+         }else if(i  == 0xff){
+             return try data.readData(maxLength: 8).littleEndianUInt64()
+         }else{
+             return UInt64(i)
+         }
+     }
+
+     static func readVarIntWithFlag(_ flag:UInt8, _ data:InputStream) throws -> UInt64{
+         if(flag == 0xfd){
+             return try data.readData(maxLength: 2).littleEndianUInt64()
+         }else if(flag == 0xfe){
+             return try data.readData(maxLength: 4).littleEndianUInt64()
+         }else if(flag  == 0xff){
+             return try data.readData(maxLength: 8).littleEndianUInt64()
+         }else{
+             return UInt64(flag)
          }
      }
 

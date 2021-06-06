@@ -37,13 +37,17 @@
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
 		1FE1D6AA2664BDDB00DD1BFC /* WIFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1D6A92664BDDB00DD1BFC /* WIFTests.swift */; };
 		1FE1D6AD2665432A00DD1BFC /* Tx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1D6AC2665432A00DD1BFC /* Tx.swift */; };
-		1FE1D6B2266B198200DD1BFC /* SwiftGMP in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE1D6B1266B198200DD1BFC /* SwiftGMP */; };
+		1FE1D6B6266BDCA300DD1BFC /* GMP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */; };
+		1FE1D6B7266BDCA300DD1BFC /* GMP.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65AB529E0694F633B91B7524 /* InputStream+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB523BF5C3E2E98C383188 /* InputStream+Extension.swift */; };
+		65AB52ABACA2D8CB6DC78721 /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5E4BA38611206C841F33 /* ScriptTests.swift */; };
 		65AB53CF8B7574BEC941C9BA /* OpCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB59656BA6783B954D0900 /* OpCodeTests.swift */; };
 		65AB582F01547093877B071B /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5B4D70FA3A2CA4AB2A3B /* Script.swift */; };
 		65AB58512EBD5C546A1874AC /* OpCodeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5A3380452F63F46BA4BD /* OpCodeFunctions.swift */; };
 		65AB5A0708D9153779D2E80A /* TxOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5F6D90CEF955A1BB2ECA /* TxOut.swift */; };
 		65AB5C68E7E3495AEE84E1AF /* OpCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5E9ED1B72667EDCDA12E /* OpCodes.swift */; };
 		65AB5D5E8099848965B00F63 /* TxIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB576DB1687DB22F59BC94 /* TxIn.swift */; };
+		65AB5F32ED578746ECD0C213 /* TxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5236124BC320821C8966 /* TxTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,12 +100,13 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1F8CECA0265F589F00283F1B /* Embed Frameworks */ = {
+		1FE1D6B8266BDCA300DD1BFC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1FE1D6B7266BDCA300DD1BFC /* GMP.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,10 +153,14 @@
 		1FB7930126502E0F00CA2CD7 /* FieldElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldElement.swift; sourceTree = "<group>"; };
 		1FE1D6A92664BDDB00DD1BFC /* WIFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIFTests.swift; sourceTree = "<group>"; };
 		1FE1D6AC2665432A00DD1BFC /* Tx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tx.swift; sourceTree = "<group>"; };
+		1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GMP.xcframework; sourceTree = "<group>"; };
+		65AB5236124BC320821C8966 /* TxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxTests.swift; sourceTree = "<group>"; };
+		65AB523BF5C3E2E98C383188 /* InputStream+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InputStream+Extension.swift"; sourceTree = "<group>"; };
 		65AB576DB1687DB22F59BC94 /* TxIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxIn.swift; sourceTree = "<group>"; };
 		65AB59656BA6783B954D0900 /* OpCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodeTests.swift; sourceTree = "<group>"; };
 		65AB5A3380452F63F46BA4BD /* OpCodeFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodeFunctions.swift; sourceTree = "<group>"; };
 		65AB5B4D70FA3A2CA4AB2A3B /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		65AB5E4BA38611206C841F33 /* ScriptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
 		65AB5E9ED1B72667EDCDA12E /* OpCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodes.swift; sourceTree = "<group>"; };
 		65AB5F6D90CEF955A1BB2ECA /* TxOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxOut.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,7 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FE1D6B2266B198200DD1BFC /* SwiftGMP in Frameworks */,
+				1FE1D6B6266BDCA300DD1BFC /* GMP.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +212,7 @@
 			children = (
 				1F3D22D32659719F009F727A /* Data+Extension.swift */,
 				1F3D22D526597486009F727A /* Array+Extension.swift */,
+				65AB523BF5C3E2E98C383188 /* InputStream+Extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -259,6 +269,7 @@
 		1F7872FB265D620F004A1BEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */,
 				1F8CEC96265F55AD00283F1B /* GMPFramework.xcframework */,
 			);
 			name = Frameworks;
@@ -312,6 +323,8 @@
 				1F3D22DB265AA448009F727A /* HelperTests.swift */,
 				1FE1D6A92664BDDB00DD1BFC /* WIFTests.swift */,
 				65AB59656BA6783B954D0900 /* OpCodeTests.swift */,
+				65AB5E4BA38611206C841F33 /* ScriptTests.swift */,
+				65AB5236124BC320821C8966 /* TxTests.swift */,
 			);
 			path = BitcoinSwiftTests;
 			sourceTree = "<group>";
@@ -438,7 +451,7 @@
 				1FB792DE264FB05900CA2CD7 /* Sources */,
 				1FB792DF264FB05900CA2CD7 /* Frameworks */,
 				1FB792E0264FB05900CA2CD7 /* Resources */,
-				1F8CECA0265F589F00283F1B /* Embed Frameworks */,
+				1FE1D6B8266BDCA300DD1BFC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -446,7 +459,6 @@
 			);
 			name = BitcoinSwift;
 			packageProductDependencies = (
-				1FE1D6B1266B198200DD1BFC /* SwiftGMP */,
 			);
 			productName = BitcoinSwift;
 			productReference = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */;
@@ -511,7 +523,6 @@
 			);
 			mainGroup = 1FB792D8264FB05900CA2CD7;
 			packageReferences = (
-				1FE1D6B0266B198200DD1BFC /* XCRemoteSwiftPackageReference "GMP" */,
 			);
 			productRefGroup = 1FB792E3264FB05900CA2CD7 /* Products */;
 			projectDirPath = "";
@@ -614,6 +625,7 @@
 				65AB582F01547093877B071B /* Script.swift in Sources */,
 				65AB5C68E7E3495AEE84E1AF /* OpCodes.swift in Sources */,
 				65AB58512EBD5C546A1874AC /* OpCodeFunctions.swift in Sources */,
+				65AB529E0694F633B91B7524 /* InputStream+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +641,8 @@
 				1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */,
 				1F3D22C7265721C8009F727A /* FieldElementTests.swift in Sources */,
 				65AB53CF8B7574BEC941C9BA /* OpCodeTests.swift in Sources */,
+				65AB52ABACA2D8CB6DC78721 /* ScriptTests.swift in Sources */,
+				65AB5F32ED578746ECD0C213 /* TxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,25 +1080,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		1FE1D6B0266B198200DD1BFC /* XCRemoteSwiftPackageReference "GMP" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/FlamingHoneyBadger/GMP.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.7;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1FE1D6B1266B198200DD1BFC /* SwiftGMP */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1FE1D6B0266B198200DD1BFC /* XCRemoteSwiftPackageReference "GMP" */;
-			productName = SwiftGMP;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1FB792D9264FB05900CA2CD7 /* Project object */;
 }

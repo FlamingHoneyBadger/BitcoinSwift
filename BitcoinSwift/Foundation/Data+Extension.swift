@@ -22,7 +22,9 @@ extension Data {
     public var bytes: Array<UInt8> {
         Array(self)
     }
-    
+
+    func littleEndianUInt64() -> UInt64{ reversed().reduce(0) { $0 << 8 + UInt64($1) }}
+
     func hexEncodedString(options: HexEncodingOptions = []) -> String {
         let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
         return self.map { String(format: format, $0) }.joined()

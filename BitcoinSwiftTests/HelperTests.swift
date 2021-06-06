@@ -23,5 +23,19 @@ class HelperTests : XCTestCase{
         let b = Helper.decodeVarInt(a)
         XCTAssertEqual(i,b)
     }
+
+    func testVarInt1() throws {
+
+        let i = UInt64(15555555)
+        var a = try Helper.encodeVarInt(i)
+        XCTAssertEqual("fee35bed00",a.hexEncodedString())
+        var stream = InputStream.init(data: a)
+        stream.open()
+        defer {
+            stream.close()
+        }
+        let b = try Helper.readVarInt(stream)
+        XCTAssertEqual(i,b)
+    }
     
 }

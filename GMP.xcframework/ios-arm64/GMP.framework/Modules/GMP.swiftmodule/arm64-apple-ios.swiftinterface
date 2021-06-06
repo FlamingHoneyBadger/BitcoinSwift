@@ -1,0 +1,74 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target arm64-apple-ios14.5 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name GMP
+import Foundation
+@_exported import GMP
+import Swift
+public class GMPInteger {
+  public init()
+  convenience public init(_ x: Swift.Int)
+  convenience public init(_ x: Foundation.Data)
+  convenience public init(_ string: Swift.String)
+  @objc deinit
+}
+extension GMPInteger {
+  public static func getInt64(_ number: GMP.GMPInteger) -> Swift.Int?
+  public static func abs(_ x: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func neg(_ x: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func add(_ x: GMP.GMPInteger, _ y: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func sub(_ x: GMP.GMPInteger, _ y: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func mul(_ x: GMP.GMPInteger, _ y: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func mul(_ x: inout GMP.GMPInteger, _ y: GMP.GMPInteger)
+  public static func string(_ number: GMP.GMPInteger) -> Swift.String
+  public var description: Swift.String {
+    get
+  }
+  public static func bytes(_ number: GMP.GMPInteger) -> [Swift.UInt8]
+  public static func divMod(_ x: GMP.GMPInteger, _ y: GMP.GMPInteger, _ m: GMP.GMPInteger) -> (GMP.GMPInteger, GMP.GMPInteger)
+  public static func powMod(_ x: GMP.GMPInteger, _ y: GMP.GMPInteger, _ m: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func pow(_ x: GMP.GMPInteger, _ y: Swift.UInt) -> GMP.GMPInteger
+  public static func div(_ x: GMP.GMPInteger, _ y: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func mod(_ x: GMP.GMPInteger, _ y: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func cmp(_ number: GMP.GMPInteger, _ y: GMP.GMPInteger) -> Swift.Int
+  public static func and(_ op1: GMP.GMPInteger, _ op2: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func shiftLeft(_ op1: GMP.GMPInteger, _ op2: Swift.UInt) -> GMP.GMPInteger
+  public static func shiftRight(_ op1: GMP.GMPInteger, _ op2: Swift.UInt) -> GMP.GMPInteger
+  public func bitwidth() -> Swift.Int
+  public static func convertToInt(_ op: GMP.GMPInteger) -> Swift.UInt
+}
+extension GMPInteger : Swift.Equatable, Swift.Comparable {
+  public static func + (a: GMP.GMPInteger, b: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func - (a: GMP.GMPInteger, b: Swift.Int) -> GMP.GMPInteger
+  public static func + (a: GMP.GMPInteger, b: Swift.Int) -> GMP.GMPInteger
+  public static func - (a: Swift.Int, b: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func + (a: Swift.Int, b: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func - (a: GMP.GMPInteger, b: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func * (a: GMP.GMPInteger, b: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func * (a: Swift.Int, b: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func * (a: GMP.GMPInteger, b: Swift.Int) -> GMP.GMPInteger
+  public static func / (a: GMP.GMPInteger, b: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func == (a: GMP.GMPInteger, b: GMP.GMPInteger) -> Swift.Bool
+  public static func != (a: GMP.GMPInteger, b: GMP.GMPInteger) -> Swift.Bool
+  public static func == (a: GMP.GMPInteger, b: Swift.Int) -> Swift.Bool
+  public static func != (a: GMP.GMPInteger, b: Swift.Int) -> Swift.Bool
+  public static func < (a: GMP.GMPInteger, b: GMP.GMPInteger) -> Swift.Bool
+  public static func < (a: GMP.GMPInteger, b: Swift.Int) -> Swift.Bool
+  public static func > (a: GMP.GMPInteger, b: GMP.GMPInteger) -> Swift.Bool
+  public static func > (a: GMP.GMPInteger, b: Swift.Int) -> Swift.Bool
+  public static func % (x: GMP.GMPInteger, y: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func % (x: GMP.GMPInteger, y: Swift.Int) -> GMP.GMPInteger
+  public static func & (x: GMP.GMPInteger, y: GMP.GMPInteger) -> GMP.GMPInteger
+  public static func << (op1: GMP.GMPInteger, op2: Swift.UInt) -> GMP.GMPInteger
+  public static func >> (op1: GMP.GMPInteger, op2: Swift.UInt) -> GMP.GMPInteger
+  public static func << (op1: GMP.GMPInteger, op2: Swift.Int) -> GMP.GMPInteger
+  public static func >> (op1: GMP.GMPInteger, op2: Swift.Int) -> GMP.GMPInteger
+}
+extension Data {
+  public init(hex: Swift.String)
+  public var bytes: Swift.Array<Swift.UInt8> {
+    get
+  }
+}
+extension Array where Element == Swift.UInt8 {
+  public init(hex: Swift.String)
+}
