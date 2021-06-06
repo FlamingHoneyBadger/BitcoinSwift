@@ -73,7 +73,7 @@ public struct Script: Stack {
     public func Serialize() throws -> Data {
         let data = try RawSerialize()
         // result = varInt(length) + RawSerialize
-        var result  = try Helper.encodeVarInt(UInt64(data.count))
+        var result  = try Helper.encodeVarInt(UInt64(data.bytes.count))
         result.append(data)
         return result
     }

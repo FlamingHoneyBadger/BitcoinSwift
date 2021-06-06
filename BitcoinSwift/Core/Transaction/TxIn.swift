@@ -8,16 +8,23 @@ import Foundation
 class TxIn {
 
     var prevTx : Data
-    var prevIndex : UInt64
+    var prevIndex : UInt32
     var scriptSig : Script
-    var sequence : UInt64
+    var sequence : UInt32
     
     init(_ input: InputStream) throws {
         prevTx = try Data(input.readData(maxLength: 32).reversed())
-        prevIndex = try input.readData(maxLength: 4).littleEndianUInt64()
+        prevIndex = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
         scriptSig = try Script.init(input)
-        sequence =  try input.readData(maxLength: 4).littleEndianUInt64()
+        sequence = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
         
     }
-
+    func Serialize() throws -> Data {
+        var result = Data()
+        result.append(Data(prevTx.reversed()))
+        result.append(prevIndex.littleEndianBytes())
+        result.append(try scriptSig.Serialize())
+        result.append(sequence.littleEndianBytes())
+        return result
+    }
 }

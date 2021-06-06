@@ -8,12 +8,17 @@ import GMP
 
 class TxOut {
     
-    var amount : GMPInteger
+    var amount : UInt64
     var scriptPubKey : Script
 
     init(_ input: InputStream) throws {
-        amount =  GMPInteger(Data(try input.readData(maxLength: 8).reversed()))
+        amount = try input.readData(maxLength: 8).littleEndianUInt64()
         scriptPubKey = try Script.init(input)
     }
-
+    func Serialize() throws -> Data {
+        var result = Data()
+        result.append(amount.littleEndianBytes())
+        result.append(try scriptPubKey.Serialize())
+        return result
+    }
 }

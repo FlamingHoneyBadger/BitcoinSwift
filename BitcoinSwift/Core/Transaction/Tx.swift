@@ -9,10 +9,40 @@ import Foundation
 
 class Tx {
 
-    let version : UInt64
+    let version : UInt32
     let txIn : [TxIn]
     let txOut : [TxOut]
-    let locktime: UInt64
+    let locktime: UInt32
+    let isSegwit: Bool
+    
+    
+    func Serialize() throws -> Data {
+        if(isSegwit){
+            return serializeSegwit()
+        }else{
+            return try serializeLegacy()
+        }
+    }
+    
+    func serializeLegacy() throws -> Data {
+        var result = Data()
+        result.append(version.littleEndianBytes())
+        result.append(try Helper.encodeVarInt(UInt64(txIn.count)))
+        for item in txIn {
+            result.append(try item.Serialize())
+        }
+        result.append(try Helper.encodeVarInt(UInt64(txOut.count)))
+        for item in txOut {
+            result.append(try item.Serialize())
+        }
+        result.append(locktime.littleEndianBytes())
+        return result
+    }
+    
+    func serializeSegwit() -> Data {
+        //TODO: add segwit code
+        return Data()
+    }
 
     init(_ input: InputStream , _ testnet: Bool = true) throws {
         input.open()
@@ -20,10 +50,11 @@ class Tx {
             input.close()
         }
         let version = try input.readData(maxLength: 4)
-        self.version = version.littleEndianUInt64()
+        self.version = UInt32(version.littleEndianUInt64())
         var marker =  try input.readData(maxLength: 1)
         if(marker.bytes[0] == 0x00) {
             // segwit transaction
+            isSegwit = true
             //marker.append(try input.readData(maxLength: 1))
             // legacy transaction
             var numInputs = try Helper.readVarIntWithFlag(marker.bytes[0], input)
@@ -42,9 +73,10 @@ class Tx {
             }
             txOut = txOuts
             txIn = txIns
-            locktime = try input.readData(maxLength: 4).littleEndianUInt64()
+            locktime = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
 
         }else{
+            isSegwit = false
             // legacy transaction
             var numInputs = try Helper.readVarIntWithFlag(marker.bytes[0], input)
             var txIns :[TxIn] = []
@@ -61,7 +93,7 @@ class Tx {
             }
             txOut = txOuts
             txIn = txIns
-            locktime = try input.readData(maxLength: 4).littleEndianUInt64()
+            locktime = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
        }
 
     }
