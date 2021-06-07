@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import GMP
 class Tx {
 
     let version : UInt32
@@ -15,7 +15,67 @@ class Tx {
     let locktime: UInt32
     let isSegwit: Bool
     
-    
+
+    func SigHash(inputIndex: Int , redeemScript : Script? = nil , scriptPubkey: Script? = nil) throws -> GMPInteger {
+        if(isSegwit){
+            return try SigHashSegwit()
+        }else{
+            return try SigHashLegacy(inputIndex: inputIndex, redeemScript: redeemScript,scriptPubkey: scriptPubkey)
+        }
+    }
+
+    func SigHashLegacy(inputIndex: Int , redeemScript : Script? = nil , scriptPubkey: Script? = nil) throws -> GMPInteger {
+        var s = Data()
+        // append version for hashing
+        s.append(version.littleEndianBytes())
+        //add how many inputs there are using encode_varint
+        s.append(try Helper.encodeVarInt(UInt64(txIn.count)))
+
+        for (i, tx) in txIn.enumerated() {
+            var scriptSig :Script = Script()
+            if(i == inputIndex){
+                if ((redeemScript) != nil) {
+                    scriptSig = redeemScript!
+                }else if ((scriptPubkey) != nil){
+                    scriptSig = scriptPubkey!
+                }
+            }
+
+            s.append(try TxIn.init(
+                    prevTx: tx.prevTx,
+                    prevIndex: tx.prevIndex,
+                    scriptSig: scriptSig,
+                    sequence: tx.sequence)
+                    .Serialize())
+            print(try scriptSig.Serialize().hexEncodedString())
+            print(try TxIn.init(
+                    prevTx: tx.prevTx,
+                    prevIndex: tx.prevIndex,
+                    scriptSig: scriptSig,
+                    sequence: tx.sequence)
+                    .Serialize().hexEncodedString())
+        }
+        //add how many outputs there are using encode_varint
+        s.append(try Helper.encodeVarInt(UInt64(txOut.count)))
+
+        for item in txOut {
+            s.append(try item.Serialize())
+
+        }
+
+        s.append(locktime.littleEndianBytes())
+
+        s.append(Helper.SIGHASH_ALL.littleEndianBytes())
+        
+
+        return  GMPInteger(Helper.hash256(data: s))
+    }
+
+    func SigHashSegwit() throws -> GMPInteger {
+        //TODO: add segwit code
+        return GMPInteger()
+    }
+
     func Serialize() throws -> Data {
         if(isSegwit){
             return serializeSegwit()

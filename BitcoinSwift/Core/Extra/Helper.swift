@@ -9,8 +9,11 @@ import CommonCrypto
 import CryptoKit
 
  class Helper {
+      static let  SIGHASH_ALL : UInt32  = 1
+      static let  SIGHASH_NONE : UInt32 = 2
+      static let  SIGHASH_SINGLE : UInt32 = 3
 
-    static func hash160(data: Data) -> Data{
+     static func hash160(data: Data) -> Data{
        return RIPEMD160.hash(message: sha256(data: data))
     }
     

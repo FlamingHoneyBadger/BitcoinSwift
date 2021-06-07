@@ -78,8 +78,10 @@ public struct Script: Stack {
         return result
     }
 
+    public init()  {
+    }
 
-    public init(_ data: InputStream) throws {
+        public init(_ data: InputStream) throws {
         let length = try Helper.readVarInt(data)
         var count = 0
         while count < length {

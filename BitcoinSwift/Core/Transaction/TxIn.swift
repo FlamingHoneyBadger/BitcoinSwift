@@ -19,6 +19,14 @@ class TxIn {
         sequence = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
         
     }
+    init(prevTx : Data ,prevIndex : UInt32,scriptSig : Script,sequence : UInt32)  {
+        self.prevTx = prevTx
+        self.prevIndex = prevIndex
+        self.scriptSig = scriptSig
+        self.sequence = sequence
+    }
+
+
     func Serialize() throws -> Data {
         var result = Data()
         result.append(Data(prevTx.reversed()))
