@@ -42,6 +42,7 @@
 		65AB529E0694F633B91B7524 /* InputStream+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB523BF5C3E2E98C383188 /* InputStream+Extension.swift */; };
 		65AB52ABACA2D8CB6DC78721 /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5E4BA38611206C841F33 /* ScriptTests.swift */; };
 		65AB53CF8B7574BEC941C9BA /* OpCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB59656BA6783B954D0900 /* OpCodeTests.swift */; };
+		65AB57325865037937D2FA57 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB53E4E049691B8A693997 /* Int+Extension.swift */; };
 		65AB582F01547093877B071B /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5B4D70FA3A2CA4AB2A3B /* Script.swift */; };
 		65AB58512EBD5C546A1874AC /* OpCodeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5A3380452F63F46BA4BD /* OpCodeFunctions.swift */; };
 		65AB5A0708D9153779D2E80A /* TxOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5F6D90CEF955A1BB2ECA /* TxOut.swift */; };
@@ -156,6 +157,7 @@
 		1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GMP.xcframework; sourceTree = "<group>"; };
 		65AB5236124BC320821C8966 /* TxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxTests.swift; sourceTree = "<group>"; };
 		65AB523BF5C3E2E98C383188 /* InputStream+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InputStream+Extension.swift"; sourceTree = "<group>"; };
+		65AB53E4E049691B8A693997 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		65AB576DB1687DB22F59BC94 /* TxIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TxIn.swift; sourceTree = "<group>"; };
 		65AB59656BA6783B954D0900 /* OpCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodeTests.swift; sourceTree = "<group>"; };
 		65AB5A3380452F63F46BA4BD /* OpCodeFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpCodeFunctions.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				1F3D22D32659719F009F727A /* Data+Extension.swift */,
 				1F3D22D526597486009F727A /* Array+Extension.swift */,
 				65AB523BF5C3E2E98C383188 /* InputStream+Extension.swift */,
+				65AB53E4E049691B8A693997 /* Int+Extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				65AB5C68E7E3495AEE84E1AF /* OpCodes.swift in Sources */,
 				65AB58512EBD5C546A1874AC /* OpCodeFunctions.swift in Sources */,
 				65AB529E0694F633B91B7524 /* InputStream+Extension.swift in Sources */,
+				65AB57325865037937D2FA57 /* Int+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

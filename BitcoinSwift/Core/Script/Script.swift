@@ -4,12 +4,12 @@
 //
 
 import Foundation
+import GMP
 
 public protocol Stack {
-    associatedtype OpCode
-    func peek() -> OpCode?
-    mutating func push(_ opcode: OpCode)
-    @discardableResult mutating func pop() -> OpCode?
+    func peek() -> Data?
+    mutating func push(_ opcode: Data)
+    @discardableResult mutating func pop() -> Data?
     func isEmpty() -> Bool
 }
 
@@ -77,6 +77,80 @@ public struct Script: Stack {
         result.append(data)
         return result
     }
+    
+    public func evaluate(z: GMPInteger, witness: Script? = nil ) throws -> Bool {
+        // get copy of stack to evaluate in case a specialscript a case
+        var copy = self
+        var stack: Script = Script()
+        var altstack: Script = Script()
+        
+        while copy.storage.count != 0 {
+            let command = copy.pop()
+            
+            // command is OP
+            if( command?.count == 1){
+                let op = OP_CODE_FUNCTIONS.init(rawValue: (command?.bytes[0])!)
+                
+                
+                switch op!.rawValue {
+                case 99...100:
+                    break
+                   // op_if/op_notif require the script to test values
+                   // TODO: implement ops
+                case 107...108:
+                    break
+                   // op_toaltstack/op_fromaltstack require the altstack
+                   // TODO: implement ops
+                case 172...175:
+                   // op_toaltstack/op_fromaltstack require the altstack
+                   // TODO: implement ops
+                    if (!(try op!.OpFunction().execute(&copy,stack: &stack,altStack: &altstack,z: z))){
+                        return false
+                    }
+                default:
+                    if(!( try op!.OpFunction().execute(&copy,stack:  &stack,altStack: &altstack,z: nil))){
+                        return false
+                    }
+                }
+                
+            }else{
+                stack.push(command!)
+                
+                if (copy.isP2SHScriptPubkey()){
+                    
+                }
+                
+                if(stack.isP2WPKHScriptPubkey()){
+                    // OP_HASH160
+                    let op1 = OP_CODE_FUNCTIONS.init(rawValue: copy.pop()!.bytes[0])
+                    
+                    let h160 = copy.pop()
+                    // OP_EQUAL
+                    let op2 = OP_CODE_FUNCTIONS.init(rawValue: copy.pop()!.bytes[0])
+
+                    if(!(try op1!.OpFunction().execute(&copy, stack: &stack, altStack: &altstack, z: nil))){
+                        return false
+                    }
+                    stack.push(h160!)
+                    if(!(try op2!.OpFunction().execute(&copy, stack: &stack, altStack: &altstack, z: nil))){
+                        return false
+                    }
+                    
+                    
+                    let opVerify = OP_CODE_FUNCTIONS.init(rawValue: OP_CODE_FUNCTIONS.OP_VERIFY.rawValue)
+                    
+                    if(!(try opVerify!.OpFunction().execute(&copy, stack: &stack, altStack: &altstack, z: nil))){
+                        return false
+                    }
+
+                    
+                }
+            }
+        }
+        
+        return false
+        
+    }
 
     public init()  {
     }
@@ -116,10 +190,51 @@ public struct Script: Stack {
             throw ScriptError.ParseError
         }
     }
+    
+    
+    func isP2SHScriptPubkey() -> Bool {
+        if(storage.count == 3){
+         return     ((storage[0].count == 1 && storage[0].bytes[0] == OP_CODE_FUNCTIONS.OP_HASH160.rawValue)
+                    && (storage[1].count == 20)
+                    && (storage[2].count == 1 && storage[2].bytes[0] == OP_CODE_FUNCTIONS.OP_EQUAL.rawValue))
+        }
+        return false
+    }
+    
+    func isP2PKHScriptPubkey() -> Bool {
+        if(storage.count == 5){
+         return
+                    ((storage[0].count == 1 && storage[0].bytes[0] == OP_CODE_FUNCTIONS.OP_DUP.rawValue)
+                    && (storage[1].count == 1 && storage[0].bytes[0] == OP_CODE_FUNCTIONS.OP_HASH160.rawValue)
+                    && (storage[2].count == 20)
+                    && (storage[3].count == 1 && storage[0].bytes[0] == OP_CODE_FUNCTIONS.OP_EQUALVERIFY.rawValue)
+                    && (storage[4].count == 1 && storage[0].bytes[0] == OP_CODE_FUNCTIONS.OP_CHECKSIG.rawValue))
+        }
+        
+        return false
+    }
+    
+    
+    func isP2WSHScriptPubkey() -> Bool {
+        if(storage.count == 2){
+         return  ( (storage[0].count == 1 && storage[0].bytes[0] == OP_CODE_FUNCTIONS.OP_0.rawValue)
+                    && (storage[1].count == 32))
+        }
+        return false
+    }
 
+    func isP2WPKHScriptPubkey() -> Bool {
+        if(storage.count == 2){
+         return   ((storage[0].count == 1 && storage[0].bytes[0] == OP_CODE_FUNCTIONS.OP_0.rawValue)
+                    && (storage[1].count == 20))
+        }
+        return false
+    }
+    
     enum ScriptError : Error {
         case ParseError
         case ValueTooLong
+        case OpCodeExecuteFailed(opcode:OpCodeProtocol)
     }
 
 }

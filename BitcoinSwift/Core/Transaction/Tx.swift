@@ -23,6 +23,43 @@ class Tx {
             return try SigHashLegacy(inputIndex: inputIndex, redeemScript: redeemScript,scriptPubkey: scriptPubkey)
         }
     }
+    
+    
+    func verifyInput(inputIndex: Int , scriptPubkey : Script  , witness: Script? = nil) throws -> Bool {
+        
+        let tx = txIn[inputIndex]
+        
+        var z : GMPInteger = GMPInteger()
+        if (scriptPubkey.isP2SHScriptPubkey()){
+            var rawRedeemScript = Data()
+            rawRedeemScript.append(try Helper.encodeVarInt(UInt64(tx.scriptSig.storage.last!.count)))
+            rawRedeemScript.append(tx.scriptSig.storage.last!)
+            let redeemScript = try Script(InputStream(data: rawRedeemScript))
+            if(redeemScript.isP2WPKHScriptPubkey()){
+                // TODO: add segwit
+            }else if (redeemScript.isP2WSHScriptPubkey()) {
+                // TODO: add segwit
+            }else{
+                 z = try SigHash(inputIndex: inputIndex, redeemScript: redeemScript)
+            }
+            
+        }else{
+            if(scriptPubkey.isP2WPKHScriptPubkey()){
+                // TODO: add segwit
+            }else if(scriptPubkey.isP2WSHScriptPubkey()){
+                // TODO: add segwit
+            }
+            
+            z = try SigHash(inputIndex: inputIndex, scriptPubkey: scriptPubkey)
+        }
+        
+        
+        var combined  = tx.scriptSig
+        combined.storage.append(contentsOf: scriptPubkey.storage)
+        return try combined.evaluate(z: z)
+    }
+    
+   
 
     func SigHashLegacy(inputIndex: Int , redeemScript : Script? = nil , scriptPubkey: Script? = nil) throws -> GMPInteger {
         var s = Data()
