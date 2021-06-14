@@ -63,12 +63,6 @@ extension GMPInteger : Swift.Equatable, Swift.Comparable {
   public static func << (op1: GMP.GMPInteger, op2: Swift.Int) -> GMP.GMPInteger
   public static func >> (op1: GMP.GMPInteger, op2: Swift.Int) -> GMP.GMPInteger
 }
-extension Data {
-  public init(hex: Swift.String)
-  public var bytes: Swift.Array<Swift.UInt8> {
-    get
-  }
-}
 extension Array where Element == Swift.UInt8 {
   public init(hex: Swift.String)
 }

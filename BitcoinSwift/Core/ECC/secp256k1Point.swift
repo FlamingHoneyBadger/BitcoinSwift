@@ -73,7 +73,7 @@ public class secp256k1Point  {
         return result.x == sig.r
     }
     
-    static func parse(data: Data)  -> secp256k1Point{
+    static func parse(data: Data)  -> secp256k1Point {
         
         let bytes  = data.bytes
         let type =  bytes[0]

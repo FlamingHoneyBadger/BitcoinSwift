@@ -27,7 +27,6 @@ public struct Script: Stack {
 
 
     public  var description: String {
-
         var result :[String]  = []
         for item in storage {
             if (item.count == 1){
@@ -84,12 +83,12 @@ public struct Script: Stack {
         var stack: Script = Script()
         var altstack: Script = Script()
         
-        while copy.storage.count != 0 {
-            let command = copy.pop()
+        for item in copy.storage {
+            let command = item
             
             // command is OP
-            if( command?.count == 1){
-                let op = OP_CODE_FUNCTIONS.init(rawValue: (command?.bytes[0])!)
+            if( command.count == 1){
+                let op = OP_CODE_FUNCTIONS.init(rawValue: (command.bytes[0]))
                 
                 
                 switch op!.rawValue {
@@ -114,13 +113,15 @@ public struct Script: Stack {
                 }
                 
             }else{
-                stack.push(command!)
+                stack.push(command)
                 
                 if (copy.isP2SHScriptPubkey()){
                     
                 }
                 
                 if(stack.isP2WPKHScriptPubkey()){
+                    // add command to stack
+                    stack.storage.append(command)
                     // OP_HASH160
                     let op1 = OP_CODE_FUNCTIONS.init(rawValue: copy.pop()!.bytes[0])
                     
@@ -136,19 +137,30 @@ public struct Script: Stack {
                         return false
                     }
                     
-                    
                     let opVerify = OP_CODE_FUNCTIONS.init(rawValue: OP_CODE_FUNCTIONS.OP_VERIFY.rawValue)
                     
                     if(!(try opVerify!.OpFunction().execute(&copy, stack: &stack, altStack: &altstack, z: nil))){
                         return false
                     }
-
                     
+                    // if hashs match then add RedeemScript
+                    var data = try Helper.encodeVarInt(UInt64(command.count))
+                    data.append(command)
+                    let redeemScript = try Script(InputStream(data: data))
+                    
+                    copy.storage.append(contentsOf: redeemScript.storage)
                 }
             }
+            
+        }// end of while
+        
+        if(stack.storage.count == 0){
+            return false
+        }else if(stack.pop()!.isEmpty){
+            return false
         }
         
-        return false
+        return true
         
     }
 

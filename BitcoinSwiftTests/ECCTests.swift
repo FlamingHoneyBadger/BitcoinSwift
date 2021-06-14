@@ -171,6 +171,10 @@ class ECCTests : XCTestCase {
         XCTAssertEqual("3006020101020102", sig.DERBytes().hexEncodedString())
     }
     
+    func testParseDerBytes() throws {
+        
+    }
+    
    
     func testDetemenisticK() throws {
 

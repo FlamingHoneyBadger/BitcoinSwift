@@ -39,64 +39,65 @@ enum OP_CODE_FUNCTIONS : UInt8 {
     case OP_FROMALTSTACK = 108
     case OP_2DROP = 109
     case OP_2DUP = 110
-    case OP_3DUP
-    case OP_2OVER
-    case OP_2ROT
-    case OP_2SWAP
-    case OP_IFDUP
-    case OP_DEPTH
-    case OP_DROP
-    case OP_DUP
-    case OP_NIP
-    case OP_OVER
-    case OP_PICK
-    case OP_ROLL
-    case OP_ROT
-    case OP_SWAP
-    case OP_TUCK
-    case OP_SIZE
-    case OP_EQUAL
-    case OP_EQUALVERIFY
-    case OP_1ADD
-    case OP_1SUB
-    case OP_NEGATE
-    case OP_ABS
-    case OP_NOT
-    case OP_0NOTEQUAL
-    case OP_ADD
-    case OP_SUB
-    case OP_BOOLAND
-    case OP_BOOLOR
-    case OP_NUMEQUAL
-    case OP_NUMEQUALVERIFY
-    case OP_NUMNOTEQUAL
-    case OP_LESSTHAN
-    case OP_GREATERTHAN
-    case OP_LESSTHANOREQUAL
-    case OP_GREATERTHANOREQUAL
-    case OP_MIN
-    case OP_MAX
-    case OP_WITHIN
-    case OP_RIPEMD160
-    case OP_SHA1
-    case OP_SHA256
-    case OP_HASH160
-    case OP_HASH256
-    case OP_CODESEPARATOR
-    case OP_CHECKSIG
-    case OP_CHECKSIGVERIFY
-    case OP_CHECKMULTISIG
-    case OP_CHECKMULTISIGVERIFY
-    case OP_NOP1
-    case OP_CHECKLOCKTIMEVERIFY
-    case OP_CHECKSEQUENCEVERIFY
-    case OP_NOP4
-    case OP_NOP5
-    case OP_NOP6
-    case OP_NOP7
-    case OP_NOP8
-    case OP_NOP9
-    case OP_NOP10
+    case OP_3DUP = 111
+    case OP_2OVER = 112
+    case OP_2ROT = 113
+    case OP_2SWAP = 114
+    case OP_IFDUP = 115
+    case OP_DEPTH = 116
+    case OP_DROP = 117
+    case OP_DUP = 118
+    case OP_NIP = 119
+    case OP_OVER = 120
+    case OP_PICK = 121
+    case OP_ROLL = 122
+    case OP_ROT = 123
+    case OP_SWAP = 124
+    case OP_TUCK = 125
+    case OP_SIZE = 130
+    case OP_EQUAL = 135
+    case OP_EQUALVERIFY = 136
+    case OP_1ADD = 139
+    case OP_1SUB = 140
+    case OP_NEGATE = 143
+    case OP_ABS = 144
+    case OP_NOT = 145
+    case OP_0NOTEQUAL = 146
+    case OP_ADD = 147
+    case OP_SUB = 148
+    case OP_BOOLAND = 154
+    case OP_BOOLOR = 155
+    case OP_NUMEQUAL = 156
+    case OP_NUMEQUALVERIFY = 157
+    case OP_NUMNOTEQUAL = 158
+    case OP_LESSTHAN = 159
+    case OP_GREATERTHAN = 160
+    case OP_LESSTHANOREQUAL = 161
+    case OP_GREATERTHANOREQUAL = 162
+    case OP_MIN = 163
+    case OP_MAX = 164
+    case OP_WITHIN = 165
+    case OP_RIPEMD160 = 166
+    case OP_SHA1 = 167
+    case OP_SHA256 = 168
+    case OP_HASH160 = 169
+    case OP_HASH256 = 170
+    case OP_CODESEPARATOR = 171
+    case OP_CHECKSIG = 172
+    case OP_CHECKSIGVERIFY = 173
+    case OP_CHECKMULTISIG = 174
+    case OP_CHECKMULTISIGVERIFY = 175
+    case OP_NOP1 = 176
+    case OP_CHECKLOCKTIMEVERIFY = 177
+    case OP_CHECKSEQUENCEVERIFY = 178
+    case OP_NOP4 = 179
+    case OP_NOP5 = 180
+    case OP_NOP6 = 181
+    case OP_NOP7 = 182
+    case OP_NOP8 = 183
+    case OP_NOP9 = 184
+    case OP_NOP10 = 185
+    
 
     public func OpFunction() throws -> OpCodeProtocol  {
         switch (self){
@@ -153,7 +154,7 @@ enum OP_CODE_FUNCTIONS : UInt8 {
         case .OP_ENDIF:
             throw OpErrors.NotImplemented
         case .OP_VERIFY:
-            throw OpErrors.NotImplemented
+            return OPVERIFY()
         case .OP_RETURN:
             throw OpErrors.NotImplemented
         case .OP_TOALTSTACK:
@@ -179,7 +180,7 @@ enum OP_CODE_FUNCTIONS : UInt8 {
         case .OP_DROP:
             throw OpErrors.NotImplemented
         case .OP_DUP:
-            throw OpErrors.NotImplemented
+            return OPDUP()
         case .OP_NIP:
             throw OpErrors.NotImplemented
         case .OP_OVER:
@@ -197,9 +198,9 @@ enum OP_CODE_FUNCTIONS : UInt8 {
         case .OP_SIZE:
             throw OpErrors.NotImplemented
         case .OP_EQUAL:
-            throw OpErrors.NotImplemented
+            return OPEQUAL()
         case .OP_EQUALVERIFY:
-            throw OpErrors.NotImplemented
+            return OPEQUALVERIFY()
         case .OP_1ADD:
             throw OpErrors.NotImplemented
         case .OP_1SUB:
@@ -247,13 +248,13 @@ enum OP_CODE_FUNCTIONS : UInt8 {
         case .OP_SHA256:
             throw OpErrors.NotImplemented
         case .OP_HASH160:
-            throw OpErrors.NotImplemented
+            return OPHASH160()
         case .OP_HASH256:
             throw OpErrors.NotImplemented
         case .OP_CODESEPARATOR:
             throw OpErrors.NotImplemented
         case .OP_CHECKSIG:
-            throw OpErrors.NotImplemented
+            return OPCHECKSIG()
         case .OP_CHECKSIGVERIFY:
             throw OpErrors.NotImplemented
         case .OP_CHECKMULTISIG:

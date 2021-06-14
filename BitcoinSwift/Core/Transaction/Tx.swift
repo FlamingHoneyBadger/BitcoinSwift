@@ -56,6 +56,7 @@ class Tx {
         
         var combined  = tx.scriptSig
         combined.storage.append(contentsOf: scriptPubkey.storage)
+        print(combined.description)
         return try combined.evaluate(z: z)
     }
     
@@ -84,13 +85,7 @@ class Tx {
                     scriptSig: scriptSig,
                     sequence: tx.sequence)
                     .Serialize())
-            print(try scriptSig.Serialize().hexEncodedString())
-            print(try TxIn.init(
-                    prevTx: tx.prevTx,
-                    prevIndex: tx.prevIndex,
-                    scriptSig: scriptSig,
-                    sequence: tx.sequence)
-                    .Serialize().hexEncodedString())
+
         }
         //add how many outputs there are using encode_varint
         s.append(try Helper.encodeVarInt(UInt64(txOut.count)))
@@ -193,6 +188,15 @@ class Tx {
             locktime = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
        }
 
+    }
+    
+    
+    func id() throws -> String {
+        return try hash().hexEncodedString()
+    }
+    
+    func hash() throws -> Data {
+        return Helper.hash256(data: try Serialize())
     }
 
 
