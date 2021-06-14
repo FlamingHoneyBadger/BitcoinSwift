@@ -56,7 +56,6 @@ class Tx {
         
         var combined  = tx.scriptSig
         combined.storage.append(contentsOf: scriptPubkey.storage)
-        print(combined.description)
         return try combined.evaluate(z: z)
     }
     

@@ -373,9 +373,6 @@ struct  OPCHECKSIG : OpCodeProtocol {
            print("OP_CHECKSIG failed to init")
            return false
         }
-        print(z.description)
-        print(sig.r.description)
-        print(sig.s.description)
         
         if(point.verify(z: z, sig: sig)){
             stack.push(encodeNum(num: 1))

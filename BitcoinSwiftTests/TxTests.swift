@@ -90,8 +90,19 @@ class TxTests : XCTestCase {
         input.open()
         let script = try Script.init(input)
         input.close()
-
-        print(script.description)
+        let didPass = try tx.verifyInput(inputIndex: 0, scriptPubkey: script)
+        XCTAssertTrue(didPass)
+    }
+    
+    func testVerifyP2PKH2() throws {
+        let txString = "010000000148dcc16482f5c835828020498ec1c35f48a578585721b5a77445a4ce93334d18000000006a4730440220636b9f822ea2f85e6375ecd066a49cc74c20ec4f7cf0485bebe6cc68da92d8ce022068ae17620b12d99353287d6224740b585ff89024370a3212b583fb454dce7c160121021f955d36390a38361530fb3724a835f4f504049492224a028fb0ab8c063511a7ffffffff0220960705000000001976a914d23541bd04c58a1265e78be912e63b2557fb439088aca0860100000000001976a91456d95dc3f2414a210efb7188d287bff487df96c688ac00000000"
+        let scriptPubkey = "1976a914d23541bd04c58a1265e78be912e63b2557fb439088ac"
+        let data =  txString.hexadecimal!
+        let tx = try Tx.init(InputStream(data: data))
+        var input = InputStream(data: scriptPubkey.hexadecimal!)
+        input.open()
+        let script = try Script.init(input)
+        input.close()
         let didPass = try tx.verifyInput(inputIndex: 0, scriptPubkey: script)
         XCTAssertTrue(didPass)
     }
