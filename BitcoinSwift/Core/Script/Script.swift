@@ -166,6 +166,15 @@ public struct Script: Stack {
 
     public init()  {
     }
+    
+    public init (_ data: Data) throws {
+        let input = InputStream(data: data)
+        input.open()
+        defer {
+            input.close()
+        }
+        try self.init(input)
+    }
 
         public init(_ data: InputStream) throws {
         let length = try Helper.readVarInt(data)

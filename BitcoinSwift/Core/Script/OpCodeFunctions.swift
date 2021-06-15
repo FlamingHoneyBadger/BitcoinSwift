@@ -258,7 +258,7 @@ enum OP_CODE_FUNCTIONS : UInt8 {
         case .OP_CHECKSIGVERIFY:
             throw OpErrors.NotImplemented
         case .OP_CHECKMULTISIG:
-            throw OpErrors.NotImplemented
+            return OPCHECKMULTISIG()
         case .OP_CHECKMULTISIGVERIFY:
             throw OpErrors.NotImplemented
         case .OP_NOP1:

@@ -34,7 +34,7 @@ class Tx {
             var rawRedeemScript = Data()
             rawRedeemScript.append(try Helper.encodeVarInt(UInt64(tx.scriptSig.storage.last!.count)))
             rawRedeemScript.append(tx.scriptSig.storage.last!)
-            let redeemScript = try Script(InputStream(data: rawRedeemScript))
+            let redeemScript = try Script( rawRedeemScript)
             if(redeemScript.isP2WPKHScriptPubkey()){
                 // TODO: add segwit
             }else if (redeemScript.isP2WSHScriptPubkey()) {

@@ -52,6 +52,7 @@ public class ECDSASignature  {
     }
     
     public convenience init(_ data: Data) throws {
+        print(data.hexEncodedString())
         let input = InputStream(data: data)
         input.open()
         defer {

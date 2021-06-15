@@ -370,7 +370,7 @@ struct  OPCHECKSIG : OpCodeProtocol {
         do {
             sig = try ECDSASignature.init(derSig)
         } catch  {
-           print("OP_CHECKSIG failed to init")
+           print("OP_CHECKSIG failed to init signature")
            return false
         }
         
@@ -387,6 +387,115 @@ struct  OPCHECKSIG : OpCodeProtocol {
         OPCHECKSIG.execute(&scriptStack, stack: &stack, altStack: &altStack, z: z)
     }
 }
+
+
+struct  OPCHECKMULTISIG : OpCodeProtocol {
+    public var name: String {"OP_CHECKMULTISIG"}
+    public var value: UInt8 {OP_CODE_FUNCTIONS.OP_CHECKMULTISIG.rawValue}
+    static func execute(_ scriptStack: inout Script, stack: inout Script , altStack: inout Script, z : GMPInteger? ) -> Bool {
+        if(stack.isEmpty()){
+            return false
+        }
+
+          guard let z = z else { return false }
+//        guard let pubKey = stack.pop() else { return false }
+//        guard let derSig = stack.pop() else { return false }
+        
+        
+//        let point =  secp256k1Point.parse(data: pubKey)
+//
+//        let sig : ECDSASignature
+//
+//        do {
+//            sig = try ECDSASignature.init(derSig)
+//        } catch  {
+//           print("OP_CHECKSIG failed to init")
+//           return false
+//        }
+//
+//        if(point.verify(z: z, sig: sig)){
+//            stack.push(encodeNum(num: 1))
+//        }else{
+//            stack.push(encodeNum(num: 0))
+//        }
+//
+        guard let nBytes = stack.pop() else { return false }
+        var n = decodeNum(num: nBytes.bytes)
+        
+        if(stack.storage.count  < n + 1){
+           return false
+        }
+        
+        var SecPubKeys : [Data] = []
+        
+        while (n > 0) {
+            guard let pubkey = stack.pop() else { return false }
+            print(pubkey.hexEncodedString())
+            SecPubKeys.append(pubkey)
+            n -= 1
+        }
+        guard let mBytes = stack.pop() else { return false }
+        var m = decodeNum(num: mBytes.bytes)
+
+        if(stack.storage.count < m + 1){
+            return false
+        }
+        
+        var sigBytes : [Data] = []
+        
+        while m > 0 {
+            guard let sig = stack.pop() else { return false }
+            sigBytes.append(sig)
+            m-=1
+        }
+        //pop value for OP_CHECKMULTISIG bug
+        _ = stack.pop()
+        var pubKeyPoints :[secp256k1Point] = []
+        
+        for item in SecPubKeys {
+            pubKeyPoints.append(secp256k1Point.parse(data: item))
+        }
+        
+        var sigs : [ECDSASignature] = []
+        
+        for item in sigBytes {
+            
+            do {
+                var i = item
+                print(i.hexEncodedString())
+                sigs.append(try ECDSASignature.init(i))
+            } catch  {
+               print("OP_CHECKMULTISIG failed to init signature")
+               return false
+            }
+            
+        }
+        
+        
+        for sig in sigs{
+            
+            if(pubKeyPoints.count == 0 ){
+                print("signatures no good or not in right order")
+                return false
+            }
+            
+            for point in pubKeyPoints {
+                if(point.verify(z: z, sig: sig)){
+                    break
+                }
+            }
+            
+        }
+        
+        stack.push(encodeNum(num: 1))
+        return true
+    }
+    
+    func execute(_ scriptStack: inout Script, stack: inout Script, altStack: inout Script, z: GMPInteger?) -> Bool {
+        OPCHECKSIG.execute(&scriptStack, stack: &stack, altStack: &altStack, z: z)
+    }
+}
+
 
 
 func encodeNum(num: Int) -> Data{
