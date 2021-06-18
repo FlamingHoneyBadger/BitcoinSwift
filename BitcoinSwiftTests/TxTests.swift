@@ -130,7 +130,14 @@ class TxTests : XCTestCase {
         let tx = try Tx.init(stream, true)
         stream.close()
         print(pk.point.description)
-        XCTAssertTrue(try tx.SignInput(inputIndex: 0, privateKey: pk, scriptPubkey: script))
+        XCTAssertTrue(try tx.SignInputP2PKHorP2SH(inputIndex: 0, privateKey: pk, scriptPubkey: script))
         XCTAssertEqual(try tx.Serialize().hexEncodedString(), wantedTx)
+    }
+    
+    func testP2SH1of1Sign() throws {
+        let rawtx = "0100000001860334704ebf0ffde9ecad210d7e6538806a17bc6de2c2892fbab3a07bc0af56000000006a47304402206bdd3064d95b9f8f0b98bdca94b561b8307af888874758eea8b69fb6eb5a43f70220022be9e1eef220e44214d822c86fbfa05cbf5a73af2821b34234c53e6cbc562b012103c92ca96a054f7fc0ba18cb811a812d0986a2027f41beb8e6ef7c01cca037ce27ffffffff011b2701000000000017a914b323cd74b873366a9704d6f012eeaa1b410fade38700000000"
+        let address = "2NF73E7PMwxUHJKcEcgU6ENdotPZL23TT1H"
+        let h160 = Data(address.decodeBase58Address())
+        print(h160.hexEncodedString())
     }
 }

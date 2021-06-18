@@ -257,3 +257,41 @@ public struct Script: Stack {
     }
 
 }
+
+
+extension Script {
+    
+    static func P2PKHScriptPubkey(h160: Data) ->  Script {
+        var scriptPubKey = Script()
+        scriptPubKey.push(Data([0x76]))
+        scriptPubKey.push(Data([0xa9]))
+        scriptPubKey.push(h160)
+        scriptPubKey.push(Data([0x88]))
+        scriptPubKey.push(Data([0xac]))
+        return scriptPubKey
+    }
+    
+    static func P2SHScriptPubkey(h160: Data) ->  Script {
+        var scriptPubKey = Script()
+        scriptPubKey.push(Data([0xa9]))
+        scriptPubKey.push(h160)
+        scriptPubKey.push(Data([0x87]))
+        return scriptPubKey
+    }
+    
+    static func P2WKHScriptPubkey(h160: Data) ->  Script {
+        var scriptPubKey = Script()
+        scriptPubKey.push(Data([0x00]))
+        scriptPubKey.push(h160)
+        return scriptPubKey
+    }
+    
+    static func P2WSHScriptPubkey(h256: Data) ->  Script {
+        var scriptPubKey = Script()
+        scriptPubKey.push(Data([0xa9]))
+        scriptPubKey.push(h256)
+
+        return scriptPubKey
+    }
+    
+}

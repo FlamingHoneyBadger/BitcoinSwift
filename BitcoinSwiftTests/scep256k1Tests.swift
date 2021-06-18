@@ -99,7 +99,35 @@ class Scep256k1Tests: XCTestCase {
     }
 
 
+    func testPointAddress() throws {
 
+        var secret = GMPInteger.pow(GMPInteger(888), 3)
+        var mainnet_address = "148dY81A9BmdpMhvYEVznrM45kWN32vSCN"
+        var testnet_address = "mieaqB68xDCtbUBYFoUNcmZNwk74xcBfTP"
+        var p = secret *  secp256k1Constants.G.point
+        var point  = secp256k1Point(x: p.x,y: p.y)
+        XCTAssertEqual(mainnet_address, point.p2pkhAddress(isCompressed: true, testnet: false))
+        XCTAssertEqual(testnet_address, point.p2pkhAddress(isCompressed: true, testnet: true))
+
+        secret = GMPInteger(321)
+        mainnet_address = "1S6g2xBJSED7Qr9CYZib5f4PYVhHZiVfj"
+        testnet_address = "mfx3y63A7TfTtXKkv7Y6QzsPFY6QCBCXiP"
+        p = secret * secp256k1Constants.G.point
+        point  = secp256k1Point(x: p.x,y: p.y)
+
+        XCTAssertEqual(mainnet_address, point.p2pkhAddress(isCompressed: false, testnet: false))
+        XCTAssertEqual(testnet_address, point.p2pkhAddress(isCompressed: false, testnet: true))
+
+        secret = GMPInteger(4242424242)
+        mainnet_address = "1226JSptcStqn4Yq9aAmNXdwdc2ixuH9nb"
+        testnet_address = "mgY3bVusRUL6ZB2Ss999CSrGVbdRwVpM8s"
+        p = secret * secp256k1Constants.G.point
+        point  = secp256k1Point(x: p.x,y: p.y)
+
+        XCTAssertEqual(mainnet_address, point.p2pkhAddress(isCompressed: false, testnet: false))
+        XCTAssertEqual(testnet_address, point.p2pkhAddress(isCompressed: false, testnet: true))
+        
+    }
     
     
 }

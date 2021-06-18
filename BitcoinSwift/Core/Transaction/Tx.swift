@@ -25,7 +25,7 @@ class Tx {
     }
 
     
-    func SignInput(inputIndex: Int , privateKey : PrivateKey, scriptPubkey : Script  , redeem: Script? = nil) throws -> Bool {
+    func SignInputP2PKHorP2SH(inputIndex: Int , privateKey : PrivateKey, scriptPubkey : Script  , redeem: Script? = nil) throws -> Bool {
         // generate the tx sig hash to sign
         let z = try self.SigHash(inputIndex: inputIndex, redeemScript: redeem ,scriptPubkey: scriptPubkey)
         // sign z with privateKey and return DER bytes for tx in
@@ -48,6 +48,29 @@ class Tx {
         // set the script sig
         self.txIn[inputIndex].scriptSig = scriptSig
         
+        
+        // check if sig is valid
+        return try self.verifyInput(inputIndex: 0, scriptPubkey: scriptPubkey)
+    }
+    
+    
+    func SignInputP2SHMultiSig(inputIndex: Int , privateKeys : [PrivateKey], scriptPubkey : Script  , redeem: Script? = nil) throws -> Bool {
+        // generate the tx sig hash to sign
+        let z = try self.SigHash(inputIndex: inputIndex, redeemScript: redeem ,scriptPubkey: scriptPubkey)
+        // sign z with privateKey and return DER bytes for tx in
+        var scriptSig : Script = Script()
+        
+        scriptSig.push(Data([0x00]))
+        for key in privateKeys {
+            let sig = key.signWithECDSA(z: z)
+            var DERsig = sig.DERBytes()
+            DERsig.append(UInt8(Helper.SIGHASH_ALL).littleEndianBytes())
+            scriptSig.push(DERsig)
+        }
+        scriptSig.push(try redeem!.RawSerialize())
+        
+        // set the script sig
+        self.txIn[inputIndex].scriptSig = scriptSig
         
         // check if sig is valid
         return try self.verifyInput(inputIndex: 0, scriptPubkey: scriptPubkey)

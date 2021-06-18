@@ -104,12 +104,41 @@ import CryptoKit
          }
      }
 
-     static func byteArray<T>(from value: T) -> [UInt8] where T: FixedWidthInteger {
-         withUnsafeBytes(of: value.bigEndian, Array.init)
-     }
+  
+    
+    static func redeemScriptToP2SHAddress(_ redeemScript: Script ,  _ testnet: Bool = true) throws -> String {
+        let h160 = try Helper.hash160(data: redeemScript.RawSerialize())
+        var address = Data()
+        
+        if testnet {
+            address.append(0xc4)
+        }else{
+            address.append(0x05)
+        }
+        
+        address.append(h160)
+        
+        return address.base58EncodeWithCheckSum()
+    }
+    
+    static func getScriptPubKey(address: String) throws -> Script {
+        let raw = address.rawDecodeBase58Address()
+        let type = raw.bytes[0]
+        if(type == 0xc4 || type == 0x05 ){ //P2SH
+            return Script.P2SHScriptPubkey(h160: address.decodeBase58Address())
+        }else if( type == 0x6f || type == 0x00) {
+            return Script.P2PKHScriptPubkey(h160: address.decodeBase58Address())
+        }
+        
+        throw HelperErrors.NotSupporedOrInvalidAddress
+    }
 
+    static func byteArray<T>(from value: T) -> [UInt8] where T: FixedWidthInteger {
+        withUnsafeBytes(of: value.bigEndian, Array.init)
+    }
 }
 
 enum HelperErrors : Error {
     case IntTooLargeForVarInt
+    case NotSupporedOrInvalidAddress
 }
