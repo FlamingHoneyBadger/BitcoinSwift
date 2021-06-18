@@ -84,7 +84,6 @@ public struct Script: Stack {
         var copy = self
         var stack: Script = Script()
         var altstack: Script = Script()
-        print(copy.description + "\n-------------------------------")
         while !copy.storage.isEmpty{
             guard let command = copy.nextCommand() else { return false }
             // command is OP
@@ -144,8 +143,6 @@ public struct Script: Stack {
                     let redeemScript = try Script(data)
                     
                     copy.storage.append(contentsOf: redeemScript.storage)
-                    print(copy.description + "\n-------------------------------")
-                    print(stack.description + "\n-------------------------------")
                 }
                 
                 if(copy.isP2WPKHScriptPubkey()){
