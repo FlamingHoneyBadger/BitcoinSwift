@@ -17,7 +17,7 @@ public class secp256k1Point  {
             return "Point(infinity)"
         }
         else {
-            return "S256Point(\(String(describing: point.x)), \(String(describing: point.y)) a:\(point.a) b:\(point.b) FieldElement(\(point.p))"
+            return "S256Point(\(point.x?.description), \(point.y?.description)) a:\(point.a.description) b:\(point.b.description) FieldElement(\(point.p.description))"
         }
 
     }

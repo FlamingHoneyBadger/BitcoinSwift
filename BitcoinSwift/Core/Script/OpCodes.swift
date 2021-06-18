@@ -24,7 +24,7 @@ struct  OP0 : OpCodeProtocol {
         return true
     }
     func execute(_ scriptStack: inout Script, stack: inout Script, altStack: inout Script, z: GMPInteger?) -> Bool {
-        OP1.execute(&scriptStack, stack: &stack, altStack: &altStack, z: z)
+        OP0.execute(&scriptStack, stack: &stack, altStack: &altStack, z: z)
     }
     
 }
@@ -397,28 +397,7 @@ struct  OPCHECKMULTISIG : OpCodeProtocol {
             return false
         }
 
-          guard let z = z else { return false }
-//        guard let pubKey = stack.pop() else { return false }
-//        guard let derSig = stack.pop() else { return false }
-        
-        
-//        let point =  secp256k1Point.parse(data: pubKey)
-//
-//        let sig : ECDSASignature
-//
-//        do {
-//            sig = try ECDSASignature.init(derSig)
-//        } catch  {
-//           print("OP_CHECKSIG failed to init")
-//           return false
-//        }
-//
-//        if(point.verify(z: z, sig: sig)){
-//            stack.push(encodeNum(num: 1))
-//        }else{
-//            stack.push(encodeNum(num: 0))
-//        }
-//
+        guard let z = z else { return false }
         guard let nBytes = stack.pop() else { return false }
         var n = decodeNum(num: nBytes.bytes)
         
@@ -430,7 +409,6 @@ struct  OPCHECKMULTISIG : OpCodeProtocol {
         
         while (n > 0) {
             guard let pubkey = stack.pop() else { return false }
-            print(pubkey.hexEncodedString())
             SecPubKeys.append(pubkey)
             n -= 1
         }
@@ -479,27 +457,28 @@ struct  OPCHECKMULTISIG : OpCodeProtocol {
                 return false
             }
             
-            for point in pubKeyPoints {
+            while !pubKeyPoints.isEmpty {
+                let point = pubKeyPoints.removeFirst()
                 if(point.verify(z: z, sig: sig)){
                     break
                 }
             }
             
         }
-        
+
         stack.push(encodeNum(num: 1))
         return true
     }
     
     func execute(_ scriptStack: inout Script, stack: inout Script, altStack: inout Script, z: GMPInteger?) -> Bool {
-        OPCHECKSIG.execute(&scriptStack, stack: &stack, altStack: &altStack, z: z)
+        OPCHECKMULTISIG.execute(&scriptStack, stack: &stack, altStack: &altStack, z: z)
     }
 }
 
 
 
 func encodeNum(num: Int) -> Data{
-    if (num == 0) { return Data() }
+    if (num == 0) { return Data([0x00]) }
 
     var abs = abs(num)
     let negative = num < 0

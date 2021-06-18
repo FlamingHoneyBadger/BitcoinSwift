@@ -28,8 +28,14 @@ public class PrivateKey {
             zv = zv - secp256k1Constants.N
         }
         let zBytes =  Data(GMPInteger.bytes(zv))
-        let sBytes =  Data(self.secret[0..<self.secret.count])
-        
+        var sBytes : Data
+        if(self.secret.count < 32){
+            sBytes =  Data.init(count: 32)
+            sBytes.replaceSubrange(32-self.secret.count...31, with: Data(self.secret[0..<self.secret.count]))
+        }else{
+            sBytes =  Data(self.secret[0..<self.secret.count])
+        }
+
         var message =  Data()
         message.append(v)
         message.append(0x00)

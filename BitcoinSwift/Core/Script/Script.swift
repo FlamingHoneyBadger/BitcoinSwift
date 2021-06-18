@@ -24,6 +24,8 @@ public struct Script: Stack {
     mutating public func push(_ opcode: Data) { storage.append(opcode) }
 
     mutating public func pop() -> Data? { storage.popLast() }
+    
+    mutating func nextCommand() -> Data? { storage.removeFirst() }
 
 
     public  var description: String {
@@ -82,10 +84,9 @@ public struct Script: Stack {
         var copy = self
         var stack: Script = Script()
         var altstack: Script = Script()
-        
-        for item in copy.storage {
-            let command = item
-            
+        print(copy.description + "\n-------------------------------")
+        while !copy.storage.isEmpty{
+            guard let command = copy.nextCommand() else { return false }
             // command is OP
             if( command.count == 1){
                 let op = OP_CODE_FUNCTIONS.init(rawValue: (command.bytes[0]))
@@ -116,18 +117,12 @@ public struct Script: Stack {
                 stack.push(command)
                 
                 if (copy.isP2SHScriptPubkey()){
-                    
-                }
-                
-                if(stack.isP2WPKHScriptPubkey()){
-                    // add command to stack
-                    stack.storage.append(command)
                     // OP_HASH160
-                    let op1 = OP_CODE_FUNCTIONS.init(rawValue: copy.pop()!.bytes[0])
+                    let op1 = OP_CODE_FUNCTIONS.init(rawValue: copy.nextCommand()!.bytes[0])
                     
-                    let h160 = copy.pop()
+                    let h160 = copy.nextCommand()
                     // OP_EQUAL
-                    let op2 = OP_CODE_FUNCTIONS.init(rawValue: copy.pop()!.bytes[0])
+                    let op2 = OP_CODE_FUNCTIONS.init(rawValue: copy.nextCommand()!.bytes[0])
 
                     if(!(try op1!.OpFunction().execute(&copy, stack: &stack, altStack: &altstack, z: nil))){
                         return false
@@ -146,9 +141,15 @@ public struct Script: Stack {
                     // if hashs match then add RedeemScript
                     var data = try Helper.encodeVarInt(UInt64(command.count))
                     data.append(command)
-                    let redeemScript = try Script(InputStream(data: data))
+                    let redeemScript = try Script(data)
                     
                     copy.storage.append(contentsOf: redeemScript.storage)
+                    print(copy.description + "\n-------------------------------")
+                    print(stack.description + "\n-------------------------------")
+                }
+                
+                if(copy.isP2WPKHScriptPubkey()){
+                  
                 }
             }
             

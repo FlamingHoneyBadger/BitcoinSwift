@@ -23,7 +23,35 @@ class Tx {
             return try SigHashLegacy(inputIndex: inputIndex, redeemScript: redeemScript,scriptPubkey: scriptPubkey)
         }
     }
+
     
+    func SignInput(inputIndex: Int , privateKey : PrivateKey, scriptPubkey : Script  , redeem: Script? = nil) throws -> Bool {
+        // generate the tx sig hash to sign
+        let z = try self.SigHash(inputIndex: inputIndex, redeemScript: redeem ,scriptPubkey: scriptPubkey)
+        // sign z with privateKey and return DER bytes for tx in
+        let sig = privateKey.signWithECDSA(z: z)
+        var DERsig = sig.DERBytes()
+        
+        DERsig.append(UInt8(Helper.SIGHASH_ALL).littleEndianBytes())
+        
+        var scriptSig : Script = Script()
+        // P2SH tx
+        if(redeem != nil){
+            scriptSig.push(Data([0x00]))
+            scriptSig.push(DERsig)
+            scriptSig.push(try redeem!.RawSerialize())
+        }else{ // P2PKH
+            scriptSig.push(DERsig)
+            scriptSig.push(privateKey.point.SecBytes(isCompressed: true))
+        }
+        
+        // set the script sig
+        self.txIn[inputIndex].scriptSig = scriptSig
+        
+        
+        // check if sig is valid
+        return try self.verifyInput(inputIndex: 0, scriptPubkey: scriptPubkey)
+    }
     
     func verifyInput(inputIndex: Int , scriptPubkey : Script  , witness: Script? = nil) throws -> Bool {
         
@@ -142,7 +170,7 @@ class Tx {
         }
         let version = try input.readData(maxLength: 4)
         self.version = UInt32(version.littleEndianUInt64())
-        var marker =  try input.readData(maxLength: 1)
+        let marker =  try input.readData(maxLength: 1)
         if(marker.bytes[0] == 0x00) {
             // segwit transaction
             isSegwit = true

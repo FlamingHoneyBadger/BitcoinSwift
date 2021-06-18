@@ -116,4 +116,21 @@ class TxTests : XCTestCase {
         let didPass = try tx.verifyInput(inputIndex: 0, scriptPubkey: script)
         XCTAssertTrue(didPass)
     }
+    
+    
+    func testSignInput() throws {
+        let rawtx = "010000000199a24308080ab26e6fb65c4eccfadf76749bb5bfa8cb08f291320b3c21e56f0d0d00000000ffffffff02408af701000000001976a914d52ad7ca9b3d096a38e752c2018e6fbc40cdf26f88ac80969800000000001976a914507b27411ccf7f16f10297de6cef3f291623eddf88ac00000000"
+        let wantedTx = "010000000199a24308080ab26e6fb65c4eccfadf76749bb5bfa8cb08f291320b3c21e56f0d0d0000006b4830450221008ed46aa2cf12d6d81065bfabe903670165b538f65ee9a3385e6327d80c66d3b502203124f804410527497329ec4715e18558082d489b218677bd029e7fa306a72236012103935581e52c354cd2f484fe8ed83af7a3097005b2f9c60bff71d35bd795f54b67ffffffff02408af701000000001976a914d52ad7ca9b3d096a38e752c2018e6fbc40cdf26f88ac80969800000000001976a914507b27411ccf7f16f10297de6cef3f291623eddf88ac00000000"
+        let scriptPubkey = "1976a914d52ad7ca9b3d096a38e752c2018e6fbc40cdf26f88ac"
+        let script = try Script.init(scriptPubkey.hexadecimal!)
+        let key  = SecureBytes(bytes:GMPInteger.bytes(GMPInteger("8675309")))
+        let pk = PrivateKey.init(key:key)
+        let stream = InputStream.init(data: rawtx.hexadecimal!)
+        stream.open()
+        let tx = try Tx.init(stream, true)
+        stream.close()
+        print(pk.point.description)
+        XCTAssertTrue(try tx.SignInput(inputIndex: 0, privateKey: pk, scriptPubkey: script))
+        XCTAssertEqual(try tx.Serialize().hexEncodedString(), wantedTx)
+    }
 }

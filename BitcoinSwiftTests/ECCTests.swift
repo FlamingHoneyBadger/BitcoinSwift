@@ -155,8 +155,11 @@ class ECCTests : XCTestCase {
 
         let key  = SecureBytes(bytes:GMPInteger.bytes(GMPInteger("40739933752410060555609228973058042831504651302294666289131257978163635864942")))
         let pk = PrivateKey.init(key:key)
+        print(pk.point.description)
         let z = GMPInteger("100714224755359001914014069612932105362547871363962210278001769511023688176367")
         let sig = pk.signWithECDSA(z:z)
+        print("r:" + sig.r.description)
+        print("s:" + sig.s.description)
         XCTAssertTrue(pk.point.verify(z: z, sig: sig))
         
         
@@ -171,9 +174,22 @@ class ECCTests : XCTestCase {
         XCTAssertEqual("3006020101020102", sig.DERBytes().hexEncodedString())
     }
     
-    func testParseDerBytes() throws {
+    func testDerBytes1() throws {
         
+        let sig = ECDSASignature.init(r: GMPInteger("83068191273585601115564015409649175006819469099404383897628358568700197346481"),
+                                      s: GMPInteger("38842675350183364439118955731503053835886227788551698254571492815095328800241"))
+        print(sig.DERBytes().hexEncodedString())
+        XCTAssertEqual("3045022100b7a6ee1bfc10a4a29d0bad7f8a8757e346fc1330f5e6c465bf401d17b1c61cb1022055e02cd72e3868f11338843e184d4546f5c4e9c1705221607b20cc8c69d1fdf1", sig.DERBytes().hexEncodedString())
     }
+    func testDerBytes2() throws {
+        
+        let sig = ECDSASignature.init(r: GMPInteger("87120559869154564334044386398598149165429382130626103720048019977536732935952"),
+                                      s: GMPInteger("7569618491601465815862881259204006376169560180314110375896881192476579985944"))
+        print(sig.DERBytes().hexEncodedString())
+        XCTAssertEqual("3045022100c09c7d4d2e146041ffe363c5cde6d09d9686228721b193b776326c63d8343710022010bc4092ac8ecd373ea2b9626babb7683de92a025bb55604ff104e7b39abfa18", sig.DERBytes().hexEncodedString())
+    }
+    
+    
     
    
     func testDetemenisticK() throws {
