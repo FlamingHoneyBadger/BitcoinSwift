@@ -10,6 +10,11 @@ class TxOut {
     
     var amount : UInt64
     var scriptPubKey : Script
+    
+    init(amount: UInt64, scriptPubKey: Script) {
+        self.amount = amount
+        self.scriptPubKey = scriptPubKey
+    }
 
     init(_ input: InputStream) throws {
         amount = try input.readData(maxLength: 8).littleEndianUInt64()

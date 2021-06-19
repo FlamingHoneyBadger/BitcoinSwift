@@ -135,10 +135,41 @@ class TxTests : XCTestCase {
     }
     
     func testP2SH1of1Sign() throws {
+        let e  = PrivateKey.init(key: SecureBytes.init(bytes:"9d8077db6902d4bdbbeafee3a19a152914aaf1f3de03352badc48b21e0f7fa97".hexadecimal!.bytes))
         let rawtx = "0100000001860334704ebf0ffde9ecad210d7e6538806a17bc6de2c2892fbab3a07bc0af56000000006a47304402206bdd3064d95b9f8f0b98bdca94b561b8307af888874758eea8b69fb6eb5a43f70220022be9e1eef220e44214d822c86fbfa05cbf5a73af2821b34234c53e6cbc562b012103c92ca96a054f7fc0ba18cb811a812d0986a2027f41beb8e6ef7c01cca037ce27ffffffff011b2701000000000017a914b323cd74b873366a9704d6f012eeaa1b410fade38700000000"
         let wanted = "01000000019712762d820ccfec68bb57cba2f554cb7fb54d3e1a08fca8508f8211c5c8990a000000007000483045022100a95757c4da439bc36339969627541112239ec1cd28b89b838211e12eb43b74b1022007c12380b1619736ab2e259d6249dcc8fb8f91c2f6a9307e9aa920b504f375ee0125512103c92ca96a054f7fc0ba18cb811a812d0986a2027f41beb8e6ef7c01cca037ce2751aeffffffff014f2601000000000017a914efc674ca71bada28af995f365926cc7923631d328700000000"
         let address = "2NF73E7PMwxUHJKcEcgU6ENdotPZL23TT1H"
         let h160 = Data(address.decodeBase58Address())
         print(h160.hexEncodedString())
+        
+        var redeemScript = Script()
+        redeemScript.push(Data([OP_CODE_FUNCTIONS.OP_1.rawValue]))
+        redeemScript.push(e.point.SecBytes(isCompressed: true))
+        redeemScript.push(Data([OP_CODE_FUNCTIONS.OP_1.rawValue]))
+        redeemScript.push(Data([174]))
+        
+        
+        let prevtx = try Tx.init(InputStream(data: rawtx.hexadecimal!))
+        
+        print(try prevtx.id())
+        
+        let txIn = [TxIn.init(prevTx: try prevtx.hash(), prevIndex: 0)]
+    
+        var targetSatoshis : UInt64 = 75343
+        
+//        for input in txIn {
+//            targetSatoshis += input.value(prevTX: prevtx)
+//        }
+        
+        let scriptPubKey = Script.P2SHScriptPubkey(h160: h160)
+        
+        let txout = [TxOut.init(amount: targetSatoshis, scriptPubKey: scriptPubKey)]
+        let resultTX = Tx(version: 1, txIns: txIn, txOuts: txout, locktime: 0)
+        
+        let didPass =  try resultTX.SignInputP2PKHorP2SH(inputIndex: 0, privateKey: e, scriptPubkey: scriptPubKey, redeem: redeemScript)
+        
+        let s  = try resultTX.Serialize().hexEncodedString()
+        print(s)
+        XCTAssertEqual(s, wanted)
     }
 }

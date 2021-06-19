@@ -14,8 +14,74 @@ class Tx {
     let txOut : [TxOut]
     let locktime: UInt32
     let isSegwit: Bool
+    let testnet: Bool
     
+    
+    init(version: UInt32, txIns:[TxIn], txOuts:[TxOut], locktime: UInt32, isSegwit: Bool = false, testnet:Bool = true) {
+        self.version = version
+        self.txIn = txIns
+        self.txOut = txOuts
+        self.locktime = locktime
+        self.isSegwit = isSegwit
+        self.testnet = testnet
+    }
 
+   
+    init(_ input: InputStream , _ testnet: Bool = true) throws {
+        input.open()
+        defer {
+            input.close()
+        }
+        self.testnet = testnet
+        let version = try input.readData(maxLength: 4)
+        self.version = UInt32(version.littleEndianUInt64())
+        let marker =  try input.readData(maxLength: 1)
+        if(marker.bytes[0] == 0x00) {
+            // segwit transaction
+            isSegwit = true
+            //marker.append(try input.readData(maxLength: 1))
+            // legacy transaction
+            var numInputs = try Helper.readVarIntWithFlag(marker.bytes[0], input)
+            var txIns :[TxIn] = []
+
+            while numInputs > 0 {
+                txIns.append(try TxIn.init(input))
+                numInputs -= 1
+            }
+            var numOutput = try Helper.readVarInt(input)
+            var txOuts :[TxOut] = []
+
+            while numOutput > 0 {
+                txOuts.append(try TxOut.init(input))
+                numOutput -= 1
+            }
+            txOut = txOuts
+            txIn = txIns
+            locktime = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
+
+        }else{
+            isSegwit = false
+            // legacy transaction
+            var numInputs = try Helper.readVarIntWithFlag(marker.bytes[0], input)
+            var txIns :[TxIn] = []
+            while numInputs > 0 {
+                let txin = try TxIn.init(input)
+                txIns.append(txin)
+                numInputs -= 1
+            }
+            var numOutput = try Helper.readVarInt(input)
+            var txOuts :[TxOut] = []
+            while numOutput > 0 {
+                txOuts.append(try TxOut.init(input))
+                numOutput -= 1
+            }
+            txOut = txOuts
+            txIn = txIns
+            locktime = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
+       }
+
+    }
+    
     func SigHash(inputIndex: Int , redeemScript : Script? = nil , scriptPubkey: Script? = nil) throws -> GMPInteger {
         if(isSegwit){
             return try SigHashSegwit()
@@ -50,7 +116,7 @@ class Tx {
         
         
         // check if sig is valid
-        return try self.verifyInput(inputIndex: 0, scriptPubkey: scriptPubkey)
+        return try self.verifyInput(inputIndex: inputIndex, scriptPubkey: scriptPubkey)
     }
     
     
@@ -185,68 +251,32 @@ class Tx {
         //TODO: add segwit code
         return Data()
     }
-
-    init(_ input: InputStream , _ testnet: Bool = true) throws {
-        input.open()
-        defer {
-            input.close()
-        }
-        let version = try input.readData(maxLength: 4)
-        self.version = UInt32(version.littleEndianUInt64())
-        let marker =  try input.readData(maxLength: 1)
-        if(marker.bytes[0] == 0x00) {
-            // segwit transaction
-            isSegwit = true
-            //marker.append(try input.readData(maxLength: 1))
-            // legacy transaction
-            var numInputs = try Helper.readVarIntWithFlag(marker.bytes[0], input)
-            var txIns :[TxIn] = []
-
-            while numInputs > 0 {
-                txIns.append(try TxIn.init(input))
-                numInputs -= 1
-            }
-            var numOutput = try Helper.readVarInt(input)
-            var txOuts :[TxOut] = []
-
-            while numOutput > 0 {
-                txOuts.append(try TxOut.init(input))
-                numOutput -= 1
-            }
-            txOut = txOuts
-            txIn = txIns
-            locktime = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
-
-        }else{
-            isSegwit = false
-            // legacy transaction
-            var numInputs = try Helper.readVarIntWithFlag(marker.bytes[0], input)
-            var txIns :[TxIn] = []
-            while numInputs > 0 {
-                let txin = try TxIn.init(input)
-                txIns.append(txin)
-                numInputs -= 1
-            }
-            var numOutput = try Helper.readVarInt(input)
-            var txOuts :[TxOut] = []
-            while numOutput > 0 {
-                txOuts.append(try TxOut.init(input))
-                numOutput -= 1
-            }
-            txOut = txOuts
-            txIn = txIns
-            locktime = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
-       }
-
-    }
-    
     
     func id() throws -> String {
         return try hash().hexEncodedString()
     }
     
     func hash() throws -> Data {
-        return Helper.hash256(data: try Serialize())
+        return Data(Helper.hash256(data: try Serialize()).bytes.reversed())
+    }
+    
+    func fee(_ prevTxs: [Tx]) throws -> UInt64 {
+        var inputSum :UInt64  = 0
+        var outputSum :UInt64 = 0
+        
+        for txIn in self.txIn {
+            let prev = txIn.prevTx
+            let tx  = try prevTxs.filter{
+                try $0.hash() == prev
+            }
+            inputSum += tx[0].txOut[Int(txIn.prevIndex)].amount
+        }
+        
+        for txOut in self.txOut {
+            outputSum += txOut.amount
+        }
+        
+        return inputSum - outputSum
     }
 
 

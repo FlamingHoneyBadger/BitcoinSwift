@@ -19,13 +19,24 @@ class TxIn {
         sequence = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
         
     }
-    init(prevTx : Data ,prevIndex : UInt32,scriptSig : Script,sequence : UInt32)  {
+    init(prevTx : Data ,prevIndex : UInt32,scriptSig : Script =  Script() ,sequence : UInt32 = 0xffffffff)  {
         self.prevTx = prevTx
         self.prevIndex = prevIndex
         self.scriptSig = scriptSig
         self.sequence = sequence
     }
-
+    
+    func value(prevTX: Tx) -> UInt64 {
+        do {
+            if(try prevTX.hash()  == self.prevTx){
+                return prevTX.txOut[Int(self.prevIndex)].amount
+            }
+        }catch {
+            return 0
+        }
+        
+        return 0
+    }
 
     func Serialize() throws -> Data {
         var result = Data()
