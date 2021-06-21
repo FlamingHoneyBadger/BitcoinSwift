@@ -132,6 +132,14 @@ import CryptoKit
         
         throw HelperErrors.NotSupporedOrInvalidAddress
     }
+    
+    
+    static func merkleParent(hash1: Data, hash2: Data) -> Data {
+        var data = Data()
+        data.append(hash1)
+        data.append(hash2)
+        return hash256(data: data)
+    }
 
     static func byteArray<T>(from value: T) -> [UInt8] where T: FixedWidthInteger {
         withUnsafeBytes(of: value.bigEndian, Array.init)

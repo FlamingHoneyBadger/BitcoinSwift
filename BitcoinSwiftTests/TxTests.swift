@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import Foundation
 import GMP
 @testable import BitcoinSwift
 
@@ -148,6 +147,7 @@ class TxTests : XCTestCase {
         redeemScript.push(Data([OP_CODE_FUNCTIONS.OP_1.rawValue]))
         redeemScript.push(Data([174]))
         
+        let myScriptPubKey  = Script.P2SHScriptPubkey(h160: Helper.hash160(data: try redeemScript.RawSerialize()))
         
         let prevtx = try Tx.init(InputStream(data: rawtx.hexadecimal!))
         
@@ -166,10 +166,11 @@ class TxTests : XCTestCase {
         let txout = [TxOut.init(amount: targetSatoshis, scriptPubKey: scriptPubKey)]
         let resultTX = Tx(version: 1, txIns: txIn, txOuts: txout, locktime: 0)
         
-        let didPass =  try resultTX.SignInputP2PKHorP2SH(inputIndex: 0, privateKey: e, scriptPubkey: scriptPubKey, redeem: redeemScript)
+        let didPass =  try resultTX.SignInputP2PKHorP2SH(inputIndex: 0, privateKey: e, scriptPubkey: myScriptPubKey, redeem: redeemScript)
         
         let s  = try resultTX.Serialize().hexEncodedString()
         print(s)
         XCTAssertEqual(s, wanted)
+        XCTAssertTrue(didPass)
     }
 }

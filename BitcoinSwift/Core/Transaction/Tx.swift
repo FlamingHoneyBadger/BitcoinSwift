@@ -113,8 +113,6 @@ class Tx {
         
         // set the script sig
         self.txIn[inputIndex].scriptSig = scriptSig
-        
-        
         // check if sig is valid
         return try self.verifyInput(inputIndex: inputIndex, scriptPubkey: scriptPubkey)
     }

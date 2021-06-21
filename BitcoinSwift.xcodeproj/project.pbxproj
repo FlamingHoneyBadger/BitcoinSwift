@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F2AF520267D6DB700A6AFBF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AF51F267D6DB700A6AFBF /* String+Extension.swift */; };
+		1F2AF52326802A5600A6AFBF /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AF52226802A5600A6AFBF /* MerkleTree.swift */; };
+		1F2AF52526802D7000A6AFBF /* MerkleTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AF52426802D7000A6AFBF /* MerkleTreeTests.swift */; };
 		1F3D22BD26571FD1009F727A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BC26571FD1009F727A /* Helper.swift */; };
 		1F3D22C126571FDE009F727A /* secp256k1Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BE26571FDE009F727A /* secp256k1Point.swift */; };
 		1F3D22C226571FDE009F727A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22BF26571FDE009F727A /* Point.swift */; };
@@ -25,6 +27,8 @@
 		1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */; };
 		1F3D22DC265AA448009F727A /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22DB265AA448009F727A /* HelperTests.swift */; };
 		1F3D22DF265AD133009F727A /* SecureBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22DE265AD133009F727A /* SecureBytes.swift */; };
+		1F752B282680B625001271C4 /* GMP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */; };
+		1F752B292680B625001271C4 /* GMP.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1F7872D0265D60F6004A1BEC /* hostAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7872CF265D60F6004A1BEC /* hostAppApp.swift */; };
 		1F7872D2265D60F6004A1BEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7872D1265D60F6004A1BEC /* ContentView.swift */; };
 		1F7872D4265D60F8004A1BEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F7872D3265D60F8004A1BEC /* Assets.xcassets */; };
@@ -38,8 +42,6 @@
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
 		1FE1D6AA2664BDDB00DD1BFC /* WIFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1D6A92664BDDB00DD1BFC /* WIFTests.swift */; };
 		1FE1D6AD2665432A00DD1BFC /* Tx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1D6AC2665432A00DD1BFC /* Tx.swift */; };
-		1FE1D6B6266BDCA300DD1BFC /* GMP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */; };
-		1FE1D6B7266BDCA300DD1BFC /* GMP.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65AB529E0694F633B91B7524 /* InputStream+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB523BF5C3E2E98C383188 /* InputStream+Extension.swift */; };
 		65AB52ABACA2D8CB6DC78721 /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB5E4BA38611206C841F33 /* ScriptTests.swift */; };
 		65AB53CF8B7574BEC941C9BA /* OpCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB59656BA6783B954D0900 /* OpCodeTests.swift */; };
@@ -91,6 +93,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1F752B2A2680B625001271C4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1F752B292680B625001271C4 /* GMP.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1F787300265D620F004A1BEC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -102,21 +115,12 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1FE1D6B8266BDCA300DD1BFC /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1FE1D6B7266BDCA300DD1BFC /* GMP.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1F2AF51F267D6DB700A6AFBF /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		1F2AF52226802A5600A6AFBF /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
+		1F2AF52426802D7000A6AFBF /* MerkleTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTreeTests.swift; sourceTree = "<group>"; };
 		1F3D22BC26571FD1009F727A /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		1F3D22BE26571FDE009F727A /* secp256k1Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secp256k1Point.swift; sourceTree = "<group>"; };
 		1F3D22BF26571FDE009F727A /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -196,7 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FE1D6B6266BDCA300DD1BFC /* GMP.xcframework in Frameworks */,
+				1F752B282680B625001271C4 /* GMP.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +215,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F2AF52126802A2B00A6AFBF /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				1F2AF52226802A5600A6AFBF /* MerkleTree.swift */,
+			);
+			path = Block;
+			sourceTree = "<group>";
+		};
 		1F3D22D226597162009F727A /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +343,7 @@
 				65AB59656BA6783B954D0900 /* OpCodeTests.swift */,
 				65AB5E4BA38611206C841F33 /* ScriptTests.swift */,
 				65AB5236124BC320821C8966 /* TxTests.swift */,
+				1F2AF52426802D7000A6AFBF /* MerkleTreeTests.swift */,
 			);
 			path = BitcoinSwiftTests;
 			sourceTree = "<group>";
@@ -338,6 +351,7 @@
 		1FB792FC26502DA700CA2CD7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1F2AF52126802A2B00A6AFBF /* Block */,
 				1FE1D6AB2665430B00DD1BFC /* Transaction */,
 				1F3D22DD265AD086009F727A /* Extra */,
 				1FB792FE26502DD800CA2CD7 /* Script */,
@@ -457,7 +471,7 @@
 				1FB792DE264FB05900CA2CD7 /* Sources */,
 				1FB792DF264FB05900CA2CD7 /* Frameworks */,
 				1FB792E0264FB05900CA2CD7 /* Resources */,
-				1FE1D6B8266BDCA300DD1BFC /* Embed Frameworks */,
+				1F752B2A2680B625001271C4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -634,6 +648,7 @@
 				65AB58512EBD5C546A1874AC /* OpCodeFunctions.swift in Sources */,
 				65AB529E0694F633B91B7524 /* InputStream+Extension.swift in Sources */,
 				65AB57325865037937D2FA57 /* Int+Extension.swift in Sources */,
+				1F2AF52326802A5600A6AFBF /* MerkleTree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +666,7 @@
 				65AB53CF8B7574BEC941C9BA /* OpCodeTests.swift in Sources */,
 				65AB52ABACA2D8CB6DC78721 /* ScriptTests.swift in Sources */,
 				65AB5F32ED578746ECD0C213 /* TxTests.swift in Sources */,
+				1F2AF52526802D7000A6AFBF /* MerkleTreeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

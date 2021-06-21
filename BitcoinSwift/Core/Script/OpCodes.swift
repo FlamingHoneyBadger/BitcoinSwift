@@ -263,9 +263,7 @@ struct  OPHASH160 : OpCodeProtocol {
         guard let element = stack.pop() else {
             return false
         }
-        
         let h160 = Helper.hash160(data: element)
-        
         stack.push(h160)
         return true
     }
