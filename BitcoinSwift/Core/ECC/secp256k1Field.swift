@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import GMP
+import SwiftGMP
 
 
 struct secp256k1Field  {

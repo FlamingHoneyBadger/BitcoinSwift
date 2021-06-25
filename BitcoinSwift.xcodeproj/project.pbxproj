@@ -26,8 +26,6 @@
 		1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22D92659CFE1009F727A /* RIPEMD-160-Tests.swift */; };
 		1F3D22DC265AA448009F727A /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22DB265AA448009F727A /* HelperTests.swift */; };
 		1F3D22DF265AD133009F727A /* SecureBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3D22DE265AD133009F727A /* SecureBytes.swift */; };
-		1F752B282680B625001271C4 /* GMP.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */; };
-		1F752B292680B625001271C4 /* GMP.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FE1D6B5266BDCA300DD1BFC /* GMP.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1F752B2C26824752001271C4 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F752B2B26824752001271C4 /* Block.swift */; };
 		1F752B2E2682CDC8001271C4 /* BlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F752B2D2682CDC8001271C4 /* BlockTests.swift */; };
 		1F7872D0265D60F6004A1BEC /* hostAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7872CF265D60F6004A1BEC /* hostAppApp.swift */; };
@@ -38,6 +36,10 @@
 		1F7872ED265D60F8004A1BEC /* hostAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7872EC265D60F8004A1BEC /* hostAppUITests.swift */; };
 		1F7872FC265D620F004A1BEC /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1F7872FD265D620F004A1BEC /* BitcoinSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1FA62D5E268585AD007A49E6 /* SimpleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA62D5D268585AD007A49E6 /* SimpleNode.swift */; };
+		1FA62D60268586AA007A49E6 /* NetworkEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA62D5F268586AA007A49E6 /* NetworkEnvelope.swift */; };
+		1FA62D6326858FF8007A49E6 /* SwiftSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 1FA62D6226858FF8007A49E6 /* SwiftSocket */; };
+		1FA62D6A26859417007A49E6 /* SwiftGMP in Frameworks */ = {isa = PBXBuildFile; productRef = 1FA62D6926859417007A49E6 /* SwiftGMP */; };
 		1FB792EC264FB05900CA2CD7 /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1FB792F3264FB05900CA2CD7 /* BitcoinSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
@@ -94,17 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1F752B2A2680B625001271C4 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1F752B292680B625001271C4 /* GMP.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1F787300265D620F004A1BEC /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,6 +145,8 @@
 		1F7872EE265D60F8004A1BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F7872FA265D6158004A1BEC /* hostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hostApp.entitlements; sourceTree = "<group>"; };
 		1F8CEC96265F55AD00283F1B /* GMPFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GMPFramework.xcframework; sourceTree = "<group>"; };
+		1FA62D5D268585AD007A49E6 /* SimpleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNode.swift; sourceTree = "<group>"; };
+		1FA62D5F268586AA007A49E6 /* NetworkEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnvelope.swift; sourceTree = "<group>"; };
 		1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitcoinSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitcoinSwift.h; sourceTree = "<group>"; };
 		1FB792E6264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -202,7 +195,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F752B282680B625001271C4 /* GMP.xcframework in Frameworks */,
+				1FA62D6326858FF8007A49E6 /* SwiftSocket in Frameworks */,
+				1FA62D6A26859417007A49E6 /* SwiftGMP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +292,8 @@
 		1FA62D5C2685847F007A49E6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				1FA62D5D268585AD007A49E6 /* SimpleNode.swift */,
+				1FA62D5F268586AA007A49E6 /* NetworkEnvelope.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -482,7 +478,6 @@
 				1FB792DE264FB05900CA2CD7 /* Sources */,
 				1FB792DF264FB05900CA2CD7 /* Frameworks */,
 				1FB792E0264FB05900CA2CD7 /* Resources */,
-				1F752B2A2680B625001271C4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -490,6 +485,8 @@
 			);
 			name = BitcoinSwift;
 			packageProductDependencies = (
+				1FA62D6226858FF8007A49E6 /* SwiftSocket */,
+				1FA62D6926859417007A49E6 /* SwiftGMP */,
 			);
 			productName = BitcoinSwift;
 			productReference = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */;
@@ -554,6 +551,8 @@
 			);
 			mainGroup = 1FB792D8264FB05900CA2CD7;
 			packageReferences = (
+				1FA62D6126858FF8007A49E6 /* XCRemoteSwiftPackageReference "SwiftSocket" */,
+				1FA62D6826859417007A49E6 /* XCRemoteSwiftPackageReference "GMP" */,
 			);
 			productRefGroup = 1FB792E3264FB05900CA2CD7 /* Products */;
 			projectDirPath = "";
@@ -638,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA62D60268586AA007A49E6 /* NetworkEnvelope.swift in Sources */,
 				1F3D22C226571FDE009F727A /* Point.swift in Sources */,
 				1F2AF520267D6DB700A6AFBF /* String+Extension.swift in Sources */,
 				1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */,
@@ -652,6 +652,7 @@
 				1F3D22DF265AD133009F727A /* SecureBytes.swift in Sources */,
 				1F3D22D82659CEA9009F727A /* RIPEMD160.swift in Sources */,
 				65AB5D5E8099848965B00F63 /* TxIn.swift in Sources */,
+				1FA62D5E268585AD007A49E6 /* SimpleNode.swift in Sources */,
 				65AB5A0708D9153779D2E80A /* TxOut.swift in Sources */,
 				65AB582F01547093877B071B /* Script.swift in Sources */,
 				65AB5C68E7E3495AEE84E1AF /* OpCodes.swift in Sources */,
@@ -1116,6 +1117,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1FA62D6126858FF8007A49E6 /* XCRemoteSwiftPackageReference "SwiftSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/klundberg/SwiftSocket/";
+			requirement = {
+				branch = "swiftpm-support";
+				kind = branch;
+			};
+		};
+		1FA62D6826859417007A49E6 /* XCRemoteSwiftPackageReference "GMP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FlamingHoneyBadger/GMP.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FA62D6226858FF8007A49E6 /* SwiftSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FA62D6126858FF8007A49E6 /* XCRemoteSwiftPackageReference "SwiftSocket" */;
+			productName = SwiftSocket;
+		};
+		1FA62D6926859417007A49E6 /* SwiftGMP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FA62D6826859417007A49E6 /* XCRemoteSwiftPackageReference "GMP" */;
+			productName = SwiftGMP;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1FB792D9264FB05900CA2CD7 /* Project object */;
 }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import GMP
+import SwiftGMP
 
 extension String {
     func rawDecodeBase58Address() -> Data {

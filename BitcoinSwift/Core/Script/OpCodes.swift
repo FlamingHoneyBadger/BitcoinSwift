@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import GMP
+import SwiftGMP
 
 public protocol OpCodeProtocol {
     var name: String { get }

@@ -5,7 +5,7 @@
 
 import Foundation
 import XCTest
-import GMP
+import SwiftGMP
 
 @testable import BitcoinSwift
 
