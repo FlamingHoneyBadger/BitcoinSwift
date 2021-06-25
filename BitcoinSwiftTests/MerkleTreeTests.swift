@@ -54,7 +54,7 @@ class MerkleTreeTests: XCTestCase {
         try tree.populateTree(flagBits: &flags , hashes: &hex_hashes)
         
         let root = tree.root()?.hexEncodedString()
-        
+        print(tree.description())
         XCTAssertEqual(root, "597c4bafe3832b17cbbabe56f878f4fc2ad0f6a402cee7fa851a9cb205f87ed1")
     }
     
@@ -68,14 +68,10 @@ class MerkleTreeTests: XCTestCase {
                     "62af110031e29de1efcad103b3ad4bec7bdcf6cb9c9f4afdd586981795516577".hexadecimal!,
                 ]
         
-        let tree = MerkleTree(total: UInt32(hex_hashes.count))
-        
-        var flags = [Bool].init(repeating: true, count: tree.nodeCount)
-        
-        try tree.populateTree(flagBits: &flags , hashes: &hex_hashes)
+        let tree = try MerkleTree(hashes: hex_hashes)
         
         let root = tree.root()?.hexEncodedString()
-        
+        print(tree.description())
         XCTAssertEqual(root, "a8e8bd023169b81bc56854137a135b97ef47a6a7237f4c6e037baed16285a5ab")
     }
     

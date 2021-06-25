@@ -11,19 +11,22 @@ class TxIn {
     var prevIndex : UInt32
     var scriptSig : Script
     var sequence : UInt32
+    var witness : [Data]
     
     init(_ input: InputStream) throws {
         prevTx = try Data(input.readData(maxLength: 32).reversed())
         prevIndex = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
         scriptSig = try Script.init(input)
         sequence = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
-        
+        witness = []
     }
     init(prevTx : Data ,prevIndex : UInt32,scriptSig : Script =  Script() ,sequence : UInt32 = 0xffffffff)  {
         self.prevTx = prevTx
         self.prevIndex = prevIndex
         self.scriptSig = scriptSig
         self.sequence = sequence
+        witness = []
+
     }
     
     func value(prevTX: Tx) -> UInt64 {

@@ -33,14 +33,14 @@ class Tx {
             input.close()
         }
         self.testnet = testnet
-        let version = try input.readData(maxLength: 4)
-        self.version = UInt32(version.littleEndianUInt64())
-        let marker =  try input.readData(maxLength: 1)
+        self.version = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
+        var marker =  try input.readData(maxLength: 1)
         if(marker.bytes[0] == 0x00) {
             // segwit transaction
             isSegwit = true
-            //marker.append(try input.readData(maxLength: 1))
-            // legacy transaction
+            if( try input.readData(maxLength: 1).bytes[0]  != 0x01 ){
+                throw TxErrors.ErrorParsingData
+            }
             var numInputs = try Helper.readVarIntWithFlag(marker.bytes[0], input)
             var txIns :[TxIn] = []
 
@@ -56,6 +56,23 @@ class Tx {
                 numOutput -= 1
             }
             txOut = txOuts
+           
+            
+            for txIn in txIns {
+                var numberOfItems = try Helper.readVarInt(input)
+                var items: [Data] = []
+                for _ in 0..<numberOfItems {
+                    let itemLength = try Helper.readVarInt(input)
+                    
+                    if(itemLength == 0 ){
+                        items.append(Data())
+                    }else{
+                        items.append(try input.readData(maxLength: Int(itemLength)))
+                    }
+                }
+                txIn.witness = items
+            }
+            
             txIn = txIns
             locktime = UInt32(try input.readData(maxLength: 4).littleEndianUInt64())
 

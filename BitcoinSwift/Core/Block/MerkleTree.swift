@@ -16,6 +16,30 @@ class MerkleTree {
     var currentIndex : Int
     var currentDepth : Int
     
+    
+    func description()-> String {
+        var result = ""
+        
+        for level in nodes {
+            var nodes : [String] = []
+            for node in level {
+                nodes.append(node!.hexEncodedString().prefix(8).lowercased() + ".")
+            }
+            result += nodes.joined(separator: ", ")
+            result += "\n"
+        }
+        
+        
+        return result
+    }
+    
+    convenience init(hashes: [Data]) throws {
+        self.init(total: UInt32(hashes.count))
+        var flags = [Bool].init(repeating: true, count: nodeCount)
+        var txHashes = hashes;
+        try populateTree(flagBits: &flags , hashes: &txHashes)
+    }
+    
     init(total: UInt32) {
         self.total = total
         self.maxDepth =  UInt32(log2(Double(total)).rounded(FloatingPointRoundingRule.up))

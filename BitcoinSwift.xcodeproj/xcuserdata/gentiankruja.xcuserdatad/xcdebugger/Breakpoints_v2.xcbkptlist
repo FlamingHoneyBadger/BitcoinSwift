@@ -304,7 +304,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
             endingLineNumber = "33"
-            landmarkName = "equal(left:right:)"
+            landmarkName = "init(x:y:a:b:p:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -320,8 +320,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "Point"
-            landmarkType = "14">
+            landmarkName = "init(x:y:a:b:p:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -575,9 +575,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "==(_:_:)"
-            landmarkType = "7">
+            endingLineNumber = "174">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -591,9 +589,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "==(_:_:)"
-            landmarkType = "7">
+            endingLineNumber = "172">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -623,9 +619,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "*(_:_:)"
-            landmarkType = "7">
+            endingLineNumber = "151">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -639,9 +633,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "*(_:_:)"
-            landmarkType = "7">
+            endingLineNumber = "153">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -655,9 +647,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "*(_:_:)"
-            landmarkType = "7">
+            endingLineNumber = "155">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -671,9 +661,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "*(_:_:)"
-            landmarkType = "7">
+            endingLineNumber = "160">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -814,8 +802,8 @@
             filePath = "BitcoinSwift/Core/Transaction/TxIn.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
             landmarkName = "init(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -974,8 +962,8 @@
             filePath = "BitcoinSwift/Core/Transaction/Tx.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "SignInputP2PKHorP2SH(inputIndex:privateKey:scriptPubkey:redeem:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -990,8 +978,8 @@
             filePath = "BitcoinSwift/Core/Transaction/Tx.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "SignInputP2PKHorP2SH(inputIndex:privateKey:scriptPubkey:redeem:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1022,8 +1010,8 @@
             filePath = "BitcoinSwift/Core/Transaction/Tx.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "verifyInput(inputIndex:scriptPubkey:witness:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1038,8 +1026,8 @@
             filePath = "BitcoinSwift/Core/Transaction/Tx.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "verifyInput(inputIndex:scriptPubkey:witness:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1054,10 +1042,10 @@
             filePath = "BitcoinSwift/Core/Transaction/Tx.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "verifyInput(inputIndex:scriptPubkey:witness:)"
-            landmarkType = "7">
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "Tx"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1112,7 +1100,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5A8353A0-DABB-4413-B6A9-863ECDE6A8D6"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwift/Core/Script/Script.swift"
@@ -1144,7 +1132,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C846C0AF-42A0-40C2-996E-A8031C9A6F2F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwift/Core/Script/Script.swift"
@@ -1160,7 +1148,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2CCEDBC0-2F49-49E1-BC8E-DD5230AE2FDE"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwift/Core/Script/Script.swift"
@@ -1176,7 +1164,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4BE8C608-CC62-423F-AF9E-7B3D4799072A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwift/Core/Script/Script.swift"
@@ -1192,7 +1180,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8AB286A9-81B3-4D58-9649-CFB9FCC04835"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwift/Core/Script/Script.swift"
@@ -1288,7 +1276,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "AEF47009-5B8D-4D7E-99BD-0862186ABF94"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwift/Core/Script/OpCodes.swift"
@@ -1304,7 +1292,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "EDDAD1BE-C967-4323-961B-E0C079BD360F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwift/Core/Script/OpCodes.swift"
@@ -1470,8 +1458,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "init(total:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1486,8 +1474,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "init(total:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1502,8 +1490,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "init(total:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1512,7 +1500,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8C46A471-F4D0-4D44-8C79-58FB8D9CE5E8"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwiftTests/MerkleTreeTests.swift"
@@ -1534,8 +1522,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "populateTree(flagBits:hashes:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1550,8 +1538,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "populateTree(flagBits:hashes:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1566,8 +1554,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "populateTree(flagBits:hashes:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1582,8 +1570,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "populateTree(flagBits:hashes:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1592,6 +1580,38 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "463D3975-8010-4CE7-9013-7AD064904C3A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "populateTree(flagBits:hashes:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A483F84-A7F7-4A78-83AC-D63FC30B5495"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "populateTree(flagBits:hashes:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C39A2265-D684-4880-8BCB-FA06401DD944"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1607,38 +1627,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9A483F84-A7F7-4A78-83AC-D63FC30B5495"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "populateTree(flagBits:hashes:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C39A2265-D684-4880-8BCB-FA06401DD944"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "populateTree(flagBits:hashes:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "8A0A54CA-A07B-43B3-81A0-408A65E0CB49"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1646,8 +1634,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "populateTree(flagBits:hashes:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1662,8 +1650,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "populateTree(flagBits:hashes:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1678,8 +1666,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "up()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1694,8 +1682,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "up()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1710,8 +1698,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "right()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1726,8 +1714,8 @@
             filePath = "BitcoinSwift/Core/Block/MerkleTree.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "right()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1736,15 +1724,223 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "52AFDA54-0ECD-4260-A7BE-7AE76BCD326E"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BitcoinSwiftTests/MerkleTreeTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "testTreePopulation2()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01ACA5AD-BB90-430C-A09D-0AE15D364B6F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwiftTests/BlockTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "testParse()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7991A080-A2CE-4FB3-9AD9-5CC5F7BC75B9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwiftTests/BlockTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "testParse()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04C4C2AA-20CE-40AA-8C98-8BBA95442A8B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwift/Core/Block/Block.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "init(input:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A165A525-FF43-4489-BAF5-EA0A470787B3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwift/Core/Block/Block.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "init(input:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3DDB00D8-8658-4B3A-A751-8FAB5D5F2AFA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwift/Core/Block/Block.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "target()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3BCDCFE0-2671-4540-86D1-9A1BED8CCE73"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwift/Core/Block/Block.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "difficulty()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D53731E-A286-4A86-9621-EE502B299F0E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwiftTests/BlockTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "testTarget()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "66288C62-20DA-4EA2-A877-582FEA311D89"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwiftTests/BlockTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "testTarget()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EDDB3141-FF02-4DFE-AB00-195D91C4ABF6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../GMP/swiftGMP/swiftGMP.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D29D28F3-809E-4058-9D0D-E623CFE9D4BC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../GMP/swiftGMP/swiftGMP.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2B35D249-5CF8-4BE1-80CE-10F810943468"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../GMP/swiftGMP/swiftGMP.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDA97A0A-5254-44DA-AE96-2E4028081ACA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwiftTests/BlockTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "testTarget()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B3C81754-5B0F-448E-8100-74BE93781CD0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BitcoinSwiftTests/BlockTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "testMerkleTree()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

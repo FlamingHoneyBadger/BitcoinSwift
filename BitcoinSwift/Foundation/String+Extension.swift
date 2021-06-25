@@ -27,10 +27,36 @@ extension String {
         return Data(combined)
     }
     
+
     
     func decodeBase58Address() -> Data {
         let raw = self.rawDecodeBase58Address().bytes
         
         return Data(raw[1..<raw.count-4])
+    }
+    
+    
+   
+    
+}
+
+extension Data: ExpressibleByStringLiteral {
+        
+    public init(stringLiteral value: String) {
+        self = Data(capacity: value.count / 2)
+        
+        let regex = try! NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive)
+        regex.enumerateMatches(in: value, range: NSRange(value.startIndex..., in: value)) { match, _, _ in
+            let byteString = (value as NSString).substring(with: match!.range)
+            let num = UInt8(byteString, radix: 16)!
+            self.append(num)
+        }
+        
+        guard self.count > 0 else {
+            self =  Data()
+            return
+            
+        }
+        
     }
 }
