@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftGMP
+import GMP
 import BitcoinSwift
 
 struct ContentView: View {

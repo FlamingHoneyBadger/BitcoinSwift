@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import SwiftGMP
+import GMP
 import CommonCrypto
 import CryptoKit
 

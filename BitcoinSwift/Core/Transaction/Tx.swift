@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftGMP
+import GMP
 class Tx {
 
     let version : UInt32

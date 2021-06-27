@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-import SwiftGMP
+import GMP
 @testable import BitcoinSwift
 
 class BlockTests: XCTestCase {

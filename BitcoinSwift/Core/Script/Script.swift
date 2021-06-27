@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import SwiftGMP
+import GMP
 
 public protocol Stack {
     func peek() -> Data?

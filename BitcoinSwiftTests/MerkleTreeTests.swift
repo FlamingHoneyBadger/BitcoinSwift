@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftGMP
+import GMP
 @testable import BitcoinSwift
 
 import XCTest

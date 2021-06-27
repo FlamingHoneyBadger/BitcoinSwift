@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftGMP
+import GMP
 import Security
 
 public class secp256k1Point  {
