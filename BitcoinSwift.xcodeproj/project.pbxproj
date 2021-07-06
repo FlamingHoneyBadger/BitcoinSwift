@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F075256268BF3EC0057727D /* PingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F075255268BF3EC0057727D /* PingMessage.swift */; };
+		1F075258268BF8860057727D /* PongMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F075257268BF8860057727D /* PongMessage.swift */; };
+		1F07525A268BF9D00057727D /* VersionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F075259268BF9D00057727D /* VersionMessage.swift */; };
 		1F2AF520267D6DB700A6AFBF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AF51F267D6DB700A6AFBF /* String+Extension.swift */; };
 		1F2AF52326802A5600A6AFBF /* MerkleTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AF52226802A5600A6AFBF /* MerkleTree.swift */; };
 		1F2AF52526802D7000A6AFBF /* MerkleTreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2AF52426802D7000A6AFBF /* MerkleTreeTests.swift */; };
@@ -38,6 +41,8 @@
 		1F7872ED265D60F8004A1BEC /* hostAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7872EC265D60F8004A1BEC /* hostAppUITests.swift */; };
 		1F7872FC265D620F004A1BEC /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1F7872FD265D620F004A1BEC /* BitcoinSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1F8D2EF0268932E5001B8E04 /* NetworkMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8D2EEF268932E5001B8E04 /* NetworkMessage.swift */; };
+		1F8D2EF3268BE638001B8E04 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8D2EF2268BE638001B8E04 /* NetworkTests.swift */; };
 		1FB792EC264FB05900CA2CD7 /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1FB792F3264FB05900CA2CD7 /* BitcoinSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
@@ -119,6 +124,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1F075255268BF3EC0057727D /* PingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingMessage.swift; sourceTree = "<group>"; };
+		1F075257268BF8860057727D /* PongMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PongMessage.swift; sourceTree = "<group>"; };
+		1F075259268BF9D00057727D /* VersionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionMessage.swift; sourceTree = "<group>"; };
 		1F2AF51F267D6DB700A6AFBF /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1F2AF52226802A5600A6AFBF /* MerkleTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTree.swift; sourceTree = "<group>"; };
 		1F2AF52426802D7000A6AFBF /* MerkleTreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerkleTreeTests.swift; sourceTree = "<group>"; };
@@ -154,6 +162,8 @@
 		1F7872EE265D60F8004A1BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F7872FA265D6158004A1BEC /* hostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hostApp.entitlements; sourceTree = "<group>"; };
 		1F8CEC96265F55AD00283F1B /* GMPFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GMPFramework.xcframework; sourceTree = "<group>"; };
+		1F8D2EEF268932E5001B8E04 /* NetworkMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMessage.swift; sourceTree = "<group>"; };
+		1F8D2EF2268BE638001B8E04 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitcoinSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitcoinSwift.h; sourceTree = "<group>"; };
 		1FB792E6264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -295,9 +305,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1F8D2EF12689E6A1001B8E04 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				1F075255268BF3EC0057727D /* PingMessage.swift */,
+				1F075257268BF8860057727D /* PongMessage.swift */,
+				1F075259268BF9D00057727D /* VersionMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		1FA62D5C2685847F007A49E6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				1F8D2EF12689E6A1001B8E04 /* Messages */,
+				1F8D2EEF268932E5001B8E04 /* NetworkMessage.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -354,6 +376,7 @@
 				65AB5236124BC320821C8966 /* TxTests.swift */,
 				1F2AF52426802D7000A6AFBF /* MerkleTreeTests.swift */,
 				1F752B2D2682CDC8001271C4 /* BlockTests.swift */,
+				1F8D2EF2268BE638001B8E04 /* NetworkTests.swift */,
 			);
 			path = BitcoinSwiftTests;
 			sourceTree = "<group>";
@@ -642,16 +665,20 @@
 				1F2AF520267D6DB700A6AFBF /* String+Extension.swift in Sources */,
 				1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */,
 				1F3D22C326571FDE009F727A /* secp256k1Field.swift in Sources */,
+				1F07525A268BF9D00057727D /* VersionMessage.swift in Sources */,
 				1F3D22C126571FDE009F727A /* secp256k1Point.swift in Sources */,
 				1F3D22CD26574281009F727A /* secp256k1Constants.swift in Sources */,
+				1F8D2EF0268932E5001B8E04 /* NetworkMessage.swift in Sources */,
 				1F3D22BD26571FD1009F727A /* Helper.swift in Sources */,
 				1F3D22CB26573D6B009F727A /* ECDSASignature.swift in Sources */,
+				1F075258268BF8860057727D /* PongMessage.swift in Sources */,
 				1F3D22D12658E266009F727A /* PrivateKey.swift in Sources */,
 				1F3D22D42659719F009F727A /* Data+Extension.swift in Sources */,
 				1FE1D6AD2665432A00DD1BFC /* Tx.swift in Sources */,
 				1F3D22DF265AD133009F727A /* SecureBytes.swift in Sources */,
 				1F3D22D82659CEA9009F727A /* RIPEMD160.swift in Sources */,
 				65AB5D5E8099848965B00F63 /* TxIn.swift in Sources */,
+				1F075256268BF3EC0057727D /* PingMessage.swift in Sources */,
 				65AB5A0708D9153779D2E80A /* TxOut.swift in Sources */,
 				65AB582F01547093877B071B /* Script.swift in Sources */,
 				65AB5C68E7E3495AEE84E1AF /* OpCodes.swift in Sources */,
@@ -673,6 +700,7 @@
 				1F3D22DC265AA448009F727A /* HelperTests.swift in Sources */,
 				1F3D22CF26574526009F727A /* ECCTests.swift in Sources */,
 				1F3D22C9265721C8009F727A /* scep256k1Tests.swift in Sources */,
+				1F8D2EF3268BE638001B8E04 /* NetworkTests.swift in Sources */,
 				1F3D22DA2659CFE1009F727A /* RIPEMD-160-Tests.swift in Sources */,
 				1F3D22C7265721C8009F727A /* FieldElementTests.swift in Sources */,
 				65AB53CF8B7574BEC941C9BA /* OpCodeTests.swift in Sources */,
