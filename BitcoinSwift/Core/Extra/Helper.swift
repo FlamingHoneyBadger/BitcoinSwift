@@ -39,6 +39,24 @@ import CryptoKit
         return Data(signature)
     }
     
+    static func hmacSha512(key: Data , message: Data) -> Data {
+        let sKey = SymmetricKey(data: key)
+        let signature = HMAC<SHA512>.authenticationCode(for: message, using: sKey)
+        return Data(signature)
+    }
+    
+    static func PBKDF2_HMAC_SHA512_(mnemonic: String, password: String, derivedKeyLen: Int = 64)  -> Data {
+        
+        let passphrase = "mnemonic"+password
+        var derivedKeyData = Data(repeating:0, count:derivedKeyLen)
+        
+        derivedKeyData.withUnsafeMutableBytes { (output: UnsafeMutableRawBufferPointer) in
+            CCKeyDerivationPBKDF(CCPBKDFAlgorithm(kCCPBKDF2), mnemonic, mnemonic.count, passphrase, passphrase.count, CCPBKDFAlgorithm(kCCPRFHmacAlgSHA512), 2048, output.baseAddress?.assumingMemoryBound(to: UInt8.self), derivedKeyLen)
+            }
+       
+        return derivedKeyData
+    }
+    
     static func mod(_ a: GMPInteger, _ n: GMPInteger) -> GMPInteger {
         precondition(n > 0, "modulus must be positive")
         return GMPInteger.mod(a, n)

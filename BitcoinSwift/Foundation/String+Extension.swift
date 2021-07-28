@@ -14,13 +14,11 @@ extension String {
 
         var num  = GMPInteger(0)
         
-        
         for c in self {
             num = num *  58
             let i = BASE58_ALPHABET.firstIndex(of: c)
             num = num + BASE58_ALPHABET.distance(from: BASE58_ALPHABET.startIndex, to: i!)
         }
-        
         
         let combined = GMPInteger.bytes(num)
         
@@ -28,15 +26,15 @@ extension String {
     }
     
 
-    
     func decodeBase58Address() -> Data {
         let raw = self.rawDecodeBase58Address().bytes
-        
         return Data(raw[1..<raw.count-4])
     }
     
-    
-   
+    func toJSON() -> Any? {
+        guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
+        return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+    }
     
 }
 
