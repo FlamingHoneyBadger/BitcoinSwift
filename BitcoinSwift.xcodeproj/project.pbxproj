@@ -46,6 +46,7 @@
 		1F92A11826AE26B500323B4B /* Mnemonic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F92A11726AE26B500323B4B /* Mnemonic.swift */; };
 		1F92A11A26AE282C00323B4B /* Wordlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F92A11926AE282C00323B4B /* Wordlist.swift */; };
 		1F92A11C26AE4B0000323B4B /* BitReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F92A11B26AE4B0000323B4B /* BitReader.swift */; };
+		1F9736B227126AE1006328D6 /* HDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9736B127126AE1006328D6 /* HDKey.swift */; };
 		1FB792EC264FB05900CA2CD7 /* BitcoinSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */; };
 		1FB792F3264FB05900CA2CD7 /* BitcoinSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FB7930226502E0F00CA2CD7 /* FieldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7930126502E0F00CA2CD7 /* FieldElement.swift */; };
@@ -171,6 +172,7 @@
 		1F92A11726AE26B500323B4B /* Mnemonic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mnemonic.swift; sourceTree = "<group>"; };
 		1F92A11926AE282C00323B4B /* Wordlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordlist.swift; sourceTree = "<group>"; };
 		1F92A11B26AE4B0000323B4B /* BitReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitReader.swift; sourceTree = "<group>"; };
+		1F9736B127126AE1006328D6 /* HDKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDKey.swift; sourceTree = "<group>"; };
 		1FB792E2264FB05900CA2CD7 /* BitcoinSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BitcoinSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB792E5264FB05900CA2CD7 /* BitcoinSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitcoinSwift.h; sourceTree = "<group>"; };
 		1FB792E6264FB05900CA2CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 		1FB792FC26502DA700CA2CD7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1FBCD3E72715135800647E4E /* Protocols */,
 				1FA62D5C2685847F007A49E6 /* Network */,
 				1F2AF52126802A2B00A6AFBF /* Block */,
 				1FE1D6AB2665430B00DD1BFC /* Transaction */,
@@ -402,6 +405,7 @@
 				1FB792FD26502DB700CA2CD7 /* ECC */,
 				1F92A11726AE26B500323B4B /* Mnemonic.swift */,
 				1F92A11926AE282C00323B4B /* Wordlist.swift */,
+				1F9736B127126AE1006328D6 /* HDKey.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -428,6 +432,13 @@
 				65AB5A3380452F63F46BA4BD /* OpCodeFunctions.swift */,
 			);
 			path = Script;
+			sourceTree = "<group>";
+		};
+		1FBCD3E72715135800647E4E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		1FE1D6AB2665430B00DD1BFC /* Transaction */ = {
@@ -688,6 +699,7 @@
 				1F075258268BF8860057727D /* PongMessage.swift in Sources */,
 				1F3D22D12658E266009F727A /* PrivateKey.swift in Sources */,
 				1F3D22D42659719F009F727A /* Data+Extension.swift in Sources */,
+				1F9736B227126AE1006328D6 /* HDKey.swift in Sources */,
 				1FE1D6AD2665432A00DD1BFC /* Tx.swift in Sources */,
 				1F3D22DF265AD133009F727A /* SecureBytes.swift in Sources */,
 				1F3D22D82659CEA9009F727A /* RIPEMD160.swift in Sources */,
