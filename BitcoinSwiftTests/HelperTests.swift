@@ -40,9 +40,9 @@ class HelperTests : XCTestCase{
     
     func testP2SH2of3Address() throws {
         //e,e2,e3
-        let e  = PrivateKey.init(key: SecureBytes.init(bytes:"9d8077db6902d4bdbbeafee3a19a152914aaf1f3de03352badc48b21e0f7fa97".hexadecimal!.bytes))
-        let e2 = PrivateKey.init(key: SecureBytes.init(bytes:"1514739c40ffc689a557fed1f26fd9dec39a53eb06378298d2a6f0e648a46dfa".hexadecimal!.bytes))
-        let e3 = PrivateKey.init(key: SecureBytes.init(bytes:"6a3a2cf5fe317ed4a6773836f48a53b302506cbcbf1a95a09eb81c0ca3617213".hexadecimal!.bytes))
+        let e  = try PrivateKey.init(key: SecureBytes.init(bytes:"9d8077db6902d4bdbbeafee3a19a152914aaf1f3de03352badc48b21e0f7fa97".hexadecimal!.bytes))
+        let e2 = try PrivateKey.init(key: SecureBytes.init(bytes:"1514739c40ffc689a557fed1f26fd9dec39a53eb06378298d2a6f0e648a46dfa".hexadecimal!.bytes))
+        let e3 = try PrivateKey.init(key: SecureBytes.init(bytes:"6a3a2cf5fe317ed4a6773836f48a53b302506cbcbf1a95a09eb81c0ca3617213".hexadecimal!.bytes))
         var redeemScript = Script()
         redeemScript.push(Data([82]))
         redeemScript.push(e.point.SecBytes(isCompressed: true))
@@ -57,7 +57,7 @@ class HelperTests : XCTestCase{
     
     func testP2SH1of1Address() throws {
         //e,e2,e3
-        let e  = PrivateKey.init(key: SecureBytes.init(bytes:"9d8077db6902d4bdbbeafee3a19a152914aaf1f3de03352badc48b21e0f7fa97".hexadecimal!.bytes))
+        let e  = try PrivateKey.init(key: SecureBytes.init(bytes:"9d8077db6902d4bdbbeafee3a19a152914aaf1f3de03352badc48b21e0f7fa97".hexadecimal!.bytes))
         var redeemScript = Script()
         redeemScript.push(Data([OP_CODE_FUNCTIONS.OP_1.rawValue]))
         redeemScript.push(e.point.SecBytes(isCompressed: true))

@@ -8,14 +8,22 @@
 import Foundation
 import GMP
 
+enum PKError :Error {
+    case privateKeyOutOfRange
+}
+
 public class PrivateKey {
     
     private let secret :SecureBytes
     let point : secp256k1Point
     
-    init(key: SecureBytes) {
+    init(key: SecureBytes) throws {
         self.secret = key
-        self.point = secp256k1Point.init(p: GMPInteger(Data(self.secret[0..<key.count])) * secp256k1Constants.G.point) 
+        let p = GMPInteger(Data(self.secret[0..<key.count]))
+        if(p == 0 || p == secp256k1Constants.N){
+            throw PKError.privateKeyOutOfRange
+        }
+        self.point = secp256k1Point.init(p: p * secp256k1Constants.G.point)
         
     }
     

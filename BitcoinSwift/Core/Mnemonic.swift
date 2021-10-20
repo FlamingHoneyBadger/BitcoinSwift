@@ -33,7 +33,7 @@ class Mnemonic {
         self.testnet = testnet
         self.entropy = input.count * 8
         self.mnemonicWordListArray = Mnemonic.calculateMnemonicString(input: input)
-        assert(self.entropy >= 128 && self.entropy <= 256 && self.entropy % 32 == 0)
+        assert(self.entropy >= 128 && self.entropy % 32 == 0)
     }
     
     
@@ -44,6 +44,10 @@ class Mnemonic {
     func toHDMasterKey(passphrase: String = "") -> Data {
         let seed = toSeed(passphrase: passphrase)
         assert(seed.count == 64)
+        return toHDMasterKey(seed: seed)
+    }
+    
+    func toHDMasterKey(seed:Data) -> Data {
         let seed1 = Helper.hmacSha512(key:Data("Bitcoin seed".utf8), message: seed)
         var xprv = Data();
         if(testnet){
@@ -53,7 +57,7 @@ class Mnemonic {
             xprv.append(contentsOf: [0x04,0x88,0xad,0xe4])// Version for private mainnet
         }
         xprv.append(Data([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]))
-        xprv.append(seed1[32...seed.count-1]) //chain code
+        xprv.append(seed1[32...seed1.count-1]) //chain code
         xprv.append(0x00)
         xprv.append(seed1[0...31]) // master key
         return xprv

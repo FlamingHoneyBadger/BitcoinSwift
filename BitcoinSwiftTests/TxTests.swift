@@ -123,7 +123,7 @@ class TxTests : XCTestCase {
         let scriptPubkey = "1976a914d52ad7ca9b3d096a38e752c2018e6fbc40cdf26f88ac"
         let script = try Script.init(scriptPubkey.hexadecimal!)
         let key  = SecureBytes(bytes:GMPInteger.bytes(GMPInteger("8675309")))
-        let pk = PrivateKey.init(key:key)
+        let pk = try PrivateKey.init(key:key)
         let stream = InputStream.init(data: rawtx.hexadecimal!)
         stream.open()
         let tx = try Tx.init(stream, true)
@@ -134,7 +134,7 @@ class TxTests : XCTestCase {
     }
     
     func testP2SH1of1Sign() throws {
-        let e  = PrivateKey.init(key: SecureBytes.init(bytes:"9d8077db6902d4bdbbeafee3a19a152914aaf1f3de03352badc48b21e0f7fa97".hexadecimal!.bytes))
+        let e  = try PrivateKey.init(key: SecureBytes.init(bytes:"9d8077db6902d4bdbbeafee3a19a152914aaf1f3de03352badc48b21e0f7fa97".hexadecimal!.bytes))
         let rawtx = "0100000001860334704ebf0ffde9ecad210d7e6538806a17bc6de2c2892fbab3a07bc0af56000000006a47304402206bdd3064d95b9f8f0b98bdca94b561b8307af888874758eea8b69fb6eb5a43f70220022be9e1eef220e44214d822c86fbfa05cbf5a73af2821b34234c53e6cbc562b012103c92ca96a054f7fc0ba18cb811a812d0986a2027f41beb8e6ef7c01cca037ce27ffffffff011b2701000000000017a914b323cd74b873366a9704d6f012eeaa1b410fade38700000000"
         let wanted = "01000000019712762d820ccfec68bb57cba2f554cb7fb54d3e1a08fca8508f8211c5c8990a000000007000483045022100a95757c4da439bc36339969627541112239ec1cd28b89b838211e12eb43b74b1022007c12380b1619736ab2e259d6249dcc8fb8f91c2f6a9307e9aa920b504f375ee0125512103c92ca96a054f7fc0ba18cb811a812d0986a2027f41beb8e6ef7c01cca037ce2751aeffffffff014f2601000000000017a914efc674ca71bada28af995f365926cc7923631d328700000000"
         let address = "2NF73E7PMwxUHJKcEcgU6ENdotPZL23TT1H"

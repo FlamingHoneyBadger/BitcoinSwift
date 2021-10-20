@@ -123,7 +123,7 @@ class ECCTests : XCTestCase {
 //        3045022100d7764fb59c433f77ba9c50b77e116cea612de1b7379cf54d02604a42a1048636022018f2cbc1f70ebb63cc23fdf37b9587f590e0068d439938ec315c7402813fd5b0
 
         let key  = SecureBytes(bytes:GMPInteger.bytes(GMPInteger("40739933752410060555609228973058042831504651302294666289131257978163635864942")))
-        let pk = PrivateKey.init(key:key)
+        let pk = try PrivateKey.init(key:key)
         print(pk.point.description)
         let z = GMPInteger("100714224755359001914014069612932105362547871363962210278001769511023688176367")
         let sig = pk.signWithECDSA(z:z)
@@ -171,7 +171,7 @@ class ECCTests : XCTestCase {
 //        88204310995169350853996406688742836455588906325450995662934638734244926379609
 //        304402201f7589409785bbc5a48fca612019185239976b136625c915faa02a68c1bcd1e4022007c5ba3374bdb35675e152477b6a729720d7249e4ad2c994939b483870694271
         let key  = SecureBytes(bytes:GMPInteger.bytes(GMPInteger("58719404139286711016959180277444754667373398415919558061107985415866847326494")))
-        let pk = PrivateKey.init(key:key)
+        let pk = try PrivateKey.init(key:key)
         let z = GMPInteger("88204310995169350853996406688742836455588906325450995662934638734244926379609")
         let sig = pk.signWithECDSA(z:z)
         let hexSig = sig.DERBytes().hexEncodedString()

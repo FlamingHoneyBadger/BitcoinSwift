@@ -24,6 +24,7 @@ extension Data {
     }
 
     func littleEndianUInt64() -> UInt64{ reversed().reduce(0) { $0 << 8 + UInt64($1) }}
+    
 
     func hexEncodedString(options: HexEncodingOptions = []) -> String {
         let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
@@ -62,6 +63,14 @@ extension Data {
         var result =  Data( s)
         result.append(checksum[0..<4])
         return result.base58EncodeString()
+    }
+    
+    func dataWithHash256Checksum() -> Data {
+        let s = Data(self.bytes)
+        let checksum =  Helper.hash256(data: s)
+        var result =  Data( s)
+        result.append(checksum[0..<4])
+        return result
     }
     
 }
