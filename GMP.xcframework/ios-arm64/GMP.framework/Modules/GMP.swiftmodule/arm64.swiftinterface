@@ -1,9 +1,10 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
 // swift-module-flags: -target arm64-apple-ios14.5 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name GMP
 import Foundation
 @_exported import GMP
 import Swift
+import _Concurrency
 public class GMPInteger {
   public init()
   convenience public init(_ x: Swift.Int)
@@ -11,7 +12,7 @@ public class GMPInteger {
   convenience public init(_ string: Swift.String)
   @objc deinit
 }
-extension GMPInteger {
+extension GMP.GMPInteger {
   public static func getInt64(_ number: GMP.GMPInteger) -> Swift.Int?
   public static func abs(_ x: GMP.GMPInteger) -> GMP.GMPInteger
   public static func neg(_ x: GMP.GMPInteger) -> GMP.GMPInteger
@@ -36,7 +37,7 @@ extension GMPInteger {
   public func bitwidth() -> Swift.Int
   public static func convertToInt(_ op: GMP.GMPInteger) -> Swift.UInt
 }
-extension GMPInteger : Swift.Equatable, Swift.Comparable {
+extension GMP.GMPInteger : Swift.Equatable, Swift.Comparable {
   public static func + (a: GMP.GMPInteger, b: GMP.GMPInteger) -> GMP.GMPInteger
   public static func - (a: GMP.GMPInteger, b: Swift.Int) -> GMP.GMPInteger
   public static func + (a: GMP.GMPInteger, b: Swift.Int) -> GMP.GMPInteger
@@ -63,6 +64,6 @@ extension GMPInteger : Swift.Equatable, Swift.Comparable {
   public static func << (op1: GMP.GMPInteger, op2: Swift.Int) -> GMP.GMPInteger
   public static func >> (op1: GMP.GMPInteger, op2: Swift.Int) -> GMP.GMPInteger
 }
-extension Array where Element == Swift.UInt8 {
+extension Swift.Array where Element == Swift.UInt8 {
   public init(hex: Swift.String)
 }
